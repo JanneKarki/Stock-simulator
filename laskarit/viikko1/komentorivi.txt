@@ -1,0 +1,16 @@
+kurssit
+└── ot2022
+    └── viikko1
+        ├── __MACOSX
+        └── unicafe
+            ├── poetry.lock
+            ├── pyproject.toml
+            └── src
+                ├── index.py
+                ├── kassapaate.py
+                ├── maksukortti.py
+                └── tests
+                    ├── __init__.py
+                    └── maksukortti_test.py
+
+6 directories, 7 files

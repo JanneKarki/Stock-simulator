@@ -1,0 +1,130 @@
+jwkarki@lx1-fuxi131:~/ot_viikko1$ git log --stat | cat
+commit c906e6d3eda6074dcb26c6509356dfbfab6b08b4
+Author: Janne Kärki <janne.karki@helsinki.fi>
+Date:   Sat Mar 5 10:13:12 2022 +0200
+
+    uudelleen nimetty
+
+ tiedostoja/file22 | 0
+ tiedostoja/file3  | 1 +
+ 2 files changed, 1 insertion(+)
+
+commit 5b4cf95a35f6d2b520665e079a20dbab3eae0fdb
+Author: Janne Kärki <janne.karki@helsinki.fi>
+Date:   Fri Mar 4 22:56:57 2022 +0200
+
+    teh 9 muutokset eka.tx ja kolmas.txt tiedostoihin
+
+ eka.txt    | 6 +++---
+ kolmas.txt | 5 ++++-
+ 2 files changed, 7 insertions(+), 4 deletions(-)
+
+commit 541ef7997f92ebe0c4f784397e612f6fd4d86485
+Author: Janne Kärki <janne.karki@helsinki.fi>
+Date:   Fri Mar 4 22:49:50 2022 +0200
+
+    nimetty uudelleen
+
+ eka1 => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 8a1e9069426928e0b912c80d8536acbc0b3f580c
+Author: Janne Kärki <janne.karki@helsinki.fi>
+Date:   Fri Mar 4 22:47:09 2022 +0200
+
+    renamed
+
+ eka.txt => eka1 | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 278548d053d1846e077ae98524225fb743763051
+Author: Janne Kärki <janne.karki@helsinki.fi>
+Date:   Fri Mar 4 22:41:15 2022 +0200
+
+    uudelleen nimetty komennolla cp
+
+ eka.txt | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
+
+commit 259ea305f7cb343d7a5387296f542b832b474242
+Author: Janne Kärki <janne.karki@helsinki.fi>
+Date:   Fri Mar 4 22:38:23 2022 +0200
+
+    poistettu toinen.txt
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 6ed3ab40afe00c6a87759e7cb630ba66502fba59
+Author: Janne Kärki <janne.karki@helsinki.fi>
+Date:   Fri Mar 4 22:31:42 2022 +0200
+
+    poistettu ja lisätty tekstiä
+
+ tiedosto.txt | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
+
+commit b3c769d819a596379afb4511695900d994c386cf
+Author: Janne Kärki <janne.karki@helsinki.fi>
+Date:   Fri Mar 4 22:29:57 2022 +0200
+
+    lisätty tekstiä
+
+ tiedosto.txt | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+
+commit 8f732eb6aad5bded941e3a5e0d7ce6357646d4d6
+Author: Janne Kärki <janne.karki@helsinki.fi>
+Date:   Fri Mar 4 22:22:34 2022 +0200
+
+    luotu stuff/tiedosto1.txt
+
+ stuff/tiedosto1.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 5d53fc21955087f978885fd7e7faf652366c1fff
+Author: Janne Kärki <janne.karki@helsinki.fi>
+Date:   Fri Mar 4 22:20:20 2022 +0200
+
+    muutokset
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 8df4b157a40334d28bdc532ab5618f9b088f70db
+Author: Janne Kärki <janne.karki@helsinki.fi>
+Date:   Fri Mar 4 22:18:15 2022 +0200
+
+    luotu kolmas.txt
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 5488985bb5dec7b5e6a6a67f0c94b0ee84583d4f
+Author: Janne Kärki <janne.karki@helsinki.fi>
+Date:   Fri Mar 4 22:12:15 2022 +0200
+
+    muutos
+
+ tiedosto.txt | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 6727914f4bef53fd90cd432157e0a8a416b67a47
+Author: Janne Kärki <janne.karki@helsinki.fi>
+Date:   Fri Mar 4 20:59:41 2022 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit dbacba45bb31a6790049b74fc588811469a85336
+Author: Janne Kärki <janne.karki@helsinki.fi>
+Date:   Fri Mar 4 20:53:15 2022 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
