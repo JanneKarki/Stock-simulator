@@ -15,4 +15,6 @@ ____________________________________________
 
 **Viikko 2 Tehtävät**
 
-[Stock-Simulator-sovelluksen vaatimusmäärittely](https://github.com/JanneKarki/ot-harjoitustyo/blob/main/Stock-simulator/dokumentaatio/vaatimusmaarittely.md)
+[Stock-Simulator-sovelluksen vaatimusmäärittely.md](https://github.com/JanneKarki/ot-harjoitustyo/blob/main/Stock-simulator/dokumentaatio/vaatimusmaarittely.md)
+
+[Unicafe kassapäätetestien kattavuusraportti.png](https://github.com/JanneKarki/ot-harjoitustyo/blob/main/laskarit/viikko2/Screenshot_20220325_150441.png)
