@@ -17,7 +17,6 @@ ____________________________________________
 [komentorivi.txt](https://github.com/JanneKarki/ot-harjoitustyo/blob/main/laskarit/viikko1/komentorivi.txt)
 
 
-____________________________________________
 
 **Viikko 2 Tehtävät**
 
