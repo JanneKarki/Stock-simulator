@@ -1,8 +1,8 @@
-# Ohjelmistotekniikan harjoitustyö
+# Ohjelmistotekniikan harjoitustyö - Stock-Simulator
 
 Tarkoituksena on __oppia__ ohjelmistotekniikkaa ja _Githubin_ käyttöä.
 
-
+____________________________________________
 
 **Viikko 1 Tehtävät**
 
