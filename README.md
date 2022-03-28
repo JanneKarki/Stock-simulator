@@ -2,7 +2,13 @@
 
 Tarkoituksena on __oppia__ ohjelmistotekniikkaa ja _Githubin_ käyttöä.
 
+[Vaatimusmäärittely](https://github.com/JanneKarki/ot-harjoitustyo/blob/main/Stock-simulator/dokumentaatio/vaatimusmaarittely.md)
+
+[Työaikakirjanpito](https://github.com/JanneKarki/ot-harjoitustyo/blob/main/Stock-simulator/dokumentaatio/tuntikirjanpito.md)
+
 ____________________________________________
+
+**Laskarit**
 
 **Viikko 1 Tehtävät**
 
@@ -14,8 +20,6 @@ ____________________________________________
 ____________________________________________
 
 **Viikko 2 Tehtävät**
-
-[Stock-Simulator-sovelluksen vaatimusmäärittely.md](https://github.com/JanneKarki/ot-harjoitustyo/blob/main/Stock-simulator/dokumentaatio/vaatimusmaarittely.md)
 
 [Unicafe kassapäätetestien kattavuusraportti.png](https://github.com/JanneKarki/ot-harjoitustyo/blob/main/laskarit/viikko2/Screenshot_20220325_150441.png)
 
