@@ -2,8 +2,8 @@
 
 class Investor:
 
-    def __init__(self,nimi, capital):
-        self.nimi = nimi
+    def __init__(self,name, capital):
+        self.name = name
         self.capital = capital
         self.portfolio = {}
         
@@ -33,4 +33,4 @@ class Investor:
         return self.portfolio
         
     def get_capital(self):
-        return "%.2f" % self.capital
+        return self.capital
