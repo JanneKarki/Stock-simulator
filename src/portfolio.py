@@ -11,6 +11,11 @@ class Portfolio:
         df = share.history(period="1d", interval= "1d")
         return df.iat[0,3]
 
+    def print_portfolio(self):
+        portfolio = self.investor.get_portfolio()
+        for key,value in portfolio.items():
+            print(key,value)
+
     def total_win_loss(self):
         total = 0
         portfolio = self.investor.get_portfolio()
@@ -20,7 +25,7 @@ class Portfolio:
             end_price = latest_price*value[0]
             profit = end_price-entry_price
             total += profit
-        print(total)
+        print("%.3f" % total)
 
 
     def rank_investments(self):
@@ -31,6 +36,6 @@ class Portfolio:
             entry_price = value[0]*value[1]
             end_price = latest_price*value[0]
             profit = end_price-entry_price
-            list.append((stock,profit))
+            list.append((stock,"%.3f" % profit))
         list.sort(key=lambda y: y[1])
         print(list)

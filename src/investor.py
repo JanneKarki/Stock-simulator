@@ -33,4 +33,4 @@ class Investor:
         return self.portfolio
         
     def get_capital(self):
-        return self.capital
+        return "%.2f" % self.capital
