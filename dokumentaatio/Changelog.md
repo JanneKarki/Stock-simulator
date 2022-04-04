@@ -11,3 +11,5 @@ Käyttäjä voi:
 - katsoa portfolion
 
 Testit testaa käyttäjän luomisen ja osakkeen oston, pääoman muuttumisen ja osakkeen siirtymisen portfolioon
+
+Toistaiseksi sovellus vielä kaatuu jos symbolia ei löydy. Kotimaisia osakkeita on saatavilla huonosti.
