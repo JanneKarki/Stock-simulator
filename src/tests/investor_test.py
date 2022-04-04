@@ -9,3 +9,4 @@ class TestInvestor(unittest.TestCase):
 
     def test_investor_name_and_capital_correct_at_start(self):
         self.assertEqual(self.investor.capital, 10000)
+        self.assertEqual(self.investor.name, 'ABC')
