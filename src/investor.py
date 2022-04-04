@@ -33,4 +33,4 @@ class Investor:
         return self.portfolio
         
     def get_capital(self):
-        return self.capital
+        return "Buying power "+str(self.capital)+ " USD"

@@ -22,7 +22,7 @@ capital = int(input(": "))
 investor = Investor(nimi, capital)
 actions = Actions(investor)
 portfolio = Portfolio(investor)
-print(investor.get_capital)
+print(investor.get_capital())
 
 portfolio.total_win_loss()
 portfolio.rank_investments()
@@ -76,7 +76,6 @@ while True:
 
     if valinta == "5":
         break
-    else:
-        print("Err")
+    
 
     

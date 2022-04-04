@@ -25,7 +25,7 @@ class Portfolio:
             end_price = latest_price*value[0]
             profit = end_price-entry_price
             total += profit
-        print("%.3f" % total)
+        print("Net profit " "%.3f" % total)
 
 
     def rank_investments(self):
