@@ -20,18 +20,19 @@ class Actions:
 
     def sell_stock(self, stock, amount):
         sell_price = self.get_latest_price(stock)
-        if stock in self.investor.portfolio:
-            x = self.investor.portfolio[stock] # haetaan osake portfoliosta
-            avg_price = x[1]        # osakkeen keskimääräinen hankinta hinta
-            net = sell_price-avg_price # sijoituksen netto tuotto/tappio
+        self.investor.remove_stock(stock,amount)
+        #if stock in self.investor.portfolio:
+         #   x = self.investor.portfolio[stock] # haetaan osake portfoliosta
+          #  avg_price = x[1]        # osakkeen keskimääräinen hankinta hinta
+           # net = sell_price-avg_price # sijoituksen netto tuotto/tappio
             
-            if amount <= x[0]:  # jos myyntimäärä oikein, päivitä pääoma ja portfolio
-                self.investor.adjust_capital(net)
-                self.investor.remove_stock(stock,amount)
-            else:
-                print("Too large sell order. You own", x[0], "shares" )
-        else:
-            print("Ei osaketta salkussa")
+           # if amount <= x[0]:  # jos myyntimäärä oikein, päivitä pääoma ja portfolio
+           #     self.investor.adjust_capital(net)
+           #     self.investor.remove_stock(stock,amount)
+           # else:
+           #     print("Too large sell order. You own", x[0], "shares" )
+        #else:
+        #    print("Ei osaketta salkussa")
 
     def get_stock_info(self, stock):
         share = yf.Ticker(stock)

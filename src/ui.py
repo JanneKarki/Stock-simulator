@@ -2,7 +2,7 @@ from random import choices
 from investor import Investor
 from actions import Actions
 from portfolio import Portfolio
-
+from initialize_database import initialize_database
 
 
 a = """Toiminnot
@@ -73,6 +73,7 @@ while True:
 
     if valinta == "4":
         portfolio.print_portfolio()
+        print(investor.get_portfolio_from_db())
 
     if valinta == "5":
         break
