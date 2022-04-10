@@ -31,7 +31,8 @@ class Actions:
 
     def sell_stock(self, stock, amount):
         sell_price = self.get_latest_price(stock)
-        self.investor.remove_stock(stock,amount)
+        #self.investor.remove_stock(stock,amount)
+        self.__stock_repository.remove_stock_from_portfolio(self.__user, stock, sell_price, amount)
         #if stock in self.investor.portfolio:
          #   x = self.investor.portfolio[stock] # haetaan osake portfoliosta
           #  avg_price = x[1]        # osakkeen keskimääräinen hankinta hinta
@@ -45,6 +46,8 @@ class Actions:
         #else:
         #    print("Ei osaketta salkussa")
 
+    
+    
     def get_stock_info(self, stock):
         share = yf.Ticker(stock)
         print(share.info['longBusinessSummary'])
