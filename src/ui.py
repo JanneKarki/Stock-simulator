@@ -3,6 +3,7 @@ from investor import Investor
 from actions import Actions
 from portfolio import Portfolio
 from initialize_database import initialize_database
+from user import User
 
 
 a = """Toiminnot
@@ -19,8 +20,10 @@ print("Valitse pääoman suuruus")
 capital = int(input(": "))
 
 
+
 investor = Investor(nimi, capital)
 actions = Actions(investor)
+user = actions.create_user(nimi,"1234",capital)
 portfolio = Portfolio(investor)
 print(investor.get_capital())
 
