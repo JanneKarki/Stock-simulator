@@ -39,6 +39,12 @@ class UserRepostory:
         capital = self.get_capital(user)
         new_capital = capital+amount
         cursor.execute("UPDATE Users SET capital = ? WHERE username = ?", [new_capital, user])
+
+    def delete_all(self):
+        cursor = self.connection.cursor()
+        cursor.execute("DELETE FROM Users")
+        self.connection.commit()
                 
+
 
 user_repository = UserRepostory(get_database_connection)
