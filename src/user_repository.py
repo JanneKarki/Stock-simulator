@@ -7,7 +7,6 @@ class UserRepostory:
         self.connection = sqlite3.connect("stocks.db")
         self.connection.isolation_level = None
 
-
     def new_user(self, user):
         cursor = self.connection.cursor()
         cursor.execute("INSERT INTO Users (username, password, capital) values (?,?,?)", (user.username, user.password, user.capital))
@@ -20,7 +19,6 @@ class UserRepostory:
         rows = cursor.fetchall()      
         for row in rows:
             print(row[0])
-
 
     def find_user(self, user):
         cursor = self.connection.cursor()

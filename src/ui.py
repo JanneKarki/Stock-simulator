@@ -1,7 +1,6 @@
 from random import choices
-from investor import Investor
 from actions import Actions
-from portfolio import Portfolio
+#from portfolio import Portfolio
 from initialize_database import initialize_database
 from user import User
 
@@ -72,7 +71,7 @@ while True:
         actions.get_stock_info(symbol)
 
     if valinta == "4":
-        portfolio.print_portfolio()
+        
         print(actions.get_portfolio())
        # print(investor.get_portfolio_from_db(user))
 

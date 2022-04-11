@@ -2,4 +2,5 @@
 __pycache__
 .coverage
 htmlcov
-
+src/stocks.db
+stocks.db

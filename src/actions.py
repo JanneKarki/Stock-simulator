@@ -1,6 +1,6 @@
 import yfinance as yf
-from investor import Investor 
-from portfolio import Portfolio
+
+#from portfolio import Portfolio
 from user import User
 from user_repository import (user_repository as default_user_repository)
 from stock_repository import (stock_repository as default_stock_repository)
