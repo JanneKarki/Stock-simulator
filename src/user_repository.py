@@ -9,19 +9,38 @@ class UserRepostory:
 
 
     def new_user(self, user):
-
         cursor = self.connection.cursor()
-
         cursor.execute("INSERT INTO Users (username, password, capital) values (?,?,?)", (user.username, user.password, user.capital))
-
         self.connection.commit()
-
         return user
 
-    def find_user(self, user):
-
+    def print_all_users(self):
         cursor = self.connection.cursor()
+        cursor.execute("SELECT * FROM Users")
+        rows = cursor.fetchall()      
+        for row in rows:
+            print(row[0])
 
-        cursor.execute("SELECT * FROM Users WHERE username = ?", (user,) )
+
+    def find_user(self, user):
+        cursor = self.connection.cursor()
+        cursor.execute("SELECT * FROM Users WHERE username = ?", [user] )
+        row = cursor.fetchone()        
+        return row
+
+    def get_capital(self, user):
+        cursor = self.connection.cursor()
+        cursor.execute("SELECT * FROM Users WHERE username = ? ", [user])
+        row = cursor.fetchone()
+        capital = row[2]
+        print(row[2])
+        return capital
+
+    def adjust_capital(self, user,amount):
+        cursor = self.connection.cursor()
+        capital = self.get_capital()
+        new_capital = capital+amount
+        cursor.execute("UPDATE Users SET capital = ? WHERE username = ?", [new_capital, user])
+                
 
 user_repository = UserRepostory(get_database_connection)

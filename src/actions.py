@@ -9,14 +9,12 @@ from stock_repository import (stock_repository as default_stock_repository)
 """Sovelluslogiikasta vastaava luokka"""
 class Actions:
 
-    def __init__(self, investor : Investor, user_repository=default_user_repository, stock_repository=default_stock_repository ):
-        self.investor = investor
-        self.__user = "Erkki"
+    def __init__(self, user_repository=default_user_repository, stock_repository=default_stock_repository ):
+       # self.investor = investor
+        self.__user = "erkki"
         self.__stock_repository = stock_repository
         self.__user_repository = user_repository
-
-
-        
+     
     def get_latest_price(self, stock):
         share = yf.Ticker(stock)
         df = share.history(period="1d", interval= "1d")
@@ -24,46 +22,34 @@ class Actions:
 
     def buy_stock(self, stock, amount):       
         buy_price = self.get_latest_price(stock)
-        self.investor.adjust_capital(-abs(buy_price*amount)) # vähennä pääomaa sijoituksen verran
-
-        #self.investor.add_portfolio(stock, buy_price, amount) # lisää osakkeet portfolioon
+        self.__user_repository.adjust_capital(self.__user, -abs(buy_price*amount)) # vähennä pääomaa sijoituksen verran
         self.__stock_repository.add_to_portfolio(self.__user,stock, buy_price, amount) # lisää osakkeet portfolioon
 
     def sell_stock(self, stock, amount):
         sell_price = self.get_latest_price(stock)
-        #self.investor.remove_stock(stock,amount)
-        self.__stock_repository.remove_stock_from_portfolio(self.__user, stock, sell_price, amount)
-        #if stock in self.investor.portfolio:
-         #   x = self.investor.portfolio[stock] # haetaan osake portfoliosta
-          #  avg_price = x[1]        # osakkeen keskimääräinen hankinta hinta
-           # net = sell_price-avg_price # sijoituksen netto tuotto/tappio
-            
-           # if amount <= x[0]:  # jos myyntimäärä oikein, päivitä pääoma ja portfolio
-           #     self.investor.adjust_capital(net)
-           #     self.investor.remove_stock(stock,amount)
-           # else:
-           #     print("Too large sell order. You own", x[0], "shares" )
-        #else:
-        #    print("Ei osaketta salkussa")
+        self.__user_repository.adjust_capital(self.__user, sell_price*amount) # lisää pääomaa myynnin verran
+        self.__stock_repository.remove_stock_from_portfolio(self.__user, stock, sell_price, amount) # vähennä osakkeita
+       
 
-    
-    
     def get_stock_info(self, stock):
         share = yf.Ticker(stock)
         print(share.info['longBusinessSummary'])
 
+    def show_capital(self):
+        return self.__user_repository.get_capital(self.__user)
 
-    
     def create_user(self, username, password, capital):
         user = self.__user_repository.new_user(User(username, password,capital))
-    
         return user
 
+    def get_portfolio(self,user):
+        return self.__stock_repository.get_portfolio_from_database(self.__user)
+
+    def get_users(self):
+        return self.__user_repository.print_all_users()
 
     def login(self, username, password):
-
-        user = self.__user_repository.find_user(username)
-
-        self.__user = user
-
-        return user
+        #user = self.__user_repository.find_user(username)
+        self.__user = username
+        self.__password = password
+        #return user
