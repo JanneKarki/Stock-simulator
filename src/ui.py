@@ -21,15 +21,15 @@ capital = int(input(": "))
 actions = Actions()
 user = actions.create_user(nimi,"1234",capital)
 actions.get_users()
-actions.login(nimi,"password")
+actions.login(nimi)
 
 
-print(actions.show_capital(), "capital tietokannasta")
+
 
 while True:
 
+    print(actions.show_capital(), "capital tietokannasta")
     
-    print(actions.show_capital())
     print(actions.get_portfolio())
     print(a)
     print("Valinta")

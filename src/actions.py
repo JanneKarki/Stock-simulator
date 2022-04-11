@@ -11,7 +11,7 @@ class Actions:
 
     def __init__(self, user_repository=default_user_repository, stock_repository=default_stock_repository ):
        # self.investor = investor
-        self.__user = "erkki"
+        self.__user = None
         self.__stock_repository = stock_repository
         self.__user_repository = user_repository
         
@@ -49,8 +49,10 @@ class Actions:
     def get_users(self):
         return self.__user_repository.print_all_users()
 
-    def login(self, username, password):
+    def get_user(self):
+        return self.__user
+
+    def login(self, user):  
+        self.__user = user
         
-        self.__user = username
-        self.__password = password
        

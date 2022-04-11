@@ -31,7 +31,6 @@ class UserRepostory:
         cursor.execute("SELECT * FROM Users WHERE username = ? ", [user])
         row = cursor.fetchone()
         capital = row[2]
-        print(row[2])
         return capital
 
     def adjust_capital(self, user,amount):
