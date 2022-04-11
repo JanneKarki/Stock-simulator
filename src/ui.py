@@ -19,27 +19,19 @@ nimi = input(": ")
 print("Valitse pääoman suuruus")
 capital = int(input(": "))
 
-
-
-investor = Investor(nimi, capital)
-
 actions = Actions()
 user = actions.create_user(nimi,"1234",capital)
 actions.get_users()
 actions.login(nimi,"password")
-portfolio = Portfolio(investor)
-print(investor.get_capital())
+
+
 print(actions.show_capital(), "capital tietokannasta")
-portfolio.total_win_loss()
-portfolio.rank_investments()
-
-
 
 while True:
 
     
-    print(investor.capital)
-    print(investor.portfolio)
+    print(actions.show_capital())
+    print(actions.get_portfolio())
     print(a)
     print("Valinta")
     valinta = input(": ")
@@ -81,7 +73,7 @@ while True:
 
     if valinta == "4":
         portfolio.print_portfolio()
-        print(actions.get_portfolio(user))
+        print(actions.get_portfolio())
        # print(investor.get_portfolio_from_db(user))
 
     if valinta == "5":

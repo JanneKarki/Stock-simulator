@@ -38,7 +38,7 @@ class UserRepostory:
 
     def adjust_capital(self, user,amount):
         cursor = self.connection.cursor()
-        capital = self.get_capital()
+        capital = self.get_capital(user)
         new_capital = capital+amount
         cursor.execute("UPDATE Users SET capital = ? WHERE username = ?", [new_capital, user])
                 

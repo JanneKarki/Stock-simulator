@@ -14,6 +14,7 @@ class Actions:
         self.__user = "erkki"
         self.__stock_repository = stock_repository
         self.__user_repository = user_repository
+        
      
     def get_latest_price(self, stock):
         share = yf.Ticker(stock)
@@ -42,14 +43,14 @@ class Actions:
         user = self.__user_repository.new_user(User(username, password,capital))
         return user
 
-    def get_portfolio(self,user):
+    def get_portfolio(self):
         return self.__stock_repository.get_portfolio_from_database(self.__user)
 
     def get_users(self):
         return self.__user_repository.print_all_users()
 
     def login(self, username, password):
-        #user = self.__user_repository.find_user(username)
+        
         self.__user = username
         self.__password = password
-        #return user
+       

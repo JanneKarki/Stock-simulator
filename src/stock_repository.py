@@ -43,9 +43,11 @@ class StockRepository:
              print("not in portfolio") # jos 0 niin ei ole tietokannassa
         
 
-    def get_portfolio_from_database(self):
+
+
+    def get_portfolio_from_database(self,user):
         stocks_database = self.connection.cursor()
-        stocks_database.execute("SELECT * from Stocks")
+        stocks_database.execute("SELECT * from Stocks WHERE user = ?", [user])
         results = stocks_database.fetchall()
         return results
 
