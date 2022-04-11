@@ -41,15 +41,17 @@ class StockRepository:
                 stocks_database.execute("UPDATE Stocks SET amount = ? where user = ? and content = ?", [new_amount,user, stock])
         else:
              print("not in portfolio") # jos 0 niin ei ole tietokannassa
-        
-
-
 
     def get_portfolio_from_database(self,user):
         stocks_database = self.connection.cursor()
         stocks_database.execute("SELECT * from Stocks WHERE user = ?", [user])
         results = stocks_database.fetchall()
         return results
+
+    def delete_all(self):
+        cursor = self.connection.cursor()
+        cursor.execute("DELETE FROM Stocks")
+        self.connection.commit()
 
     
 stock_repository = StockRepository(get_database_connection)
