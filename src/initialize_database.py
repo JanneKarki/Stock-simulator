@@ -1,6 +1,5 @@
-from unicodedata import name
 from database_connection import get_database_connection
-import sqlite3
+
 
 
 def drop_tables(parameter):
@@ -11,6 +10,7 @@ def drop_tables(parameter):
     cursor.execute("DROP TABLE IF EXISTS Users")
 
     parameter.commit()
+
 
 def create_tables(connection):
 
@@ -33,6 +33,6 @@ def initialize_database():
     drop_tables(connection)
     create_tables(connection)
 
+
 if __name__ == "__main__":
     initialize_database()
-

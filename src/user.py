@@ -6,5 +6,3 @@ class User:
         self.username = username
         self.password = password
         self.capital = capital
-
-

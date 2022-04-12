@@ -9,8 +9,4 @@ from stock_repository import (stock_repository as default_stock_repository)
 class TestStockRepository(unittest.TestCase):
     def setUp(self):
         self.actions = Actions()
-        self.user_erkki = User('arkki',"1234", 10000)
-        
-
-
-
+        self.user_erkki = User('arkki', "1234", 10000)

@@ -22,11 +22,9 @@ capital = int(input(": "))
 actions = Actions()
 
 
-user = actions.create_user(nimi,"1234",capital)
+user = actions.create_user(nimi, "1234", capital)
 actions.get_all_users()
 actions.login(nimi)
-
-
 
 
 while True:
@@ -42,32 +40,31 @@ while True:
     if valinta == "1":
         print("Anna symboli (Esim. AAPL)")
         symbol = input(": ")
-        price = actions.get_latest_price(symbol) 
+        price = actions.get_latest_price(symbol)
         print(symbol, "share price", price)
         print("Anna määrä")
         amount = int(input(": "))
         total_price = price*amount
-        print(symbol, amount, "shares", "USD"+ str("%.2f" % total_price))
+        print(symbol, amount, "shares", "USD" + str("%.2f" % total_price))
         print("Hyväksy osto? y/n")
         choice = input(": ")
         if choice == "y":
-            actions.buy_stock(symbol,amount)
+            actions.buy_stock(symbol, amount)
 
     if valinta == "2":
-        
+
         print("Anna symboli")
         symbol = input(": ")
-        price = actions.get_latest_price(symbol) 
-        print(symbol, "share price","USD"+str(price))
+        price = actions.get_latest_price(symbol)
+        print(symbol, "share price", "USD"+str(price))
         print("Anna määrä")
         amount = int(input(": "))
         total_price = price*amount
-        print(symbol, amount, "shares", "USD"+ str("%.2f" % total_price))
+        print(symbol, amount, "shares", "USD" + str("%.2f" % total_price))
         print("Hyväksy myynti? y/n")
         choice = input(": ")
         if choice == "y":
-            actions.sell_stock(symbol,amount)
-
+            actions.sell_stock(symbol, amount)
 
     if valinta == "3":
         print("Anna symboli")
@@ -75,12 +72,9 @@ while True:
         actions.get_stock_info(symbol)
 
     if valinta == "4":
-        
+
         print(actions.get_portfolio())
        # print(investor.get_portfolio_from_db(user))
 
     if valinta == "5":
         break
-    
-
-    

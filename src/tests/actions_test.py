@@ -15,7 +15,6 @@ class TestActions(unittest.TestCase):
         self.user_erkki = self.actions.create_user("Erkki", "1234", 10000)
         self.actions.login(self.user_erkki)
 
-
     def test_get_logged_user(self):
         user = self.actions.get_user()
         self.assertEqual(user.username, self.user_erkki.username)
