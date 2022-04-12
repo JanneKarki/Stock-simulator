@@ -10,5 +10,7 @@ Sovelluksella voi sijoittaa leikisti osakkeisiin reaaliaikaisilla hinnoilla. Sov
 
 [ChangeLog](https://github.com/JanneKarki/ot-harjoitustyo/blob/main/dokumentaatio/Changelog.md)
 
+[Arkkitehtuuri](https://github.com/JanneKarki/ot-harjoitustyo/blob/main/dokumentaatio/arkkitehtuuri.md)
+
 ____________________________________________
 
