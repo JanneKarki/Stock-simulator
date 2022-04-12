@@ -2,4 +2,4 @@
 
 **Alustava luokkakaavio**
 
-<img title="" alt="Alt text" src="/kuvat/Luokkakaavio.png">
+<img title="" alt="Alt text" dokumentaatio="/kuvat/Luokkakaavio.png">
