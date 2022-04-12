@@ -11,3 +11,4 @@
 |10.4| 5h | Metodien ja tietokannan yhdistelyä |
 |11.4| 4h | Käyttäjän tietokantatoimintoja ja testien koodaamista |
 |12.4| 
+|Yht.| 35h|
