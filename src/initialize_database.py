@@ -15,8 +15,16 @@ def drop_tables(parameter):
 def create_tables(connection):
 
     cursor = connection.cursor()
-    cursor.execute("CREATE TABLE Stocks(user text, content text, avg_price float(24), amount integer)")
-    cursor.execute("CREATE TABLE Users(username text primary key, password text, capital float(24))")
+    cursor.execute("""CREATE TABLE Stocks(
+                    user text, 
+                    content text, 
+                    avg_price float(24), 
+                    amount integer)""")
+
+    cursor.execute("""CREATE TABLE Users(
+                    username text primary key, 
+                    password text, 
+                    capital float(24))""")
     connection.commit()
 
 
