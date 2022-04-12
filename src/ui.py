@@ -2,10 +2,11 @@ from random import choices
 from actions import Actions
 #from portfolio import Portfolio
 from initialize_database import initialize_database
+from portfolio import Portfolio
 from user import User
 
 
-a = """Toiminnot
+valinnat = """Toiminnot
 1 - Osta osaketta
 2 - Myy osaketta
 3 - Hae yrityksen esittely
@@ -19,19 +20,22 @@ print("Valitse pääoman suuruus")
 capital = int(input(": "))
 
 actions = Actions()
+
+
 user = actions.create_user(nimi,"1234",capital)
-actions.get_users()
+actions.get_all_users()
 actions.login(nimi)
 
 
 
 
 while True:
+    actions.print_total_win_loss()
+    print(actions.get_capital(), "capital tietokannasta")
+    print(actions.rank_investments(), "rank list")
+    print(actions.get_portfolio, "tämä on käyttäjän portfolio")
 
-    print(actions.show_capital(), "capital tietokannasta")
-    
-    print(actions.get_portfolio())
-    print(a)
+    print(valinnat)
     print("Valinta")
     valinta = input(": ")
     print(valinta)

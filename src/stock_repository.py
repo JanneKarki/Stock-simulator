@@ -44,7 +44,7 @@ class StockRepository:
 
     def get_portfolio_from_database(self,user):
         stocks_database = self.connection.cursor()
-        stocks_database.execute("SELECT * from Stocks WHERE user = ?", [user])
+        stocks_database.execute("SELECT content,avg_price,amount from Stocks WHERE user = ?", [user])
         results = stocks_database.fetchall()
         return results
 
@@ -53,5 +53,6 @@ class StockRepository:
         cursor.execute("DELETE FROM Stocks")
         self.connection.commit()
 
+    
     
 stock_repository = StockRepository(get_database_connection)

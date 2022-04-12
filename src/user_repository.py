@@ -26,7 +26,7 @@ class UserRepostory:
         row = cursor.fetchone()        
         return row
 
-    def get_capital(self, user):
+    def get_user_capital(self, user):
         cursor = self.connection.cursor()
         cursor.execute("SELECT * FROM Users WHERE username = ? ", [user])
         row = cursor.fetchone()
@@ -35,7 +35,7 @@ class UserRepostory:
 
     def adjust_capital(self, user,amount):
         cursor = self.connection.cursor()
-        capital = self.get_capital(user)
+        capital = self.get_user_capital(user)
         new_capital = capital+amount
         cursor.execute("UPDATE Users SET capital = ? WHERE username = ?", [new_capital, user])
 

@@ -36,8 +36,8 @@ class Actions:
         share = yf.Ticker(stock)
         print(share.info['longBusinessSummary'])
 
-    def show_capital(self):
-        return self.__user_repository.get_capital(self.__user)
+    def get_capital(self):
+        return self.__user_repository.get_user_capital(self.__user)
 
     def create_user(self, username, password, capital):
         user = self.__user_repository.new_user(User(username, password,capital))
@@ -46,7 +46,7 @@ class Actions:
     def get_portfolio(self):
         return self.__stock_repository.get_portfolio_from_database(self.__user)
 
-    def get_users(self):
+    def get_all_users(self):
         return self.__user_repository.print_all_users()
 
     def get_user(self):
@@ -55,4 +55,37 @@ class Actions:
     def login(self, user):  
         self.__user = user
         
-       
+    
+    def rank_investments(self):
+        list = []
+        portfolio = self.get_portfolio()
+        for tuple in portfolio:
+            latest_price = self.get_latest_price(tuple[0])
+            entry_price = tuple[1]*tuple[2]
+            end_price = latest_price*tuple[2]
+            profit = end_price-entry_price
+            list.append((tuple[0],"%.3f" % profit))
+        list.sort(key=lambda y: y[1])
+        print(list)
+
+
+    def total_win_loss(self):
+        total = 0
+        portfolio = self.get_portfolio()
+        print(type(portfolio))
+        for tuple in portfolio:
+            latest_price = self.get_latest_price(tuple[0])
+            entry_price = tuple[1]*tuple[2]
+            end_price = latest_price*tuple[2]
+            profit = end_price-entry_price
+            total += profit
+        
+        return total
+
+    def total_capital(self):
+        net_capital = self.get_capital()
+        return net_capital+self.total_win_loss()
+
+    def print_total_win_loss(self):
+        total = self.total_win_loss()
+        print("Net profit " "%.3f" % total)
