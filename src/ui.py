@@ -54,10 +54,9 @@ while True:
     while True:
         logged_user = actions.get_user()
         print("Kirjautunut:" , logged_user)
-        actions.print_total_win_loss()
         print("Pääoma", actions.get_capital(), "$")
         print(actions.rank_investments(), "rank list")
-        
+        actions.print_total_win_loss()
 
         print(valinnat)
         print("Valinta")
