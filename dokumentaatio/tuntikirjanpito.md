@@ -10,5 +10,5 @@
 |9.4 |  2h | Tietokannan rakentelua |
 |10.4| 5h | Metodien ja tietokannan yhdistelyä |
 |11.4| 4h | Käyttäjän tietokantatoimintoja ja testien koodaamista |
-|12.4| 
-|Yht.| 35h|
+|12.4| 4h | Koodin siistimistä, metodien korjailuja, luokkakaavio |
+|Yht.| 39h|
