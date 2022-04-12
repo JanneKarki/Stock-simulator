@@ -69,7 +69,7 @@ class Actions:
             profit = end_price-entry_price
             rank_list.append((item[0], "%.3f" % profit))
         rank_list.sort(key=lambda y: y[1])
-        print(rank_list)
+        return rank_list
 
     def total_win_loss(self):
         total = 0
