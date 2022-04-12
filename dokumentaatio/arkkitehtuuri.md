@@ -1,5 +1,5 @@
-# Arkkitethtuuri
+# Arkkitehtuuri
 
 **Alustava luokkakaavio**
 
-<img title="" alt="Alt text" dokumentaatio="/kuvat/Luokkakaavio.png">
+![Luokkakaavio](./kuvat/Luokkakaavio.png)
