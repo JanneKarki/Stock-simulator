@@ -1,9 +1,9 @@
 from random import choices
 from actions import Actions
-#from portfolio import Portfolio
+
 from initialize_database import initialize_database
-from portfolio import Portfolio
-from user import User
+
+
 
 
 valinnat = """Toiminnot
@@ -31,7 +31,7 @@ while True:
     actions.print_total_win_loss()
     print(actions.get_capital(), "capital tietokannasta")
     print(actions.rank_investments(), "rank list")
-    print(actions.get_portfolio, "tämä on käyttäjän portfolio")
+    print(actions.get_portfolio(), "tämä on käyttäjän portfolio")
 
     print(valinnat)
     print("Valinta")

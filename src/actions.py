@@ -1,26 +1,24 @@
 import yfinance as yf
-
-#from portfolio import Portfolio
 from user import User
 from user_repository import (user_repository as default_user_repository)
 from stock_repository import (stock_repository as default_stock_repository)
 
 
-"""Sovelluslogiikasta vastaava luokka"""
+'''Sovelluslogiikasta vastaava luokka''' # pylint: disable=pointless-string-statement
 
 
 class Actions:
 
-    def __init__(self, user_repository=default_user_repository, stock_repository=default_stock_repository):
-       # self.investor = investor
+    def __init__(self, user_repository=default_user_repository,
+                 stock_repository=default_stock_repository):
         self.__user = None
         self.__stock_repository = stock_repository
         self.__user_repository = user_repository
 
     def get_latest_price(self, stock):
         share = yf.Ticker(stock)
-        df = share.history(period="1d", interval="1d")
-        return float("%.2f" % df.iat[0, 3])
+        dataframe = share.history(period="1d", interval="1d")
+        return float("%.2f" % dataframe.iat[0, 3])
 
     def buy_stock(self, stock, amount):
         buy_price = self.get_latest_price(stock)
@@ -35,7 +33,7 @@ class Actions:
         self.__user_repository.adjust_capital(
             self.__user, sell_price*amount)  # lisää pääomaa myynnin verran
         self.__stock_repository.remove_stock_from_portfolio(
-            self.__user, stock, sell_price, amount)  # vähennä osakkeita
+            self.__user, stock, amount)  # vähennä osakkeita
 
     def get_stock_info(self, stock):
         share = yf.Ticker(stock)
@@ -62,28 +60,26 @@ class Actions:
         self.__user = user
 
     def rank_investments(self):
-        list = []
+        rank_list = []
         portfolio = self.get_portfolio()
-        for tuple in portfolio:
-            latest_price = self.get_latest_price(tuple[0])
-            entry_price = tuple[1]*tuple[2]
-            end_price = latest_price*tuple[2]
+        for item in portfolio:
+            latest_price = self.get_latest_price(item[0])
+            entry_price = item[1]*item[2]
+            end_price = latest_price*item[2]
             profit = end_price-entry_price
-            list.append((tuple[0], "%.3f" % profit))
-        list.sort(key=lambda y: y[1])
-        print(list)
+            rank_list.append((item[0], "%.3f" % profit))
+        rank_list.sort(key=lambda y: y[1])
+        print(rank_list)
 
     def total_win_loss(self):
         total = 0
         portfolio = self.get_portfolio()
-        print(type(portfolio))
-        for tuple in portfolio:
-            latest_price = self.get_latest_price(tuple[0])
-            entry_price = tuple[1]*tuple[2]
-            end_price = latest_price*tuple[2]
+        for item in portfolio:
+            latest_price = self.get_latest_price(item[0])
+            entry_price = item[1]*item[2]
+            end_price = latest_price*item[2]
             profit = end_price-entry_price
             total += profit
-
         return total
 
     def total_capital(self):

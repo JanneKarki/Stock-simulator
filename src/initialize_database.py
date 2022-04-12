@@ -1,7 +1,6 @@
 from database_connection import get_database_connection
 
 
-
 def drop_tables(parameter):
 
     cursor = parameter.cursor()
