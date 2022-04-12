@@ -29,6 +29,8 @@ while True:
 
         print("Käyttäjätunnus")
         username = input(": ")
+        if username == "":
+            continue
         print("Salasana")
         password = input (": ")
         actions.login(username)
@@ -36,6 +38,8 @@ while True:
     if valinta == "2":
         print("Valitse käyttäjätunnus")
         username = input(": ")
+        if username == "":
+            continue
         print("Valitse salasana")
         password = input(":") 
         print("Valitse pääoman määrä")
@@ -48,10 +52,12 @@ while True:
 
 
     while True:
+        logged_user = actions.get_user()
+        print("Kirjautunut:" , logged_user)
         actions.print_total_win_loss()
-        print(actions.get_capital(), "capital tietokannasta")
+        print("Pääoma", actions.get_capital(), "$")
         print(actions.rank_investments(), "rank list")
-        print(actions.get_portfolio(), "tämä on käyttäjän portfolio")
+        
 
         print(valinnat)
         print("Valinta")
@@ -92,9 +98,7 @@ while True:
             actions.get_stock_info(symbol)
 
         if valinta == "4":
-
-            print(actions.get_portfolio())
-        # print(investor.get_portfolio_from_db(user))
+            print(actions.get_portfolio(), "tämä on käyttäjän", logged_user,"portfolio")
 
         if valinta == "5":
             break
