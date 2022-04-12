@@ -18,3 +18,12 @@ def coverage(ctx):
 def build(ctx):
     ctx.run("python3 src/initialize_database.py", pty=True)
 
+
+@task
+def pylint(ctx):
+    ctx.run("pylint src", pty=True)
+
+
+@task
+def autopep(ctx): 
+    ctx.run("autopep8 --in-place --recursive src", pty=True)
