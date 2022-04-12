@@ -25,4 +25,6 @@ Käyttäjä voi:
 **Laajennusideoita:**
 
 - osakkeiden lyhyeksimyynti mahdollisuus
+- käyttäjien ranking list
+
 
