@@ -20,7 +20,7 @@ Toistaiseksi sovellus vielä kaatuu jos symbolia ei löydy. Kotimaisia osakkeita
 - Investor luokka poistui, koska jäi turhaksi tietokantaoperaatioista vastaavien luokkien stock_repository ja user_repository sekä user jälkeen.
 - Portfolio-luokka poistui ja toiminnot siirtyivä actions luokan alle, koska vaikutti toimivammalta ratkaisulta
 - laskee nyt tietokannasta kokonaistuoton, ja lajittelee osakkeet erilliseen listaan tuoton mukaiseen järjestykseen
-- uusia asioita on sisään kirjautuminen, valikko jossa voi valita kirjautuuko vai luo uuden käyttäjän, ja päänäkymässä sisään kirjautuneen käyttäjän näyttäminen
+- uusia asioita on sisään kirjautuminen, valikko jossa voi valita kirjautuuko vai luo uuden käyttäjän, sekä päänäkymässä sisään kirjautuneen käyttäjän näyttäminen
 - Sisäänkirjautuminen toimii, mutta salasanan voi olla mitä vain koska, sen tarkistus ei vielä toimi.
 - 
 
