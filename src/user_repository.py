@@ -27,8 +27,10 @@ class UserRepostory:
         cursor = self.connection.cursor()
         cursor.execute("SELECT * FROM Users WHERE username = ?", [user])
         row = cursor.fetchone()
-        print(row[0],row[1],row[2], "on", user)
-        return (row[0], row[1])
+        if not row:
+            return None
+        else:
+            return row[0],row[1]
 
     def get_user_capital(self, user):
         cursor = self.connection.cursor()
@@ -36,6 +38,7 @@ class UserRepostory:
         row = cursor.fetchone()
         capital = row[2]
         return  capital
+
 
     def adjust_capital(self, user, amount):
         cursor = self.connection.cursor()

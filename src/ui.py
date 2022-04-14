@@ -1,3 +1,4 @@
+from logging import raiseExceptions
 from random import choices
 from actions import Actions, InvalidCredentialsError
 
@@ -29,11 +30,12 @@ while True:
     print(kirjaudu)
     valinta = input(": ")
     if valinta == "1":
-
+       
         print("Käyttäjätunnus")
         username = input(": ")
         if username == "":
             continue
+            
         print("Salasana")
         password = input (": ")
 
@@ -45,17 +47,23 @@ while True:
             
 
     if valinta == "2":
-        print("Valitse käyttäjätunnus")
-        username = input(": ")
-        if username == "":
-            continue
+        while True:
+            print("Valitse käyttäjätunnus")
+            username = input(": ")
+            if username == "":
+                continue
+            if actions.find_user(username):
+                print("Käytössä")
+                continue
+            else:
+                print("tunnus natsaa")
+                break
         print("Valitse salasana")
         password = input(":") 
         print("Valitse pääoman määrä")
         capital = input(": ")
         user = actions.create_user(username, password, capital)
-        
-
+       
     if valinta == "3":
         break
 

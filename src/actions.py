@@ -8,6 +8,7 @@ class InvalidCredentialsError(Exception):
     pass
 
 
+
 class Actions:
 
     '''Sovelluslogiikasta vastaava luokka''' 
@@ -48,6 +49,7 @@ class Actions:
     def create_user(self, username, password, capital):
         user = self.__user_repository.new_user(
             User(username, password, capital))
+        self.__user = username
         return user
 
     def get_portfolio(self):
@@ -66,11 +68,13 @@ class Actions:
         return False
 
     def login(self, username, password):
-        print(password)
         user = self.__user_repository.find_user(username)
-        if user[1] != password:
+        result = None,None
+        if user:
+            result = user
+        if result[1] != password:
             raise InvalidCredentialsError('Väärä käyttäjätunnus tai salasana')
-        self.__user = user[0]
+        self.__user = result[0]
 
     def logout(self):
         self.__user = None    
