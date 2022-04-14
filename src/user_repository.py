@@ -1,6 +1,6 @@
 import sqlite3
 from database_connection import get_database_connection
-
+from user import User
 
 
 
@@ -27,7 +27,8 @@ class UserRepostory:
         cursor = self.connection.cursor()
         cursor.execute("SELECT * FROM Users WHERE username = ?", [user])
         row = cursor.fetchone()
-        return row
+        print(row[0],row[1],row[2], "on", user)
+        return (row[0], row[1])
 
     def get_user_capital(self, user):
         cursor = self.connection.cursor()

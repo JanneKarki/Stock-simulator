@@ -22,7 +22,10 @@ Enter - Päivitä hinnat
 actions = Actions()
 actions.get_all_users()
 
+
+
 while True:
+    
     print(kirjaudu)
     valinta = input(": ")
     if valinta == "1":
@@ -33,7 +36,7 @@ while True:
             continue
         print("Salasana")
         password = input (": ")
-        actions.login(username)
+        actions.login(username, password)
 
     if valinta == "2":
         print("Valitse käyttäjätunnus")
@@ -45,13 +48,14 @@ while True:
         print("Valitse pääoman määrä")
         capital = input(": ")
         user = actions.create_user(username, password, capital)
-        actions.login(username)
+        
 
     if valinta == "3":
         break
 
 
     while True:
+        print(actions.find_user(username))
         logged_user = actions.get_user()
         print("Kirjautunut:" , logged_user)
         print("Pääoma", actions.get_capital(), "$")
@@ -100,4 +104,5 @@ while True:
             print(actions.get_portfolio(), "tämä on käyttäjän", logged_user,"portfolio")
 
         if valinta == "5":
+            actions.logout()
             break

@@ -1,3 +1,4 @@
+from logging import exception
 import yfinance as yf
 from user import User
 from user_repository import (user_repository as default_user_repository)
@@ -56,8 +57,22 @@ class Actions:
     def get_user(self):
         return self.__user
 
-    def login(self, user):
-        self.__user = user
+    def find_user(self, username):
+        row = self.__user_repository.find_user(username)
+        if row:
+            return True
+        return False
+
+    def login(self, username, password):
+        print(password)
+        user = self.__user_repository.find_user(username)
+        if user[1] == password:
+            self.__user = user[0]
+        else:
+            print("Väärät tunnarit")
+
+    def logout(self):
+        self.__user = None    
 
     def rank_investments(self):
         rank_list = []
