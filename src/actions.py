@@ -1,14 +1,16 @@
-from logging import exception
 import yfinance as yf
 from user import User
 from user_repository import (user_repository as default_user_repository)
 from stock_repository import (stock_repository as default_stock_repository)
 
 
-'''Sovelluslogiikasta vastaava luokka''' # pylint: disable=pointless-string-statement
+class InvalidCredentialsError(Exception):
+    pass
 
 
 class Actions:
+
+    '''Sovelluslogiikasta vastaava luokka''' 
 
     def __init__(self, user_repository=default_user_repository,
                  stock_repository=default_stock_repository):
@@ -66,10 +68,9 @@ class Actions:
     def login(self, username, password):
         print(password)
         user = self.__user_repository.find_user(username)
-        if user[1] == password:
-            self.__user = user[0]
-        else:
-            print("Väärät tunnarit")
+        if user[1] != password:
+            raise InvalidCredentialsError('Väärä käyttäjätunnus tai salasana')
+        self.__user = user[0]
 
     def logout(self):
         self.__user = None    

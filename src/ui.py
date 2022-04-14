@@ -1,5 +1,5 @@
 from random import choices
-from actions import Actions
+from actions import Actions, InvalidCredentialsError
 
 from initialize_database import initialize_database
 
@@ -36,7 +36,13 @@ while True:
             continue
         print("Salasana")
         password = input (": ")
-        actions.login(username, password)
+
+        try:
+            actions.login(username, password)
+        except InvalidCredentialsError:
+            print("Väärä käyttäjätunnus tai salasana")
+            continue
+            
 
     if valinta == "2":
         print("Valitse käyttäjätunnus")
