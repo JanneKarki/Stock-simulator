@@ -12,4 +12,5 @@
 |11.4| 4h | Käyttäjän tietokantatoimintoja ja testien koodaamista |
 |12.4| 4h | Koodin siistimistä, metodien korjailuja, luokkakaavio |
 |12.4| 1h | Yritys saada salasana toimimaan kirjautuessa|
-|Yht.| 40h|
+|14.4| 3h| Salasanan tarkistus ja käyttäjän luominen toimintaan|
+|Yht.| 43h|
