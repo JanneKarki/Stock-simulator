@@ -15,22 +15,53 @@ class Actions:
 
     def __init__(self, user_repository=default_user_repository,
                  stock_repository=default_stock_repository):
+        """Konstruktori, joka luo sovelluslogiikan palvelun
+        
+        
+        Args:
+            stock_repository:
+
+                Olio, jolla on StockRepository-luokkaa vastaavat metodit.
+            user_repository:
+                Olio, jolla on UserRepository-luokkaa vastaavat metodit.
+        """
+        
+        
         self.__user = None
         self.__stock_repository = stock_repository
         self.__user_repository = user_repository
 
     def get_latest_price(self, stock):
+        """Palauttaa haettavan osakkeen sen hetkisen hinnan
+        
+        Args:
+            stock: Merkkijono joka kertoo osakkeen symbolin.
+        
+        Returns:
+            Paluttaa osakkeen hinnan yfinance moduulista 
+            kahden desimaalin tarkkuudella
+        
+        """
         share = yf.Ticker(stock)
         dataframe = share.history(period="1d", interval="1d")
         return float("%.2f" % dataframe.iat[0, 3])
 
     def buy_stock(self, stock, amount):
+        """Ostaa osaketta annetun määrän ja lisää ne käyttäjän 
+        portfolioon, sekä vähentää niiden hinnan käyttäjän pääomasta
+        
+        Args:
+            stock:
+            amount:
+        
+        Returns
+        """
+
         buy_price = self.get_latest_price(stock)
-        # vähennä pääomaa sijoituksen verran
         self.__user_repository.adjust_capital(
             self.__user, -abs(buy_price*amount))
         self.__stock_repository.add_to_portfolio(
-            self.__user, stock, buy_price, amount)  # lisää osakkeet portfolioon
+            self.__user, stock, buy_price, amount)
         return buy_price
 
     def sell_stock(self, stock, amount):
