@@ -54,6 +54,14 @@ class StockRepository:
         results = stocks_database.fetchall()
         return results
 
+    def get_stock_from_portfolio(self, user, stock):
+        stock_database = self.connection.cursor()
+        stock_database.execute("SELECT * FROM Stocks WHERE user = ? and content=?", [user, stock])
+        result = stock_database.fetchone()
+        if result:
+            return result
+
+
     def delete_all(self):
         cursor = self.connection.cursor()
         cursor.execute("DELETE FROM Stocks")

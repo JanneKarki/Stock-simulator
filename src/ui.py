@@ -70,7 +70,7 @@ while True:
 
     while True:
         print(actions.find_user(username))
-        logged_user = actions.get_user()
+        logged_user = actions.get_logged_user()
         print("Kirjautunut:" , logged_user)
         print("Pääoma", actions.get_capital(), "$")
         print(actions.rank_investments(), "rank list")
@@ -115,7 +115,7 @@ while True:
             actions.get_stock_info(symbol)
 
         if valinta == "4":
-            print(actions.get_portfolio(), "tämä on käyttäjän", logged_user,"portfolio")
+            print(actions.get_portfolio(), "tämä on käyttäjän", logged_user, "portfolio")
 
         if valinta == "5":
             actions.logout()

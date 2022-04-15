@@ -31,6 +31,7 @@ class Actions:
             self.__user, -abs(buy_price*amount))
         self.__stock_repository.add_to_portfolio(
             self.__user, stock, buy_price, amount)  # lisää osakkeet portfolioon
+        return buy_price
 
     def sell_stock(self, stock, amount):
         sell_price = self.get_latest_price(stock)
@@ -38,12 +39,14 @@ class Actions:
             self.__user, sell_price*amount)  # lisää pääomaa myynnin verran
         self.__stock_repository.remove_stock_from_portfolio(
             self.__user, stock, amount)  # vähennä osakkeita
+        return sell_price
 
     def get_stock_info(self, stock):
         share = yf.Ticker(stock)
         print(share.info['longBusinessSummary'])
 
     def get_capital(self):
+        print(self.__user_repository.get_user_capital(self.__user), "asdlfknasdfknsadflkjafdslkjds")
         return self.__user_repository.get_user_capital(self.__user)
 
     def create_user(self, username, password, capital):
@@ -66,6 +69,12 @@ class Actions:
         if row:
             return True
         return False
+
+    def get_logged_user(self):
+        return self.__user
+
+    def find_stock_from_portfolio(self,stock):
+        return self.__stock_repository.get_stock_from_portfolio(self.__user,stock)
 
     def login(self, username, password):
         user = self.__user_repository.find_user(username)
