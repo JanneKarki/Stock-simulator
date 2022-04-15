@@ -6,8 +6,8 @@ from database_connection import get_database_connection
 class StockRepository:
 
     def __init__(self, connection):
-        self.connection = sqlite3.connect("stocks.db")
-        self.connection.isolation_level = None
+        self.connection = connection
+      
 
     def add_to_portfolio(self, user, stock, price, amount):
         stocks_database = self.connection.cursor()
@@ -68,4 +68,4 @@ class StockRepository:
         self.connection.commit()
 
 
-stock_repository = StockRepository(get_database_connection)
+stock_repository = StockRepository(get_database_connection())

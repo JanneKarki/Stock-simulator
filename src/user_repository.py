@@ -4,8 +4,8 @@ from database_connection import get_database_connection
 
 class UserRepostory:
     def __init__(self, connection):
-        self.connection = sqlite3.connect("stocks.db")
-        self.connection.isolation_level = None
+        self.connection = connection
+        #self.connection.isolation_level = None
 
     def new_user(self, user):
         cursor = self.connection.cursor()
@@ -50,4 +50,4 @@ class UserRepostory:
         self.connection.commit()
 
 
-user_repository = UserRepostory(get_database_connection)
+user_repository = UserRepostory(get_database_connection())
