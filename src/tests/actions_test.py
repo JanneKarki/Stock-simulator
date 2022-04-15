@@ -13,12 +13,12 @@ class TestActions(unittest.TestCase):
 
         self.actions = Actions()
         self.user_erkki = self.actions.create_user("Erkki", "1234", 10000)
-        self.actions.login(self.user_erkki)
+        self.actions.login(self.user_erkki.username, self.user_erkki.password)
 
     def test_get_logged_user(self):
         user = self.actions.get_user()
-        self.assertEqual(user.username, self.user_erkki.username)
+        self.assertEqual(user[0], self.user_erkki.username)
 
     def test_get_correct_capital(self):
-        capital = user_repository.get_capital(self.user_erkki.username)
+        capital = self.actions.get_capital()
         self.assertEqual(capital, 10000)

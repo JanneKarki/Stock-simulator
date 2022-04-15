@@ -1,7 +1,5 @@
 import sqlite3
 from database_connection import get_database_connection
-from user import User
-
 
 
 class UserRepostory:
@@ -29,8 +27,7 @@ class UserRepostory:
         row = cursor.fetchone()
         if not row:
             return None
-        else:
-            return row[0],row[1]
+        return row[0],row[1],row[2]
 
     def get_user_capital(self, user):
         cursor = self.connection.cursor()

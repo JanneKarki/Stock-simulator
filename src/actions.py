@@ -59,7 +59,7 @@ class Actions:
         return self.__user_repository.print_all_users()
 
     def get_user(self):
-        return self.__user
+        return self.__user_repository.find_user(self.__user)
 
     def find_user(self, username):
         row = self.__user_repository.find_user(username)
