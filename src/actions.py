@@ -46,7 +46,6 @@ class Actions:
         print(share.info['longBusinessSummary'])
 
     def get_capital(self):
-        print(self.__user_repository.get_user_capital(self.__user), "asdlfknasdfknsadflkjafdslkjds")
         return self.__user_repository.get_user_capital(self.__user)
 
     def create_user(self, username, password, capital):

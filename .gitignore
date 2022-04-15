@@ -2,5 +2,5 @@
 __pycache__
 .coverage
 htmlcov
-src/stocks.db
-stocks.db
+src/data/database.sqlite
+src/data/test-database.sqlite
