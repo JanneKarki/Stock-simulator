@@ -47,6 +47,7 @@ class Actions:
         return float("%.2f" % dataframe.iat[0, 3])
 
     def buy_stock(self, stock, amount):
+
         """Ostaa osaketta annetun määrän ja lisää ne käyttäjän 
         portfolioon, sekä vähentää niiden hinnan käyttäjän pääomasta
         
@@ -65,30 +66,60 @@ class Actions:
         return buy_price
 
     def sell_stock(self, stock, amount):
+
+        """Myy osaketta annetun määrän ja vähentää ne käyttäjän, 
+        sekä lisää niiden hinnan käyttäjän pääomaan
+        
+        Args:
+            stock:
+            amount: 
+            
+        Returns:
+        """
         sell_price = self.get_latest_price(stock)
         self.__user_repository.adjust_capital(
-            self.__user, sell_price*amount)  # lisää pääomaa myynnin verran
+            self.__user, sell_price*amount)
         self.__stock_repository.remove_stock_from_portfolio(
-            self.__user, stock, amount)  # vähennä osakkeita
+            self.__user, stock, amount)
         return sell_price
 
     def get_stock_info(self, stock):
+        """Hakee ja tulostaa osakkeen yritystiedot yfinance moduulista
+        
+        Args:
+            stock:"""
         share = yf.Ticker(stock)
         print(share.info['longBusinessSummary'])
 
+
     def get_capital(self):
+        """Palauttaa kirjautuneen käyttäjän pääoman"""
+
         return self.__user_repository.get_user_capital(self.__user)
 
     def create_user(self, username, password, capital):
+        """Luo uuden käyttäjän
+        
+        Args:
+            username:
+            password:
+            capital:
+            
+        Returns:
+        
+        """
         user = self.__user_repository.new_user(
             User(username, password, capital))
         self.__user = username
         return user
 
     def get_portfolio(self):
+        """Palauttaa kirjautuneen käyttäjän portfolion"""
+
         return self.__stock_repository.get_portfolio_from_database(self.__user)
 
     def get_all_users(self):
+        """Palauttaa tulosteena kaikki luodut käyttäjät"""
         return self.__user_repository.print_all_users()
 
     def get_user(self):
@@ -107,6 +138,14 @@ class Actions:
         return self.__stock_repository.get_stock_from_portfolio(self.__user,stock)
 
     def login(self, username, password):
+        """Kirjaa käyttäjän sisään sovellukseen
+        
+        Args:
+            username:
+            password:
+
+        
+        """
         user = self.__user_repository.find_user(username)
         result = None,None
         if user:
@@ -116,9 +155,12 @@ class Actions:
         self.__user = result[0]
 
     def logout(self):
+        """Kirjaa käyttäjän ulos sovelluksesta"""
         self.__user = None    
 
     def rank_investments(self):
+        """Lasekee ja järjestää sijoitukset listaan tuoton/tappion perusteella"""
+        
         rank_list = []
         portfolio = self.get_portfolio()
         for item in portfolio:
@@ -141,9 +183,19 @@ class Actions:
             total += profit
         return total
 
+    def total_portfolio_worth(self):
+        portfolio = self.__stock_repository.get_portfolio_from_database(self.__user)
+        total_worth = 0
+        for i in portfolio:
+            stock_amount = i[2]
+            present_price = self.get_latest_price(i[0]) 
+            total_worth += (stock_amount*present_price)
+        return total_worth
+
+
     def total_capital(self):
         net_capital = self.get_capital()
-        return net_capital+self.total_win_loss()
+        return net_capital+self.total_portfolio_worth()
 
     def print_total_win_loss(self):
         total = self.total_win_loss()
