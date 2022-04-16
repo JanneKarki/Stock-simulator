@@ -72,10 +72,13 @@ while True:
         print(actions.find_user(username))
         logged_user = actions.get_logged_user()
         print("Kirjautunut:" , logged_user)
-        print("Pääoma", actions.get_capital(), "$")
-        print(actions.rank_investments(), "rank list")
+        print("Free capital", actions.get_capital(), "$")
+         
+        print("Portfolio worth", actions.total_portfolio_worth())
         actions.print_total_win_loss()
-
+        print( "Total capital", actions.total_capital())
+        print( "Rank list", actions.rank_investments())
+        print()
         print(valinnat)
         print("Valinta")
         valinta = input(": ")
