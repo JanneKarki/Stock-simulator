@@ -1,8 +1,8 @@
 from argparse import Action
 from asyncio import constants
 from tkinter import Button, Radiobutton, Tk, ttk, constants
-from tkinter_helloview import HelloView
-from tkinter_goodbyeview import GoodByeView
+from login_view import LoginView
+from create_user_view import CreateUserView
 from action_view import ActionView
 from portfolio_view import PortfolioView
 
@@ -65,7 +65,7 @@ class UI:
     def _show_hello_view(self):
         self._hide_current_view()
 
-        self._current_view = HelloView(
+        self._current_view = LoginView(
             self._root,
             self._handle_good_bye,
             self._handle_action
@@ -75,7 +75,7 @@ class UI:
     def _show_good_bye_view(self):
         self._hide_current_view()
 
-        self._current_view = GoodByeView(
+        self._current_view = CreateUserView(
             self._root,
             self._handle_hello
         )
