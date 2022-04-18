@@ -1,7 +1,7 @@
 from asyncio import constants
 from tkinter import Button, Radiobutton, Tk, ttk, constants
 from tkinter_helloview import HelloView
-
+from tkinter_goodbyeview import GoodByeView
 
 
 class UI:
@@ -9,6 +9,7 @@ class UI:
         self._root = root
         self._entry = None
         self._username_entry = None
+        self._current_view = None
 
     def start (self):
         self._show_hello_view()
@@ -40,18 +41,36 @@ class UI:
         self._root.grid_columnconfigure(1, weight=1, minsize=250)
     """
     def _handle_button_click(self):
-        
         print("asdflknfdslkjlkj")
     
+    def _hide_current_view(self):
+        if self._current_view:
+            self._current_view.destroy()
+
+        self._current_view = None
+    
+    def _handle_hello(self):
+        self._show_hello_view()
+
     def _handle_good_bye(self):
-        print("Good bye")
+        self._show_good_bye_view()
 
     def _show_hello_view(self):
+        self._hide_current_view()
+        
         self._current_view = HelloView(
             self._root,
             self._handle_good_bye
         )
+        self._current_view.pack()
 
+    def _show_good_bye_view(self):
+        self._hide_current_view()
+
+        self._current_view = GoodByeView(
+            self._root,
+            self._handle_hello
+        )
         self._current_view.pack()
 
 
