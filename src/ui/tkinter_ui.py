@@ -5,6 +5,7 @@ from tkinter import Button, Radiobutton, Tk, ttk, constants
 class UI:
     def __init__(self,root):
         self.__root = root
+        self.__entry = None
 
     def start (self):
         heading_label = ttk.Label(master=self.__root, text = "Login")
@@ -15,7 +16,11 @@ class UI:
         password_label = ttk.Label(master=self.__root, text="Password")
         password_entry = ttk.Entry(master=self.__root)
 
-        button = ttk.Button(master=self.__root, text="Submit")
+        button = ttk.Button(
+            master=self.__root, 
+            text="Submit",
+            command=lambda: self._handle_button_click('button')
+            )
         
         heading_label.grid(row=0, column=0, columnspan=2, padx=5, pady=5)
 
@@ -28,6 +33,10 @@ class UI:
         button.grid(row=3,column=0,columnspan=2, padx=5, pady=5)
 
         self.__root.grid_columnconfigure(1, weight=1, minsize=250)
+
+    def _handle_button_click(self, entryvalue):
+        entry_value = self.__entry.get()
+        print(f"value of entry is:{entry_value}")
 
 window = Tk()
 
