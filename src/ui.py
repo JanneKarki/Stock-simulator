@@ -1,7 +1,7 @@
 from logging import raiseExceptions
 from random import choices
 from actions import Actions, InvalidCredentialsError
-
+from services.user_services import UserServices
 from initialize_database import initialize_database
 
 kirjaudu = """
@@ -20,10 +20,10 @@ valinnat = """Toiminnot:
 Enter - Päivitä hinnat
 
 """
-actions = Actions()
-actions.get_all_users()
 
-
+#actions.get_all_users()
+user_actions = UserServices()
+actions = Actions(user_actions)
 
 while True:
     
@@ -40,7 +40,8 @@ while True:
         password = input (": ")
 
         try:
-            actions.login(username, password)
+            actions.login(user_actions.login(username, password))
+            
         except InvalidCredentialsError:
             print("Väärä käyttäjätunnus tai salasana")
             continue
@@ -52,7 +53,7 @@ while True:
             username = input(": ")
             if username == "":
                 continue
-            if actions.find_user(username):
+            if user_actions.find_user(username):
                 print("Käytössä")
                 continue
             else:
@@ -62,14 +63,15 @@ while True:
         password = input(":") 
         print("Valitse pääoman määrä")
         capital = input(": ")
-        user = actions.create_user(username, password, capital)
+        actions.login(user_actions.create_user(username, password, capital))
        
     if valinta == "3":
         break
 
 
     while True:
-        print(actions.find_user(username))
+        print(actions.get_logged_user())
+        print(user_actions.find_user(username))
         logged_user = actions.get_logged_user()
         print("Kirjautunut:" , logged_user)
         print("Free capital", actions.get_capital(), "$")

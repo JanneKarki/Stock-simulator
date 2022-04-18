@@ -2,7 +2,7 @@ import yfinance as yf
 from user import User
 from user_repository import (user_repository as default_user_repository)
 from stock_repository import (stock_repository as default_stock_repository)
-from services.user_services import user_services
+
 
 class InvalidCredentialsError(Exception):
     pass
@@ -13,9 +13,8 @@ class Actions:
 
     '''Sovelluslogiikasta vastaava luokka''' 
 
-    def __init__(self, user_services, user_repository=default_user_repository,
-                 stock_repository=default_stock_repository,
-                 ):
+    def __init__(self, user_repository=default_user_repository,
+                 stock_repository=default_stock_repository):
         """Konstruktori, joka luo sovelluslogiikan palvelun
         
         
@@ -27,10 +26,10 @@ class Actions:
                 Olio, jolla on UserRepository-luokkaa vastaavat metodit.
         """
         
-        self._user_services = user_services
-        self._logged_user = None
-        self._stock_repository = stock_repository
-        self._user_repository = user_repository
+        
+        self.__user = None
+        self.__stock_repository = stock_repository
+        self.__user_repository = user_repository
 
     def get_latest_price(self, stock):
         """Palauttaa haettavan osakkeen sen hetkisen hinnan
@@ -60,10 +59,10 @@ class Actions:
         """
 
         buy_price = self.get_latest_price(stock)
-        self._user_repository.adjust_capital(
-            self._logged_user, -abs(buy_price*amount))
-        self._stock_repository.add_to_portfolio(
-            self._logged_user, stock, buy_price, amount)
+        self.__user_repository.adjust_capital(
+            self.__user, -abs(buy_price*amount))
+        self.__stock_repository.add_to_portfolio(
+            self.__user, stock, buy_price, amount)
         return buy_price
 
     def sell_stock(self, stock, amount):
@@ -78,10 +77,10 @@ class Actions:
         Returns:
         """
         sell_price = self.get_latest_price(stock)
-        self._user_repository.adjust_capital(
-            self._logged_user, sell_price*amount)
-        self._stock_repository.remove_stock_from_portfolio(
-            self._logged_user, stock, amount)
+        self.__user_repository.adjust_capital(
+            self.__user, sell_price*amount)
+        self.__stock_repository.remove_stock_from_portfolio(
+            self.__user, stock, amount)
         return sell_price
 
     def get_stock_info(self, stock):
@@ -96,10 +95,10 @@ class Actions:
     def get_capital(self):
         """Palauttaa kirjautuneen käyttäjän pääoman"""
 
-        return self._user_repository.get_user_capital(self._logged_user)
+        return self.__user_repository.get_user_capital(self.__user)
 
-    """ def create_user(self, username, password, capital):
-        """"""Luo uuden käyttäjän
+    def create_user(self, username, password, capital):
+        """Luo uuden käyttäjän
         
         Args:
             username:
@@ -108,37 +107,37 @@ class Actions:
             
         Returns:
         
-        """"""
-        user = self._user_repository.new_user(
+        """
+        user = self.__user_repository.new_user(
             User(username, password, capital))
-        self._logged_user = username
+        self.__user = username
         return user
-    """
+
     def get_portfolio(self):
         """Palauttaa kirjautuneen käyttäjän portfolion"""
-        return self._stock_repository.get_portfolio_from_database(self._logged_user)
+
+        return self.__stock_repository.get_portfolio_from_database(self.__user)
 
     def get_all_users(self):
         """Palauttaa tulosteena kaikki luodut käyttäjät"""
-        return self._user_repository.print_all_users()
+        return self.__user_repository.print_all_users()
 
-  #  def get_user(self):
-   #     return self._user_repository.find_user(self._logged_user)
+    def get_user(self):
+        return self.__user_repository.find_user(self.__user)
 
-   # def find_user(self, username):
-   #     row = self._user_repository.find_user(username)
-   #     if row:
-   #         return True
-   #     return False
+    def find_user(self, username):
+        row = self.__user_repository.find_user(username)
+        if row:
+            return True
+        return False
 
     def get_logged_user(self):
-        #print(user_services.get_logged_user(), "logged user from user_services")
-        return self._logged_user
+        return self.__user
 
     def find_stock_from_portfolio(self,stock):
-        return self._stock_repository.get_stock_from_portfolio(self._logged_user,stock)
+        return self.__stock_repository.get_stock_from_portfolio(self.__user,stock)
 
-    def login(self, username):
+    def login(self, username, password):
         """Kirjaa käyttäjän sisään sovellukseen
         
         Args:
@@ -147,20 +146,17 @@ class Actions:
 
         
         """
-        """
-        user = self._user_repository.find_user(username)
+        user = self.__user_repository.find_user(username)
         result = None,None
         if user:
             result = user
         if result[1] != password:
             raise InvalidCredentialsError('Väärä käyttäjätunnus tai salasana')
-        self._user = result[0]
-        """
-        self._logged_user = username
+        self.__user = result[0]
 
     def logout(self):
         """Kirjaa käyttäjän ulos sovelluksesta"""
-        self._logged_user = None    
+        self.__user = None    
 
     def rank_investments(self):
         """Lasekee ja järjestää sijoitukset listaan tuoton/tappion perusteella"""
@@ -188,7 +184,7 @@ class Actions:
         return total
 
     def total_portfolio_worth(self):
-        portfolio = self._stock_repository.get_portfolio_from_database(self._logged_user)
+        portfolio = self.__stock_repository.get_portfolio_from_database(self.__user)
         total_worth = 0
         for i in portfolio:
             stock_amount = i[2]
@@ -198,13 +194,9 @@ class Actions:
 
 
     def total_capital(self):
-        if self._logged_user:
-            net_capital = self.get_capital()
-            return net_capital+self.total_portfolio_worth()
-        return None
+        net_capital = self.get_capital()
+        return net_capital+self.total_portfolio_worth()
 
     def print_total_win_loss(self):
         total = self.total_win_loss()
         print("Net profit " "%.3f" % total)
-
-actions = Actions(user_services)
