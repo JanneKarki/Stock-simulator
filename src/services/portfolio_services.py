@@ -80,3 +80,7 @@ class PortfolioServices:
     def print_total_win_loss(self):
         total = self.total_win_loss()
         print("Net profit " "%.3f" % total)
+    
+    def logout(self):
+        """Kirjaa käyttäjän ulos sovelluksesta"""
+        self._logged_user = None
