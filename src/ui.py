@@ -124,6 +124,6 @@ while True:
 
         if valinta == "5":
             user_actions.logout()
-            actions.logout()
-            portfolio.logout()
+            actions.logged_user(None)
+            portfolio.logged_user(None)
             break

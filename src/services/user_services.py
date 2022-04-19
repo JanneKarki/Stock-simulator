@@ -51,8 +51,8 @@ class UserServices:
         if result[1] != password:
             raise InvalidCredentialsError('Väärä käyttäjätunnus tai salasana')
         self._user = result[0]
-        actions.login(self._user)
-        portfolio_services.login(self._user)
+        actions.logged_user(self._user)
+        portfolio_services.logged_user(self._user)
         return user[0]
 
     def get_logged_user(self):

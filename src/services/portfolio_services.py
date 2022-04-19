@@ -18,17 +18,6 @@ class PortfolioServices:
         self._user_repository = user_repository
         self.actions = StockActions()
 
-    def login(self, username):
-        """Kirjaa käyttäjän sisään sovellukseen.
-
-        Args:
-            username:
-            password:
-
-        """
-        self._logged_user = username
-        return self._logged_user
-
     def get_capital(self):
         """Palauttaa kirjautuneen käyttäjän pääoman"""
         return self._user_repository.get_user_capital(self._logged_user)
@@ -86,6 +75,11 @@ class PortfolioServices:
         print("Net profit ", float(f"{total:.2f}"),"$")
 
 
-    def logout(self):
-        """Kirjaa käyttäjän ulos sovelluksesta"""
-        self._logged_user = None
+    def logged_user(self, username):
+        """Asettaa kirjautuneen käyttäjän palveluun.
+
+        Args:
+            username:
+
+        """
+        self._logged_user = username

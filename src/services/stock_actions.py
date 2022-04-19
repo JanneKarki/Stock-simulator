@@ -87,18 +87,11 @@ class StockActions:
         share = yf.Ticker(stock)
         print(share.info['longBusinessSummary'])
 
-    def login(self, username):
+    def logged_user(self, username):
         """Kirjaa käyttäjän sisään sovellukseen.
 
         Args:
             username:
-            password:
-
 
         """
         self._logged_user = username
-        return self._logged_user
-
-    def logout(self):
-        """Kirjaa käyttäjän ulos sovelluksesta"""
-        self._logged_user = None
