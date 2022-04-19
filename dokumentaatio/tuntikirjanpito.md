@@ -13,4 +13,9 @@
 |12.4| 4h | Koodin siistimistä, metodien korjailuja, luokkakaavio |
 |12.4| 1h | Yritys saada salasana toimimaan kirjautuessa|
 |14.4| 3h| Salasanan tarkistus ja käyttäjän luominen toimintaan|
-|Yht.| 43h|
+|15.4| 4h | Tietokanta korjattu toimimaan testeille ja sovellukselle erikseen|
+|16.4| 4h | Koodausta ja graafiseen liittymään perehtymistä |
+|17.4| 1h | Tkinter testi|
+|18.4| 7h | Graafisen liittymän runko ja luokan jakaminen|
+|19.4| 5h | Luokkien muutos ja sisäänkirjausongelman ratkaisu, sekä testien korjaus|
+|Yht.| 64h|
