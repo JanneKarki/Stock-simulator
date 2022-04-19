@@ -19,3 +19,12 @@ __________________________
 
 # Asennus
 
+Sovellus käyttää riippuvuuksien hallintaan poetrya, joten se tulee olla asennettuna koneelle.
+
+Asenna sovelluksen tarvitsemat riippuvuudet komennolla 'poetry install'.
+
+Käynnistä poetryn virtuaaliympäristö komennolla 'poetry shell'.
+
+Suorita komento 'invoke build' ennen sovelluksen käynnistämistä.
+
+Käynnistä sovellus komennolla 'invoke start'.
