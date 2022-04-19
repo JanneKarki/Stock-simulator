@@ -1,6 +1,7 @@
 from logging import raiseExceptions
 from random import choices
-from actions import Actions, InvalidCredentialsError
+from services.actions import Actions, InvalidCredentialsError
+from services.portfolio_services import PortfolioServices
 from services.user_services import UserServices
 from initialize_database import initialize_database
 
@@ -21,10 +22,11 @@ Enter - Päivitä hinnat
 
 """
 
-#actions.get_all_users()
-user_actions = UserServices()
-actions = Actions(user_actions)
 
+user_actions = UserServices()
+actions = Actions()
+portfolio = PortfolioServices()
+user_actions.get_all_users()
 while True:
     
     print(kirjaudu)
@@ -40,12 +42,12 @@ while True:
         password = input (": ")
 
         try:
-            actions.login(user_actions.login(username, password))
+            portfolio.login(actions.login(user_actions.login(username, password)))
             
         except InvalidCredentialsError:
             print("Väärä käyttäjätunnus tai salasana")
             continue
-            
+        
 
     if valinta == "2":
         while True:

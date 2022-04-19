@@ -1,5 +1,5 @@
 import unittest
-from user_repository import user_repository
+from repositories.user_repository import user_repository
 from user import User
 
 
