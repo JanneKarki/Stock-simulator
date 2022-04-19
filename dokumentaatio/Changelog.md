@@ -24,3 +24,10 @@ Toistaiseksi sovellus vielä kaatuu jos symbolia ei löydy. Kotimaisia osakkeita
 - Sisäänkirjautuminen toimii, mutta salasanan voi olla mitä vain koska, sen tarkistus ei vielä toimi.
 - 
 
+**Viikko 5**
+- Action-luokasta eriytettiin user_services ja portfolio_services luokat. user_services vastaa nyt kaikista käyttäjiin liittyvistä toiminnoista ja portfolio_services vastaa osakesalkkuun liittyvistä tuoton laskuista. Action luokkaan jäi osakkeiden osto ja myynti, sekä yritysinfo.
+- Sisään kirjautuminen ja tunnuksen luominen toimivat nyt niinkuin pitää
+- Graafisen liittymän runko rakenteilla, mutta itse sovellus toimii vielä teksitkäyttöliittymällä
+- Sovellus näyttää nyt sisäänkirjautuneen käyttäjän, vapaan pääoman määrän, portfolion arvon, nettotuoton, kokonaispääoman ja portfoliossa olevien osakkeiden rank-list:n
+- Enter päivittää hinnat(pörssin ollessa kiinni hinnat eivät muutu)
+- Testien suorittaminen tapahtuu testitietokannassa eikä nollaa käyttäjiä
