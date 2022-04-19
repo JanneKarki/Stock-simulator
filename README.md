@@ -13,4 +13,18 @@ Sovelluksella voi sijoittaa leikisti osakkeisiin reaaliaikaisilla hinnoilla. Sov
 [Arkkitehtuuri](https://github.com/JanneKarki/ot-harjoitustyo/blob/main/dokumentaatio/arkkitehtuuri.md)
 
 ____________________________________________
+# Releases
+[Release 1 - Viikon 5 deadline](https://github.com/JanneKarki/ot-harjoitustyo/releases/tag/viikko5)
+__________________________
 
+# Asennus
+
+Sovellus käyttää riippuvuuksien hallintaan poetrya, joten se tulee olla asennettuna koneelle.
+
+Asenna sovelluksen tarvitsemat riippuvuudet komennolla 'poetry install'.
+
+Käynnistä poetryn virtuaaliympäristö komennolla 'poetry shell'.
+
+Suorita komento 'invoke build' ennen sovelluksen käynnistämistä.
+
+Käynnistä sovellus komennolla 'invoke start'.
