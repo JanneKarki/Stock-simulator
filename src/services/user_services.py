@@ -27,7 +27,6 @@ class UserServices:
         """
         user = self._user_repository.new_user(
             User(username, password, capital))
-        # self.login(username,password)
         return user
 
     def find_user(self, username):

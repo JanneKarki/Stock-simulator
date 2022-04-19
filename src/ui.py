@@ -1,10 +1,8 @@
 from logging import raiseExceptions
 from random import choices
-
 from services.portfolio_services import PortfolioServices
 from services.user_services import UserServices
-from services.actions import Actions
-from services.actions import Actions, InvalidCredentialsError
+from services.stock_actions import StockActions, InvalidCredentialsError
 from initialize_database import initialize_database
 
 kirjaudu = """
@@ -26,7 +24,7 @@ Enter - Päivitä hinnat
 
 
 user_actions = UserServices()
-actions = Actions()
+actions = StockActions()
 portfolio = PortfolioServices()
 user_actions.get_all_users()
 while True:
@@ -44,7 +42,6 @@ while True:
         password = input(": ")
 
         try:
-           # portfolio.login(actions.login(user_actions.login(username, password)))
             user_actions.login(username, password, actions, portfolio)
 
         except InvalidCredentialsError:
@@ -69,8 +66,6 @@ while True:
         capital = input(": ")
         user = user_actions.create_user(username, password, capital)
         user_actions.login(user.username, user.password, actions, portfolio)
-
-        #portfolio = PortfolioServices(user)
 
     if valinta == "3":
         break

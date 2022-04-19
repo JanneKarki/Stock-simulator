@@ -2,7 +2,7 @@ from repositories.user_repository import (
     user_repository as default_user_repository)
 from repositories.stock_repository import (
     stock_repository as default_stock_repository)
-from services.actions import Actions
+from services.stock_actions import StockActions
 
 
 class PortfolioServices:
@@ -16,7 +16,7 @@ class PortfolioServices:
         self._logged_user = None
         self._stock_repository = stock_repository
         self._user_repository = user_repository
-        self.actions = Actions()
+        self.actions = StockActions()
 
     def login(self, username):
         """Kirjaa käyttäjän sisään sovellukseen.

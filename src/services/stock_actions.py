@@ -10,7 +10,7 @@ class InvalidCredentialsError(Exception):
     pass
 
 
-class Actions:
+class StockActions:
     """Sovelluslogiikasta vastaava luokka"""
 
     def __init__(self,  user_repository=default_user_repository,
