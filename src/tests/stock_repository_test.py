@@ -2,8 +2,10 @@ from importlib import import_module
 import unittest
 from user import User
 from services.actions import Actions
-from repositories.user_repository import (user_repository as default_user_repository)
-from repositories.stock_repository import (stock_repository as default_stock_repository)
+from repositories.user_repository import (
+    user_repository as default_user_repository)
+from repositories.stock_repository import (
+    stock_repository as default_stock_repository)
 
 
 class TestStockRepository(unittest.TestCase):

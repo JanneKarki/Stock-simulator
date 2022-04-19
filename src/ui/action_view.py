@@ -1,5 +1,6 @@
 from tkinter import ttk, constants
 
+
 class ActionView:
     def __init__(self, root, handle_hello, handle_portfolio):
         self._root = root
@@ -36,7 +37,7 @@ class ActionView:
             text="Portofolio",
             command=self._handle_portfolio
         )
-        logout_button= ttk.Button(
+        logout_button = ttk.Button(
             master=self._frame,
             text="Logout",
             command=self._handle_hello

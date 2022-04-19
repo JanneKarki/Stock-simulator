@@ -6,13 +6,14 @@ from create_user_view import CreateUserView
 from action_view import ActionView
 from portfolio_view import PortfolioView
 
+
 class UI:
-    def __init__(self,root):
+    def __init__(self, root):
         self._root = root
         self._entry = None
         self._current_view = None
 
-    def start (self):
+    def start(self):
         self._show_login_view()
     """ 
         username_label = ttk.Label(master=self._root, text="Username")
@@ -40,7 +41,7 @@ class UI:
 
         self._root.grid_columnconfigure(1, weight=1, minsize=250)
     """
-       
+
     def _hide_current_view(self):
         if self._current_view:
             self._current_view.destroy()
@@ -51,7 +52,7 @@ class UI:
 
     def _handle_portfolio(self):
         self._show_portfolio_view()
-    
+
     def _handle_hello(self):
         self._show_login_view()
 

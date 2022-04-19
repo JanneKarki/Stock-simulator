@@ -1,49 +1,52 @@
 from user import User
-from repositories.user_repository import (user_repository as default_user_repository)
+from repositories.user_repository import (
+    user_repository as default_user_repository)
 
 
 class InvalidCredentialsError(Exception):
     pass
 
+
 class UserServices:
     """Käyttäjän toiminnoista vastaava luokka."""
+
     def __init__(self, user_repository=default_user_repository):
         self._user = None
         self._user_repository = user_repository
 
     def create_user(self, username, password, capital):
         """Luo uuden käyttäjän.
-        
+
         Args:
             username:
             password:
             capital:
-            
+
         Returns:
-        
+
         """
         user = self._user_repository.new_user(
             User(username, password, capital))
-        #self.login(username,password)
+        # self.login(username,password)
         return user
-    
+
     def find_user(self, username):
         row = self._user_repository.find_user(username)
         if row:
             return True
         return False
-        
+
     def login(self, username, password, actions, portfolio_services):
         """Kirjaa käyttäjän sisään sovellukseen.
-        
+
         Args:
             username:
             password:
 
-        
+
         """
         user = self._user_repository.find_user(username)
-        result = None,None
+        result = None, None
         if user:
             result = user
         if result[1] != password:
@@ -52,7 +55,7 @@ class UserServices:
         actions.login(self._user)
         portfolio_services.login(self._user)
         return user[0]
-    
+
     def get_logged_user(self):
         """Palauttaa kirjautuneen käyttäjän.
 
@@ -63,7 +66,7 @@ class UserServices:
 
     def logout(self):
         """Kirjaa käyttäjän ulos sovelluksesta."""
-        self._user = None    
+        self._user = None
 
     def get_all_users(self):
         """Palauttaa tulosteena kaikki luodut käyttäjät."""
@@ -73,5 +76,6 @@ class UserServices:
         """Palauttaa kirjautuneen käyttäjän pääoman"""
 
         return self._user_repository.get_user_capital(self._user)
+
 
 user_services = UserServices()

@@ -1,11 +1,9 @@
-import sqlite3
 from database_connection import get_database_connection
 
 
 class UserRepostory:
     def __init__(self, connection):
         self.connection = connection
-        #self.connection.isolation_level = None
 
     def new_user(self, user):
         cursor = self.connection.cursor()
@@ -27,17 +25,17 @@ class UserRepostory:
         row = cursor.fetchone()
         if not row:
             return None
-        return row[0],row[1],row[2]
+        return row[0], row[1], row[2]
 
     def get_user_capital(self, user):
-        capital = None,None,None
+        capital = None, None, None
         cursor = self.connection.cursor()
         cursor.execute("SELECT * FROM Users WHERE username = ? ", [user])
         row = cursor.fetchone()
         if row:
-            capital = float("{0:.2f}".format(row[2]))
-        return  capital
+            capital = float(f"{row[2]:.2f}")
 
+        return capital
 
     def adjust_capital(self, user, amount):
         cursor = self.connection.cursor()
