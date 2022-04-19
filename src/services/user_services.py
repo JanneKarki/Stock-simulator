@@ -35,7 +35,7 @@ class UserServices:
             return True
         return False
 
-    def login(self, username, password, actions, portfolio_services):
+    def login(self, username, password, stock_actions, portfolio_services):
         """Kirjaa käyttäjän sisään sovellukseen.
 
         Args:
@@ -51,7 +51,7 @@ class UserServices:
         if result[1] != password:
             raise InvalidCredentialsError('Väärä käyttäjätunnus tai salasana')
         self._user = result[0]
-        actions.logged_user(self._user)
+        stock_actions.logged_user(self._user)
         portfolio_services.logged_user(self._user)
         return user[0]
 
