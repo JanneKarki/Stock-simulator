@@ -17,5 +17,5 @@
 |16.4| 4h | Koodausta ja graafiseen liittymään perehtymistä |
 |17.4| 1h | Tkinter testi|
 |18.4| 7h | Graafisen liittymän runko ja luokan jakaminen|
-|19.4| 5h | Luokkien muutos ja sisäänkirjausongelman ratkaisu, sekä testien korjaus|
-|Yht.| 64h|
+|19.4| 7h | Luokkien muutos ja sisäänkirjausongelman ratkaisu, sekä testien korjaus, arkkitehtuurin lisäykset, koodin siistiminen|
+|Yht.| 66h|
