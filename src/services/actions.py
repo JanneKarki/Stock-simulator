@@ -92,11 +92,6 @@ class Actions:
         print(share.info['longBusinessSummary'])
 
 
-    def get_capital(self):
-        """Palauttaa kirjautuneen käyttäjän pääoman"""
-
-        return self._user_repository.get_user_capital(self._logged_user)
-
     """ def create_user(self, username, password, capital):
         """"""Luo uuden käyttäjän
         
@@ -113,21 +108,11 @@ class Actions:
         self._logged_user = username
         return user
     """
-    def get_portfolio(self):
-        """Palauttaa kirjautuneen käyttäjän portfolion"""
-        return self._stock_repository.get_portfolio_from_database(self._logged_user)
+ 
+  #  def get_logged_user(self):
+   #     return self._logged_user
 
-    def get_all_users(self):
-        """Palauttaa tulosteena kaikki luodut käyttäjät"""
-        return self._user_repository.print_all_users()
-
-
-    def get_logged_user(self):
-        return self._logged_user
-
-    def find_stock_from_portfolio(self,stock):
-        return self._stock_repository.get_stock_from_portfolio(self._logged_user,stock)
-
+ 
     def login(self, username):
         """Kirjaa käyttäjän sisään sovellukseen
         

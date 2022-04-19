@@ -67,4 +67,9 @@ class UserServices:
         """Palauttaa tulosteena kaikki luodut käyttäjät."""
         return self._user_repository.print_all_users()
 
+    def get_capital(self):
+        """Palauttaa kirjautuneen käyttäjän pääoman"""
+
+        return self._user_repository.get_user_capital(self._user)
+
 user_services = UserServices()

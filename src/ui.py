@@ -65,23 +65,22 @@ while True:
         password = input(":") 
         print("Valitse pääoman määrä")
         capital = input(": ")
-        actions.login(user_actions.create_user(username, password, capital))
+        user = actions.login(user_actions.create_user(username, password, capital))
+        #portfolio = PortfolioServices(user)
        
     if valinta == "3":
         break
-
+    
 
     while True:
-        print(actions.get_logged_user())
-        print(user_actions.find_user(username))
-        logged_user = actions.get_logged_user()
+        logged_user = user_actions.get_logged_user()
         print("Kirjautunut:" , logged_user)
-        print("Free capital", actions.get_capital(), "$")
+        print("Free capital", user_actions.get_capital(), "$")
          
-        print("Portfolio worth", actions.total_portfolio_worth())
-        actions.print_total_win_loss()
-        print( "Total capital", actions.total_capital())
-        print( "Rank list", actions.rank_investments())
+        print("Portfolio worth", portfolio.total_portfolio_worth())
+        portfolio.print_total_win_loss()
+        print( "Total capital", portfolio.total_capital())
+        print( "Rank list", portfolio.rank_investments())
         print()
         print(valinnat)
         print("Valinta")
@@ -122,7 +121,7 @@ while True:
             actions.get_stock_info(symbol)
 
         if valinta == "4":
-            print(actions.get_portfolio(), "tämä on käyttäjän", logged_user, "portfolio")
+            print(portfolio.get_portfolio(), "tämä on käyttäjän", logged_user, "portfolio")
 
         if valinta == "5":
             actions.logout()
