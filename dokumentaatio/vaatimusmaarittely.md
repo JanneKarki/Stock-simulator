@@ -9,7 +9,7 @@ Osakkeiden hinta- ja yritystiedot sovellukselle tulevat yfinance-moduulista.
 
 Käyttäjä voi:
 
-- luoda käyttäjätilin ja kirjautua sovellukseen                 #tehty osittain(salasana ei toimi)
+- luoda käyttäjätilin ja kirjautua sovellukseen                 #tehty 
 - valita haluamansa suuruisen pääoman                           #tehty
 - ostaa osakkeita osakesalkkuunsa                               #tehty
 - myydä ostamiaan osakkeita                                     #tehty
@@ -20,11 +20,21 @@ Käyttäjä voi:
     - parhaiten menestyneet osakkeet                            #tehty
     - huonoiten menestyneet osakkeet                            #tehty
 
+Käyttäjä näkee:
+- Käytettävissä olevan pääoman                                  #tehty
+- Kokonaispääoman                                               #tehty
+
+Lisäksi:
+
+- Sovelluksella on graafinen käyttöliittymä
+- Virhetilanteet käsitellään niin että sovellus ei kaadu
+- käyttäjä näkee pörssin aukioloajat
 
 
 **Laajennusideoita:**
 
 - osakkeiden lyhyeksimyynti mahdollisuus
 - käyttäjien ranking list
+
 
 
