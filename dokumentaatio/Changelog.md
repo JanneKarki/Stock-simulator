@@ -25,9 +25,10 @@ Toistaiseksi sovellus vielä kaatuu jos symbolia ei löydy. Kotimaisia osakkeita
 - 
 
 **Viikko 5**
-- Action-luokasta eriytettiin user_services ja portfolio_services luokat. user_services vastaa nyt kaikista käyttäjiin liittyvistä toiminnoista ja portfolio_services vastaa osakesalkkuun liittyvistä tuoton laskuista. Action luokkaan jäi osakkeiden osto ja myynti, sekä yritysinfo.
-- Sisään kirjautuminen ja tunnuksen luominen toimivat nyt niinkuin pitää
-- Graafisen liittymän runko rakenteilla, mutta itse sovellus toimii vielä teksitkäyttöliittymällä
+- Action-luokasta eriytettiin user_services ja portfolio_services luokat. user_services vastaa nyt kaikista käyttäjiin liittyvistä toiminnoista ja portfolio_services vastaa osakesalkkuun liittyvistä tuoton laskuista. Action-luokan nimi muutettu -> StockActions, johon jäivät osakkeiden osto ja myynti, sekä yritysinfo.
+- Sisään kirjautuminen ja tunnuksen luominen toimivat nyt niin kuin pitää
+- Graafisen liittymän alustava runko rakennettu, mutta itse sovellus toimii vielä tekstikäyttöliittymällä
 - Sovellus näyttää nyt sisäänkirjautuneen käyttäjän, vapaan pääoman määrän, portfolion arvon, nettotuoton, kokonaispääoman ja portfoliossa olevien osakkeiden rank-list:n
 - Enter päivittää hinnat(pörssin ollessa kiinni hinnat eivät muutu)
-- Testien suorittaminen tapahtuu testitietokannassa eikä nollaa käyttäjiä
+- Testien suorittaminen tapahtuu nyt testitietokannassa eikä siten nollaa käyttäjiä testatessa
+
