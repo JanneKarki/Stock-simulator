@@ -24,8 +24,8 @@ class UserServices:
         """
         user = self._user_repository.new_user(
             User(username, password, capital))
-        self.login(username,password)
-        return user.username
+        #self.login(username,password)
+        return user
     
     def find_user(self, username):
         row = self._user_repository.find_user(username)
@@ -33,7 +33,7 @@ class UserServices:
             return True
         return False
         
-    def login(self, username, password):
+    def login(self, username, password, actions, portfolio_services):
         """Kirjaa käyttäjän sisään sovellukseen.
         
         Args:
@@ -49,6 +49,8 @@ class UserServices:
         if result[1] != password:
             raise InvalidCredentialsError('Väärä käyttäjätunnus tai salasana')
         self._user = result[0]
+        actions.login(self._user)
+        portfolio_services.login(self._user)
         return user[0]
     
     def get_logged_user(self):

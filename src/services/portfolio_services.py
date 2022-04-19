@@ -38,6 +38,9 @@ class PortfolioServices:
         """Palauttaa kirjautuneen käyttäjän portfolion"""
         return self._stock_repository.get_portfolio_from_database(self._logged_user)
 
+    def find_stock_from_portfolio(self,stock):
+        return self._stock_repository.get_stock_from_portfolio(self._logged_user,stock)
+    
     def rank_investments(self):
             """Lasekee ja järjestää sijoitukset listaan tuoton/tappion perusteella"""
             rank_list = []

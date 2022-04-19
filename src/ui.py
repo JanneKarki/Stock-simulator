@@ -42,7 +42,8 @@ while True:
         password = input (": ")
 
         try:
-            portfolio.login(actions.login(user_actions.login(username, password)))
+           # portfolio.login(actions.login(user_actions.login(username, password)))
+            user_actions.login(username,password,actions, portfolio)
             
         except InvalidCredentialsError:
             print("Väärä käyttäjätunnus tai salasana")
@@ -65,7 +66,9 @@ while True:
         password = input(":") 
         print("Valitse pääoman määrä")
         capital = input(": ")
-        user = actions.login(user_actions.create_user(username, password, capital))
+        user = user_actions.create_user(username, password, capital)
+        user_actions.login(user.username,user.password,actions, portfolio)
+
         #portfolio = PortfolioServices(user)
        
     if valinta == "3":
@@ -124,5 +127,7 @@ while True:
             print(portfolio.get_portfolio(), "tämä on käyttäjän", logged_user, "portfolio")
 
         if valinta == "5":
+            user_actions.logout()
             actions.logout()
+            portfolio.logout()
             break
