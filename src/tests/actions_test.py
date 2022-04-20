@@ -1,6 +1,6 @@
 import unittest
 from user import User
-from services.actions import Actions
+from services.stock_actions import StockActions
 from services.user_services import UserServices
 from repositories.user_repository import user_repository
 from repositories.stock_repository import stock_repository
@@ -13,7 +13,7 @@ class TestActions(unittest.TestCase):
         stock_repository.delete_all()
         user_repository.delete_all()
 
-        self.actions = Actions()
+        self.actions = StockActions()
         self.user_actions = UserServices()
         self.portfolio_services = PortfolioServices()
         self.user_erkki = self.user_actions.create_user("Erkki", "1234", 10000)
