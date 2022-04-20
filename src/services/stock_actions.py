@@ -5,11 +5,6 @@ from repositories.stock_repository import (
     stock_repository as default_stock_repository)
 
 
-
-class InvalidCredentialsError(Exception):
-    pass
-
-
 class StockActions:
     """Sovelluslogiikasta vastaava luokka"""
 
@@ -95,4 +90,3 @@ class StockActions:
 
         """
         self._logged_user = username
-        

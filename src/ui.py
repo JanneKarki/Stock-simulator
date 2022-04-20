@@ -1,8 +1,8 @@
 from logging import raiseExceptions
 from random import choices
 from services.portfolio_services import PortfolioServices
-from services.user_services import UserServices
-from services.stock_actions import StockActions, InvalidCredentialsError
+from services.user_services import UserServices, InvalidCredentialsError, UsernameExistsError
+from services.stock_actions import StockActions
 from initialize_database import initialize_database
 
 kirjaudu = """
@@ -54,18 +54,21 @@ while True:
             username = input(": ")
             if username == "":
                 continue
-            if user_actions.find_user(username):
-                print("Käytössä")
-                continue
-            else:
-                print("tunnus natsaa")
-                break
-        print("Valitse salasana")
-        password = input(":")
-        print("Valitse pääoman määrä")
-        capital = input(": ")
-        user = user_actions.create_user(username, password, capital)
-        user_actions.login(user.username, user.password, actions, portfolio)
+            
+            print("Valitse salasana")
+            password = input(":")
+            print("Valitse pääoman määrä")
+            capital = input(": ")
+
+            try: 
+                user = user_actions.create_user(username, password, capital)
+                
+            except UsernameExistsError:
+                print("Käyttäjätunnus on jo käytössä")
+            
+
+            user_actions.login(user.username, user.password, actions, portfolio)
+            break
 
     if valinta == "3":
         break

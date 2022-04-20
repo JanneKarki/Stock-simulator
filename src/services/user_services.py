@@ -6,6 +6,9 @@ from repositories.user_repository import (
 class InvalidCredentialsError(Exception):
     pass
 
+class UsernameExistsError(Exception):
+    pass
+
 
 class UserServices:
     """Käyttäjän toiminnoista vastaava luokka."""
@@ -25,6 +28,11 @@ class UserServices:
         Returns:
 
         """
+        existing_user = self._user_repository.find_user(username)
+        
+        if existing_user:
+            raise UsernameExistsError('Username', username, 'already exists')
+        
         user = self._user_repository.new_user(
             User(username, password, capital))
         return user
