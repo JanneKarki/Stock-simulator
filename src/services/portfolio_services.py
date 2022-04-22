@@ -83,3 +83,5 @@ class PortfolioServices:
 
         """
         self._logged_user = username
+
+portfolio_services = PortfolioServices()

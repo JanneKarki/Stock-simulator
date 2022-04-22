@@ -1,6 +1,7 @@
-from tkinter import ttk, constants
-from services.stock_actions import stock_actions
-
+from tkinter import StringVar, ttk, constants
+from services.stock_actions import stock_actions as actions
+from services.user_services import user_services, InvalidCredentialsError
+from services.portfolio_services import portfolio_services as portofolio
 
 class LoginView:
 
@@ -11,6 +12,8 @@ class LoginView:
         self._handle_action = handle_action
         self._username_entry = None
         self._password_entry = None
+        self._error_variable = None
+        self._error_label = None
 
         self._initialize()
 
@@ -20,10 +23,40 @@ class LoginView:
     def destroy(self):
         self._frame.destroy()
 
+    def _login_handler(self):
+        username = self._username_entry.get()
+        password = self._username_entry.get()
+
+        try:
+            user_services.login(username, password, actions, portofolio)
+            self._handle_action()
+           
+        except InvalidCredentialsError:
+            print("asdffdsadsafdsa")
+            self._show_error("Invalid username or password")
+
+    def _show_error(self,message):
+        self._error_variable.set(message)
+        self._error_label.grid()
+
+    def _hide_error(self):
+        self._error_label.grid_remove()
+
     def _initialize(self):
 
         self._frame = ttk.Frame(master=self._root)
+
         heading_label = ttk.Label(master=self._frame, text="Hello")
+        
+        # Error_label
+        self._error_variable = StringVar(self._frame)
+        self._error_label = ttk.Label(
+            master=self._frame,
+            textvariable=self._error_variable,
+            foreground="red"
+        )
+        
+
 
         # Username
         username_label = ttk.Label(master=self._frame, text="Username:")
@@ -37,7 +70,7 @@ class LoginView:
         login_button = ttk.Button(
             master=self._frame,
             text="Login User",
-            command=self._handle_action
+            command= self._login_handler()
         )
 
         create_user_button = ttk.Button(
@@ -56,4 +89,9 @@ class LoginView:
             constants.E, constants.W), padx=5, pady=5)
         login_button.grid(row=3, column=0, columnspan=2, padx=5, pady=5)
         create_user_button.grid(row=4, column=0, columnspan=2, padx=5, pady=5)
-        self._frame.grid_columnconfigure(1, weight=1, minsize=250)
+        self._error_label.grid(row=5, columns= 1,padx=5, pady=5)
+        self._frame.grid_columnconfigure(0, weight=1, minsize=250)
+
+        self._hide_error()
+
+    
