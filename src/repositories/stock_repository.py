@@ -12,13 +12,11 @@ class StockRepository:
         stocks_database.execute(
             "SELECT avg_price,amount FROM Stocks WHERE user = ? and content = ?", [user, stock])
         data = stocks_database.fetchall()
-        print(data)
         if len(data) == 0:  # jos 0 niin ei ole tietokannassa
             stocks_database.execute("""INSERT INTO Stocks (
                                     user, content, avg_price, amount) 
                                     values (?,?,?,?)""", [user, stock, price, amount])
         else:
-            print("on")
             new_amount = data[0][1]+amount
             new_avg_price = ((data[0][0]*data[0][1])+(amount*price))/new_amount
             stocks_database.execute("""UPDATE Stocks SET avg_price = ?

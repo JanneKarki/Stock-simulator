@@ -2,17 +2,17 @@ from logging import raiseExceptions
 from random import choices
 from services.portfolio_services import PortfolioServices
 from services.user_services import UserServices, InvalidCredentialsError, UsernameExistsError
-from services.stock_actions import StockActions
+from services.stock_actions import StockActions, SymbolNotFoundError
 from initialize_database import initialize_database
 
-kirjaudu = """
+kirjaudu_valikko = """
 1 - Kirjaudu sisään
 2 - Luo käyttäjä
 3 - Exit
 """
 
 
-valinnat = """Toiminnot:
+valinnat_valikko = """Toiminnot:
     1 - Osta osaketta
     2 - Myy osaketta
     3 - Hae yrityksen esittely
@@ -27,9 +27,18 @@ user_actions = UserServices()
 actions = StockActions()
 portfolio = PortfolioServices()
 user_actions.get_all_users()
-while True:
 
-    print(kirjaudu)
+
+def print_numbers():
+    print("Free capital", user_actions.get_capital(), "$")
+    print("Portfolio worth", portfolio.total_portfolio_worth())
+    portfolio.print_total_win_loss()
+    print("Total capital", portfolio.total_capital())
+    print("Rank list", portfolio.rank_investments())
+
+while True:
+    
+    print(kirjaudu_valikko)
     valinta = input(": ")
     if valinta == "1":
 
@@ -76,30 +85,41 @@ while True:
     while True:
         logged_user = user_actions.get_logged_user()
         print("Kirjautunut:", logged_user)
-        print("Free capital", user_actions.get_capital(), "$")
-
-        print("Portfolio worth", portfolio.total_portfolio_worth())
-        portfolio.print_total_win_loss()
-        print("Total capital", portfolio.total_capital())
-        print("Rank list", portfolio.rank_investments())
         print()
-        print(valinnat)
+        print_numbers()
+        print(valinnat_valikko)
         print("Valinta")
         valinta = input(": ")
         print(valinta)
         if valinta == "1":
-            print("Anna symboli (Esim. AAPL)")
-            symbol = input(": ")
-            price = actions.get_latest_price(symbol)
+            while True:
+                print("Anna symboli (Esim. AAPL)")
+                symbol = input(": ")
+                try:
+                    price = actions.get_latest_price(symbol)
+                    if price:
+                        break
+                except SymbolNotFoundError:
+                    continue
+                
+
             print(symbol, "share price", price)
             print("Anna määrä")
-            amount = int(input(": "))
-            total_price = price*amount
+            while True:
+                amount = input(": ")
+                if not amount:
+                    print("amount cant be empty")
+                    continue
+                if all(not num.isdigit() for num in amount):
+                    print("Amount must be number.")
+                    continue
+                break
+            total_price = price*int(amount)
             print(symbol, amount, "shares", "USD" + str("%.2f" % total_price))
             print("Hyväksy osto? y/n")
             choice = input(": ")
             if choice == "y":
-                actions.buy_stock(symbol, amount)
+                actions.buy_stock(symbol, int(amount))
 
         if valinta == "2":
 
@@ -119,7 +139,12 @@ while True:
         if valinta == "3":
             print("Anna symboli")
             symbol = input(": ")
-            actions.get_stock_info(symbol)
+            
+            try:
+                data = actions.get_stock_info(symbol)
+            except SymbolNotFoundError:
+                print("Symbol not found")
+            
 
         if valinta == "4":
             print(portfolio.get_portfolio(),
@@ -130,3 +155,4 @@ while True:
             actions.logged_user(None)
             portfolio.logged_user(None)
             break
+

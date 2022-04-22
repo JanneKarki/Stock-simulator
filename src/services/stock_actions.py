@@ -4,6 +4,10 @@ from repositories.user_repository import (
 from repositories.stock_repository import (
     stock_repository as default_stock_repository)
 
+class SymbolNotFoundError(Exception):
+    pass
+
+
 
 class StockActions:
     """Sovelluslogiikasta vastaava luokka"""
@@ -34,9 +38,13 @@ class StockActions:
             kahden desimaalin tarkkuudella
 
         """
-        share = yf.Ticker(stock)
-        dataframe = share.history(period="1d", interval="1d")
-        return float(f"{dataframe.iat[0, 3]:.2f}")
+        try:
+            share = yf.Ticker(stock)
+            dataframe = share.history(period="1d", interval="1d")
+            return float(f"{dataframe.iat[0, 3]:.2f}")
+        except SymbolNotFoundError:
+            print("Symbol not found")
+            
 
     def buy_stock(self, stock, amount):
         """Ostaa osaketta annetun määrän ja lisää ne käyttäjän
@@ -48,13 +56,13 @@ class StockActions:
 
         Returns
         """
-
         buy_price = self.get_latest_price(stock)
         self._user_repository.adjust_capital(
-            self._logged_user, -abs(buy_price*amount))
+                self._logged_user, -abs(buy_price*amount))
         self._stock_repository.add_to_portfolio(
-            self._logged_user, stock, buy_price, amount)
+                self._logged_user, stock, buy_price, amount)
         return buy_price
+            
 
     def sell_stock(self, stock, amount):
         """Myy osaketta annetun määrän ja vähentää ne käyttäjän,
@@ -79,8 +87,13 @@ class StockActions:
         Args:
             stock:
         """
-        share = yf.Ticker(stock)
-        print(share.info['longBusinessSummary'])
+        try:
+            share = yf.Ticker(stock)
+            data = share.info
+            if data:
+                print(len(share.info))
+        except SymbolNotFoundError:
+            print("Symbol not found")
 
     def logged_user(self, username):
         """Kirjaa käyttäjän sisään sovellukseen.
