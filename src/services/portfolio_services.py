@@ -20,7 +20,8 @@ class PortfolioServices:
 
     def get_capital(self):
         """Palauttaa kirjautuneen käyttäjän pääoman"""
-        return self._user_repository.get_user_capital(self._logged_user)
+        capital = self._user_repository.get_user_capital(self._logged_user)
+        return capital
 
     def get_portfolio(self):
         """Palauttaa kirjautuneen käyttäjän portfolion"""
@@ -51,7 +52,7 @@ class PortfolioServices:
             end_price = latest_price*item[2]
             profit = end_price-entry_price
             total += profit
-        return total
+        return float(f"{total:.2f}")
 
     def total_portfolio_worth(self):
         portfolio = self._stock_repository.get_portfolio_from_database(
@@ -67,13 +68,9 @@ class PortfolioServices:
         if self._logged_user:
             capital = self.get_capital()
             total_capital = capital + self.total_portfolio_worth()
+
             return float(f"{total_capital:.2f}")
-        return None
-
-    def print_total_win_loss(self):
-        total = self.total_win_loss()
-        print("Net profit ", float(f"{total:.2f}"),"$")
-
+        return None      
 
     def logged_user(self, username):
         """Asettaa kirjautuneen käyttäjän palveluun.
