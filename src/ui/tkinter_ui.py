@@ -1,10 +1,10 @@
 from argparse import Action
 from asyncio import constants
 from tkinter import Button, Radiobutton, Tk, ttk, constants
-from login_view import LoginView
-from create_user_view import CreateUserView
-from action_view import ActionView
-from portfolio_view import PortfolioView
+from ui.login_view import LoginView
+from ui.create_user_view import CreateUserView
+from ui.action_view import ActionView
+from ui.portfolio_view import PortfolioView
 
 
 class UI:
@@ -56,20 +56,20 @@ class UI:
     def _handle_hello(self):
         self._show_login_view()
 
-    def _handle_good_bye(self):
-        self._show_good_bye_view()
+    def _handle_create_user(self):
+        self._show_create_user_view()
 
     def _show_login_view(self):
         self._hide_current_view()
 
         self._current_view = LoginView(
             self._root,
-            self._handle_good_bye,
+            self._handle_create_user,
             self._handle_action
         )
         self._current_view.pack()
 
-    def _show_good_bye_view(self):
+    def _show_create_user_view(self):
         self._hide_current_view()
 
         self._current_view = CreateUserView(
@@ -98,12 +98,3 @@ class UI:
         self._current_view.pack()
 
 
-window = Tk()
-
-window.title("TkInter example")
-
-ui = UI(window)
-
-ui.start()
-
-window.mainloop()
