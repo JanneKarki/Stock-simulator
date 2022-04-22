@@ -80,5 +80,8 @@ class PortfolioServices:
 
         """
         self._logged_user = username
+    
+    def get_logged_user(self):
+        return self._logged_user
 
 portfolio_services = PortfolioServices()
