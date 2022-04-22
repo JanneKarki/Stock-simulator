@@ -25,9 +25,11 @@ class LoginView:
 
     def _login_handler(self):
         username = self._username_entry.get()
-        password = self._username_entry.get()
+        password = self._password_entry.get()
 
         try:
+            print(username)
+            print(password)
             user_services.login(username, password, actions, portofolio)
             self._handle_action()
            
@@ -70,7 +72,7 @@ class LoginView:
         login_button = ttk.Button(
             master=self._frame,
             text="Login User",
-            command= self._login_handler()
+            command= self._login_handler
         )
 
         create_user_button = ttk.Button(
@@ -89,7 +91,7 @@ class LoginView:
             constants.E, constants.W), padx=5, pady=5)
         login_button.grid(row=3, column=0, columnspan=2, padx=5, pady=5)
         create_user_button.grid(row=4, column=0, columnspan=2, padx=5, pady=5)
-        self._error_label.grid(row=5, columns= 1,padx=5, pady=5)
+        self._error_label.grid(row=5, column= 0, columnspan=2 ,padx=5, pady=5)
         self._frame.grid_columnconfigure(0, weight=1, minsize=250)
 
         self._hide_error()

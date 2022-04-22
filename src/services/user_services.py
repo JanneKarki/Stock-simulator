@@ -52,6 +52,7 @@ class UserServices:
 
 
         """
+        print("käyttäjätunnus",username, "<- tässä","salasana", password, "<- tässä",stock_actions,portfolio_services)
         user = self._user_repository.find_user(username)
         result = None, None
         if user:
