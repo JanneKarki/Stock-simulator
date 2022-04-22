@@ -21,11 +21,11 @@ class UI:
             self._current_view.destroy()
         self._current_view = None
 
-    def _handle_action(self):
-        self._show_action_view()
+    def _handle_action(self,stock_actions, portfolio):
+        self._show_action_view(stock_actions, portfolio)
 
-    def _handle_portfolio(self):
-        self._show_portfolio_view()
+    def _handle_portfolio(self, stock_actions, portfolio):
+        self._show_portfolio_view(stock_actions, portfolio)
 
     def _handle_start(self):
         self._show_login_view()
@@ -52,22 +52,27 @@ class UI:
         )
         self._current_view.pack()
 
-    def _show_action_view(self):
+    def _show_action_view(self,stock_actions, portfolio_services):
         self._hide_current_view()
 
         self._current_view = ActionView(
             self._root,
             self._handle_start,
-            self._handle_portfolio
+            self._handle_portfolio,
+            stock_actions,
+            portfolio_services
+
         )
         self._current_view.pack()
 
-    def _show_portfolio_view(self):
+    def _show_portfolio_view(self,stock_actionss, portfolio):
         self._hide_current_view()
 
         self._current_view = PortfolioView(
             self._root,
-            self._handle_action
+            self._handle_action,
+            stock_actionss,
+            portfolio
         )
         self._current_view.pack()
 
