@@ -1,5 +1,5 @@
 from tkinter import ttk, constants
-from services.stock_actions import StockActions
+from services.stock_actions import stock_actions
 
 
 class LoginView:
