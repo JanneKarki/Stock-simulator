@@ -103,3 +103,5 @@ class StockActions:
 
         """
         self._logged_user = username
+
+stock_actions = StockActions()
