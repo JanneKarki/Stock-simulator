@@ -41,6 +41,7 @@ class StockActions:
         try:
             share = yf.Ticker(stock)
             dataframe = share.history(period="1d", interval="1d")
+            
             return float(f"{dataframe.iat[0, 3]:.2f}")
         except SymbolNotFoundError:
             print("Symbol not found")
@@ -90,8 +91,10 @@ class StockActions:
         try:
             share = yf.Ticker(stock)
             data = share.info
-            if data:
-                print(len(share.info))
+            print(len(data))
+            if len(data) > 50:
+                return data["longBusinessSummary"]
+            return "Symbol not found"
         except SymbolNotFoundError:
             print("Symbol not found")
 
