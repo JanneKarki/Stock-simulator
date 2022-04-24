@@ -4,6 +4,7 @@ from tkinter import BOTH, LEFT, NS, RIGHT, Y, Label, Scrollbar, ttk, constants, 
 import tkinter as tk
 
 from numpy import pad
+from services import stock_actions
 from services.portfolio_services import PortfolioServices
 
 from services.stock_actions import StockActions
@@ -38,7 +39,12 @@ class PortfolioView:
                           fg="Black")
 
         for count, item in enumerate(portfolio):
-            listbox.insert(count, item)
+            symbol = str(item[0])
+            #name = self.stock_actions.get_stock_name(item[0])
+            avg_price = str(item[1])
+            amount = str(item[2])
+            text_row = amount + " shares of " + symbol + " at $" + avg_price
+            listbox.insert(count, text_row)
         return listbox
 
     def _stocks_in_rank_listbox(self):

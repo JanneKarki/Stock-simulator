@@ -10,6 +10,9 @@ class InvalidCredentialsError(Exception):
 class UsernameExistsError(Exception):
     pass
 
+class EmptyInputError(Exception):
+    pass
+
 
 class UserServices:
     """Käyttäjän toiminnoista vastaava luokka."""
@@ -29,6 +32,10 @@ class UserServices:
         Returns:
 
         """
+
+        if username  == "" or password == "" or capital == "":
+            raise EmptyInputError('Inputs cannot be empty')
+
         existing_user = self._user_repository.find_user(username)
 
         if existing_user:

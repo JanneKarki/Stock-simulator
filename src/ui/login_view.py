@@ -92,7 +92,7 @@ class LoginView:
             constants.E, constants.W), padx=5, pady=5)
         login_button.grid(row=3, column=0, columnspan=2, padx=5, pady=5)
         create_user_button.grid(row=4, column=0, columnspan=2, padx=5, pady=5)
-        self._error_label.grid(row=5, column=0, columnspan=1, padx=5, pady=5)
-        self._frame.grid_columnconfigure(0, weight=1, minsize=250)
+        self._error_label.grid(row=5, column=0, columnspan=2, padx=5, pady=5)
+        self._frame.grid_columnconfigure(0, weight=1, minsize=150)
 
         self._hide_error()

@@ -1,4 +1,4 @@
-from tkinter import ttk, constants
+from tkinter import ttk, constants, Toplevel, Label, Button
 from services.user_services import user_services, InvalidCredentialsError
 
 
@@ -21,14 +21,18 @@ class CreateUserView:
         password = self._password_entry.get()
         capital = self._capital_entry.get()
 
+        self._username_entry.delete(0, constants.END)
+        self._password_entry.delete(0, constants.END)
+        self._capital_entry.delete(0, constants.END)
+
         try:
-            print(username)
-            print(password)
             user_services.create_user(username, password, capital)
-            self._handle_return
+            self._openOkWindow()
 
         except InvalidCredentialsError:
             self._show_error("Invalid username or password")
+        
+        
 
     def _show_error(self, message):
         self._error_variable.set(message)
@@ -36,6 +40,26 @@ class CreateUserView:
 
     def _hide_error(self):
         self._error_label.grid_remove()
+
+    def _handle_ok_click(self):
+        self._handle_return()
+
+
+    def _openOkWindow(self):
+     
+        newWindow = Toplevel(self._frame)
+    
+        newWindow.title("User Created")
+    
+        newWindow.geometry("200x100")
+    
+        Label(newWindow, pady=10,
+            text ="User succesfully created!").pack()
+
+        button = Button(newWindow,
+             text ="OK",
+             command = self._handle_ok_click)
+        button.pack(pady = 3, padx= 25)
 
     def _initialize(self):
 
@@ -58,6 +82,7 @@ class CreateUserView:
             master=self._frame,
             text="Create",
             command=self._create_user_handler
+
         )
 
         back_button = ttk.Button(
