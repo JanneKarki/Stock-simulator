@@ -16,7 +16,6 @@ class PortfolioView:
         self._frame = None
         self.stock_actions = stock_actions
         self.portfolio_services = portfolio_services
-        # self.portfolio_services =
 
         self._initialize()
 
@@ -56,68 +55,84 @@ class PortfolioView:
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
-        label = ttk.Label(master=self._frame, text=str(
-            self.portfolio_services.get_logged_user() + "'s " + "portfolio"))
 
-        stocks_listbox = self._stocks_in_listbox()
-        ranked_list_box = self._stocks_in_rank_listbox()
+        label_portfolio = ttk.Label(master=self._frame, text='Portfolio')
+        label_rank_list = ttk.Label(master=self._frame, text="Rank List")
+
+        listbox_stocks = self._stocks_in_listbox()
+        listbox_rank = self._stocks_in_rank_listbox()
 
         scroll_bar_stock_list = Scrollbar(self._frame, orient='vertical')
-
-        scroll_bar_ranked_list = Scrollbar(self._frame, orient='vertical')
+        scroll_bar_rank_list = Scrollbar(self._frame, orient='vertical')
 
         label_total_portfolio_worth = ttk.Label(
-            master=self._frame, text="Total portfolio's worth")
+            master=self._frame, text="Portfolio's worth:")
         label_total_portfolio_worth_value = ttk.Label(
             master=self._frame, text=self.portfolio_services.total_portfolio_worth())
 
-        label_capital = ttk.Label(master=self._frame, text="Free capital")
+        label_capital = ttk.Label(master=self._frame, text="Free capital:")
         label_capital_value = ttk.Label(
             master=self._frame, text=self.portfolio_services.get_capital())
 
         label_total_capital = ttk.Label(
-            master=self._frame, text="Total capital")
+            master=self._frame, text="Total capital:")
         label_total_capital_value = ttk.Label(
             master=self._frame, text=self.portfolio_services.total_capital())
 
         label_profit = ttk.Label(
-            master=self._frame, text="Net profit", foreground='black')
+            master=self._frame, text="Net profit:", foreground='black')
         label_profit_value = ttk.Label(
             master=self._frame, text=self.portfolio_services.total_win_loss())
 
+        label_dollar_1 = ttk.Label(self._frame, text="$")
+        label_dollar_2 = ttk.Label(self._frame, text="$")
+        label_dollar_3 = ttk.Label(self._frame, text="$")
+        label_dollar_4 = ttk.Label(self._frame, text="$")
+
         back_to_action_button = ttk.Button(
             master=self._frame,
-            text="Back_to_action",
+            text="Back",
             command=self._handle_back_to_action_click
         )
 
-        label.grid(row=0, column=0, columnspan=2, padx=5, pady=5)
+        label_portfolio.grid(row=0, column=0, padx=5, pady=5)
+        label_rank_list.grid(row=0, column=3)
 
-        label_total_portfolio_worth.grid(row=1, column=0, padx=5, pady=5)
-        label_total_portfolio_worth_value.grid(row=1, column=1, padx=5, pady=5)
+        label_total_portfolio_worth.grid(row=2, column=0, padx=5, pady=5, sticky=constants.E)
+        label_total_portfolio_worth_value.grid(row=2, column=1, padx=5, pady=5,sticky=constants.E)
 
-        label_capital.grid(row=2, column=0, padx=5, pady=5)
-        label_capital_value.grid(row=2, column=1, padx=5, pady=5)
+        label_profit.grid(row=3, column=0, padx=5, pady=5,sticky=constants.E)
+        label_profit_value.grid(row=3, column=1, padx=5, pady=5,sticky=constants.E)
+        
+        
+        label_capital.grid(row=4, column=0, padx=5, pady=5,sticky=constants.E)
+        label_capital_value.grid(row=4, column=1, padx=5, pady=5,sticky=constants.E)
 
-        label_total_capital.grid(row=3, column=0, padx=5, pady=5)
-        label_total_capital_value.grid(row=3, column=1, padx=5, pady=5)
+        label_total_capital.grid(row=5, column=0, padx=5, pady=5,sticky=constants.E)
+        label_total_capital_value.grid(row=5, column=1, padx=5, pady=5,sticky=constants.E)
 
-        label_profit.grid(row=4, column=0, padx=5, pady=5)
-        label_profit_value.grid(row=4, column=1, padx=5, pady=5)
+        
 
-        stocks_listbox.grid(row=1, column=2)
-        scroll_bar_stock_list.grid(row=1, column=3)
+        listbox_stocks.grid(row=1, column=0,columnspan=3, padx=5, pady=5)
+        scroll_bar_stock_list.grid(row=1, column=2, sticky=(
+            'ns', constants.E), padx=5, pady=7 )
 
-        stocks_listbox.config(yscrollcommand=scroll_bar_stock_list.set)
-        scroll_bar_stock_list.config(command=stocks_listbox.yview)
+        listbox_stocks.config(yscrollcommand=scroll_bar_stock_list.set)
+        scroll_bar_stock_list.config(command=listbox_stocks.yview)
 
-        ranked_list_box.grid(row=1, column=4)
-        scroll_bar_ranked_list.grid(row=1, column=5)
+        listbox_rank.grid(row=1, column=3, columnspan=2, padx=5, pady=5)
+        scroll_bar_rank_list.grid(row=1, column=4, sticky=(
+            'ns', constants.E), padx=5, pady=7)
 
-        ranked_list_box.config(yscrollcommand=scroll_bar_ranked_list.set)
-        scroll_bar_ranked_list.config(command=ranked_list_box.yview)
+        listbox_rank.config(yscrollcommand=scroll_bar_rank_list.set)
+        scroll_bar_rank_list.config(command=listbox_rank.yview)
 
-        back_to_action_button.grid(row=10, column=0, padx=5, pady=5)
+        back_to_action_button.grid(row=10, column=0,columnspan=5, padx=10, pady=20)
+
+        label_dollar_1.grid(row=2,column=2)
+        label_dollar_2.grid(row=3,column=2)
+        label_dollar_3.grid(row=4,column=2)
+        label_dollar_4.grid(row=5,column=2)
 
         self._frame.grid_columnconfigure(0, weight=1)
         self._frame.grid_rowconfigure(0, weight=1)
