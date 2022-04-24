@@ -20,7 +20,7 @@ class StockRepository:
             new_amount = data[0][1]+amount
             new_avg_price = ((data[0][0]*data[0][1])+(amount*price))/new_amount
             stocks_database.execute("""UPDATE Stocks SET avg_price = ?
-                                    where user = ? and content = ?""", [new_avg_price, user, stock])
+                                    where user = ? and content = ?""", [float(f"{new_avg_price:.2f}"), user, stock])
             stocks_database.execute("""UPDATE Stocks SET amount = ?
                                     where user = ? and content = ?""", [new_amount, user, stock])
 

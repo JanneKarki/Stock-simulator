@@ -1,5 +1,8 @@
-from tkinter import ttk, constants
-from services.stock_actions import stock_actions
+from re import S
+from tkinter import ANCHOR, CENTER, E, W, ttk, constants, StringVar
+
+from numpy import pad
+from services.stock_actions import stock_actions, SymbolNotFoundError
 
 class ActionView:
     def __init__(self, root, handle_hello, handle_portfolio, stock_actions, portfolio_services):
@@ -7,8 +10,8 @@ class ActionView:
         self._handle_hello = handle_hello
         self._handle_portfolio = handle_portfolio
         self._frame = None
-        self.stock_actions = stock_actions
-        self.portfolio_services = portfolio_services
+        self._stock_actions = stock_actions
+        self._portfolio_services = portfolio_services
         self._get_price_variable = None
         self._get_price_label = None
         self._error_variable = None
@@ -50,7 +53,7 @@ class ActionView:
         symbol  = self._symbol_entry.get()
 
         try:
-            price = self.stock_actions.get_latest_price(symbol)
+            price = self._stock_actions.get_latest_price(symbol)
             self._show_price(price)
 
         except SymbolNotFoundError:
@@ -59,27 +62,45 @@ class ActionView:
     def _handle_get_info(self):
         symbol  = self._symbol_entry.get()
 
+
         try:
-            info = self.stock_actions.get_stock_info(symbol)
+            info = self._stock_actions.get_stock_info(symbol)
             self._show_info(info)
 
         except SymbolNotFoundError:
-            self.show_error("Symbol not found")
+            self._show_error("Symbol not found")
 
 
     def _handle_buy(self):
         print("Buy")
+        symbol  = self._symbol_entry.get()
+        amount = int(self._amount_entry.get())
+        self._stock_actions.buy_stock(symbol,amount)
+
+        self._symbol_entry.delete(0, constants.END)
+        self._amount_entry.delete(0, constants.END)
+
+        self._initialize
+        
 
     def _handle_sell(self):
         print("Sell")
+        symbol  = self._symbol_entry.get()
+        amount = int(self._amount_entry.get())
+        self._stock_actions.sell_stock(symbol,amount)
+
+        self._symbol_entry.delete(0, constants.END)
+        self._amount_entry.delete(0, constants.END)
+
+
         
     def _handle_portfolio_click(self):
-        self._handle_portfolio(self.stock_actions, self.portfolio_services)
+        self._handle_portfolio(self._stock_actions, self._portfolio_services)
 
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
-        label = ttk.Label(master=self._frame, text=str(self.portfolio_services.get_logged_user()) + " logged in")
+        label = ttk.Label(master=self._frame, text=str(self._portfolio_services.get_logged_user()) + " logged in")
 
         symbol_label = ttk.Label(master=self._frame, text="Symbol:")
         self._symbol_entry = ttk.Entry(master=self._frame)
@@ -88,6 +109,9 @@ class ActionView:
         self._amount_entry = ttk.Entry(master=self._frame)
 
         
+        label_capital = ttk.Label(master=self._frame, text= "Free capital:")
+        label_capital_value = ttk.Label(master=self._frame, text = self._portfolio_services.get_capital())
+                
         
         get_price_button = ttk.Button(
             master=self._frame,
@@ -160,12 +184,22 @@ class ActionView:
 
         get_price_button.grid(row=2, column=1,sticky=W, padx=5, pady=5)
         self._get_price_label.grid(row=0,column=1, )
-        self._error_label.grid(row=0, column=1 ,columnspan=1 ,padx=5, pady=5)
+
+        get_info_button.grid(row=2, column=1, sticky=E,)
+        self._get_info_label.grid(row=0, column=2, columnspan=3, padx=5, pady=5)
+
+        self._error_label.grid(row=0, column=1 ,padx=5, pady=5)
+
         buy_stock_button.grid(row=4, column=1, sticky=W,padx=5, pady=5)
         sell_stock_button.grid(row=4, column=1,sticky=E,padx=5, pady=5)
-        portfolio_button.grid(row=5, column=0,padx=5, pady=25)
-        logout_button.grid(row=5, column=1,padx=5, pady=25)
-        get_info_button.grid(row=2, column=1, sticky=E,)
-        self._get_info_label.grid(row=0, column=2, padx=5, pady=5)
+        
+        label_capital.grid(row=5,column=0, padx=5, pady=5)
+        label_capital_value.grid(row=5, column=1, sticky=W, padx=5, pady=5)
 
-        self._frame.grid_columnconfigure(0, weight=1, minsize=150)
+
+        portfolio_button.grid(row=6, column=0,padx=5, pady=25)
+        logout_button.grid(row=6, column=1,padx=5, pady=25)
+
+        
+
+        self._frame.grid_columnconfigure(0, weight=1, minsize=100)

@@ -1,6 +1,7 @@
 from multiprocessing.spawn import old_main_modules
 from sqlite3 import Row
-from tkinter import Label, ttk, constants
+from tkinter import BOTH, LEFT, NS, RIGHT, Y, Label, Scrollbar, ttk, constants, Listbox
+import tkinter as tk
 
 from numpy import pad
 from services.portfolio_services import PortfolioServices
@@ -27,12 +28,44 @@ class PortfolioView:
 
     def _handle_back_to_action_click(self):
         self._handle_action(self.stock_actions, self.portfolio_services)
+
+    def _stocks_in_listbox(self):
+        portfolio = self.portfolio_services.get_portfolio()
+
+        listbox = Listbox(self._frame,height = 10, 
+                  width = 30, 
+                  bg = "lightgrey",
+                  activestyle = 'dotbox', 
+                  fg = "Black")
+
+        for count,item in enumerate(portfolio):
+            listbox.insert(count,item)
+        return listbox
+
+    def _stocks_in_rank_listbox(self):
+        ranked_list = self.portfolio_services.rank_investments()
+
+        ranked_list_box = Listbox(self._frame,height = 10, 
+                  width = 30, 
+                  bg = "lightgrey",
+                  activestyle = 'dotbox', 
+                  fg = "Black")
+        for count,item in enumerate(ranked_list):
+            ranked_list_box.insert(count,item)
+        return ranked_list_box
+        
     
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
-        label = ttk.Label(master=self._frame, text=str(self.portfolio_services.get_logged_user() +"'s " + "portfolio is here:"))
+        label = ttk.Label(master=self._frame, text=str(self.portfolio_services.get_logged_user() +"'s " + "portfolio"))
 
+        stocks_listbox = self._stocks_in_listbox()
+        ranked_list_box = self._stocks_in_rank_listbox()
+
+        scroll_bar_stock_list = Scrollbar(self._frame, orient='vertical')
+
+        scroll_bar_ranked_list = Scrollbar(self._frame, orient='vertical')
        
         label_total_portfolio_worth = ttk.Label(master=self._frame, text="Total portfolio's worth")
         label_total_portfolio_worth_value = ttk.Label(master=self._frame,text=self.portfolio_services.total_portfolio_worth())
@@ -43,7 +76,7 @@ class PortfolioView:
         label_total_capital = ttk.Label(master=self._frame, text= "Total capital")
         label_total_capital_value = ttk.Label(master=self._frame, text = self.portfolio_services.total_capital())
         
-        label_profit = ttk.Label(master=self._frame, text= "Net profit")
+        label_profit = ttk.Label(master=self._frame, text= "Net profit", foreground='black')
         label_profit_value = ttk.Label(master=self._frame, text= self.portfolio_services.total_win_loss())
 
         back_to_action_button = ttk.Button(
@@ -66,4 +99,20 @@ class PortfolioView:
         label_profit.grid(row=4,column=0, padx=5, pady=5)
         label_profit_value.grid(row=4, column=1, padx=5, pady=5)
 
-        back_to_action_button.grid(row=5, column=0, padx=5, pady=5)
+
+        stocks_listbox.grid(row=1, column=2)
+        scroll_bar_stock_list.grid(row=1,column=3)
+
+        stocks_listbox.config(yscrollcommand=scroll_bar_stock_list.set)
+        scroll_bar_stock_list.config(command=stocks_listbox.yview)
+
+        ranked_list_box.grid(row=1, column=4)
+        scroll_bar_ranked_list.grid(row=1,column=5)
+
+        ranked_list_box.config(yscrollcommand=scroll_bar_ranked_list.set)
+        scroll_bar_ranked_list.config(command=ranked_list_box.yview)
+
+        back_to_action_button.grid(row=10, column=0, padx=5, pady=5)
+
+        self._frame.grid_columnconfigure(0, weight=1)
+        self._frame.grid_rowconfigure(0, weight=1)
