@@ -60,6 +60,7 @@ class UserServices:
 
 
         """
+
         user = self._user_repository.find_user(username)
         result = None, None
         if user:

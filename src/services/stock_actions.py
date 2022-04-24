@@ -105,5 +105,17 @@ class StockActions:
         """
         self._logged_user = username
 
+    def get_stock_name(self, symbol):
+
+        try:
+            ticker = yf.Ticker(symbol)
+            data = ticker.info
+            if len(data) > 50:
+                long_name = data['longName']
+        except SymbolNotFoundError:
+            print("Symbol not found")
+         
+        return long_name
+
 
 stock_actions = StockActions()
