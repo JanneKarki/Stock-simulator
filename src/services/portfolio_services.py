@@ -70,7 +70,7 @@ class PortfolioServices:
             total_capital = capital + self.total_portfolio_worth()
 
             return float(f"{total_capital:.2f}")
-        return None      
+        return None
 
     def logged_user(self, username):
         """Asettaa kirjautuneen käyttäjän palveluun.
@@ -80,8 +80,9 @@ class PortfolioServices:
 
         """
         self._logged_user = username
-    
+
     def get_logged_user(self):
         return self._logged_user
+
 
 portfolio_services = PortfolioServices()

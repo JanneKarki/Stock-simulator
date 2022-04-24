@@ -4,9 +4,9 @@ from repositories.user_repository import (
 from repositories.stock_repository import (
     stock_repository as default_stock_repository)
 
+
 class SymbolNotFoundError(Exception):
     pass
-
 
 
 class StockActions:
@@ -41,11 +41,10 @@ class StockActions:
         try:
             share = yf.Ticker(stock)
             dataframe = share.history(period="1d", interval="1d")
-            
+
             return float(f"{dataframe.iat[0, 3]:.2f}")
         except SymbolNotFoundError:
             print("Symbol not found")
-            
 
     def buy_stock(self, stock, amount):
         """Ostaa osaketta annetun määrän ja lisää ne käyttäjän
@@ -59,11 +58,10 @@ class StockActions:
         """
         buy_price = self.get_latest_price(stock)
         self._user_repository.adjust_capital(
-                self._logged_user, -abs(buy_price*amount))
+            self._logged_user, -abs(buy_price*amount))
         self._stock_repository.add_to_portfolio(
-                self._logged_user, stock, buy_price, amount)
+            self._logged_user, stock, buy_price, amount)
         return buy_price
-            
 
     def sell_stock(self, stock, amount):
         """Myy osaketta annetun määrän ja vähentää ne käyttäjän,
@@ -106,5 +104,6 @@ class StockActions:
 
         """
         self._logged_user = username
+
 
 stock_actions = StockActions()

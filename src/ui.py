@@ -36,8 +36,9 @@ def print_numbers():
     print("Total capital", portfolio.total_capital())
     print("Rank list", portfolio.rank_investments())
 
+
 while True:
-    
+
     print(kirjaudu_valikko)
     valinta = input(": ")
     if valinta == "1":
@@ -63,20 +64,20 @@ while True:
             username = input(": ")
             if username == "":
                 continue
-            
+
             print("Valitse salasana")
             password = input(":")
             print("Valitse pääoman määrä")
             capital = input(": ")
 
-            try: 
+            try:
                 user = user_actions.create_user(username, password, capital)
-                
+
             except UsernameExistsError:
                 print("Käyttäjätunnus on jo käytössä")
-            
 
-            user_actions.login(user.username, user.password, actions, portfolio)
+            user_actions.login(user.username, user.password,
+                               actions, portfolio)
             break
 
     if valinta == "3":
@@ -101,7 +102,6 @@ while True:
                         break
                 except SymbolNotFoundError:
                     continue
-                
 
             print(symbol, "share price", price)
             print("Anna määrä")
@@ -139,12 +139,11 @@ while True:
         if valinta == "3":
             print("Anna symboli")
             symbol = input(": ")
-            
+
             try:
                 data = actions.get_stock_info(symbol)
             except SymbolNotFoundError:
                 print("Symbol not found")
-            
 
         if valinta == "4":
             print(portfolio.get_portfolio(),
@@ -155,4 +154,3 @@ while True:
             actions.logged_user(None)
             portfolio.logged_user(None)
             break
-

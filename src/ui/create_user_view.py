@@ -1,6 +1,7 @@
 from tkinter import ttk, constants
 from services.user_services import user_services, InvalidCredentialsError
 
+
 class CreateUserView:
     def __init__(self, root, handle_return):
         self._root = root
@@ -19,17 +20,17 @@ class CreateUserView:
         username = self._username_entry.get()
         password = self._password_entry.get()
         capital = self._capital_entry.get()
-    
+
         try:
             print(username)
             print(password)
             user_services.create_user(username, password, capital)
             self._handle_return
-           
+
         except InvalidCredentialsError:
             self._show_error("Invalid username or password")
 
-    def _show_error(self,message):
+    def _show_error(self, message):
         self._error_variable.set(message)
         self._error_label.grid()
 
@@ -41,8 +42,7 @@ class CreateUserView:
         self._frame = ttk.Frame(master=self._root)
         heading_label = ttk.Label(master=self._frame, text="Create new user")
 
-
-         # Username
+        # Username
         username_label = ttk.Label(master=self._frame, text="Username:")
         self._username_entry = ttk.Entry(master=self._frame)
 
@@ -54,15 +54,11 @@ class CreateUserView:
         capital_label = ttk.Label(master=self._frame, text="Capital:")
         self._capital_entry = ttk.Entry(master=self._frame)
 
-
-
-
         create_button = ttk.Button(
             master=self._frame,
             text="Create",
             command=self._create_user_handler
         )
-
 
         back_button = ttk.Button(
             master=self._frame,

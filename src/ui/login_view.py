@@ -3,6 +3,7 @@ from services.stock_actions import StockActions, stock_actions as actions
 from services.user_services import user_services, InvalidCredentialsError
 from services.portfolio_services import portfolio_services as portofolio
 
+
 class LoginView:
 
     def __init__(self, root, handle_create_user, handle_action):
@@ -32,13 +33,14 @@ class LoginView:
         try:
             print(username)
             print(password)
-            user_services.login(username, password, self.stock_actions,self.portfolio_services)
+            user_services.login(username, password,
+                                self.stock_actions, self.portfolio_services)
             self._handle_action(self.stock_actions, self.portfolio_services)
-           
+
         except InvalidCredentialsError:
             self._show_error("Invalid username or password")
 
-    def _show_error(self,message):
+    def _show_error(self, message):
         self._error_variable.set(message)
         self._error_label.grid()
 
@@ -50,7 +52,7 @@ class LoginView:
         self._frame = ttk.Frame(master=self._root)
 
         heading_label = ttk.Label(master=self._frame, text="Hello")
-        
+
         # Error_label
         self._error_variable = StringVar(self._frame)
         self._error_label = ttk.Label(
@@ -58,8 +60,6 @@ class LoginView:
             textvariable=self._error_variable,
             foreground="red"
         )
-        
-
 
         # Username
         username_label = ttk.Label(master=self._frame, text="Username:")
@@ -73,7 +73,7 @@ class LoginView:
         login_button = ttk.Button(
             master=self._frame,
             text="Login User",
-            command= self._login_handler
+            command=self._login_handler
         )
 
         create_user_button = ttk.Button(
@@ -92,9 +92,7 @@ class LoginView:
             constants.E, constants.W), padx=5, pady=5)
         login_button.grid(row=3, column=0, columnspan=2, padx=5, pady=5)
         create_user_button.grid(row=4, column=0, columnspan=2, padx=5, pady=5)
-        self._error_label.grid(row=5, column=0 ,columnspan=1 ,padx=5, pady=5)
+        self._error_label.grid(row=5, column=0, columnspan=1, padx=5, pady=5)
         self._frame.grid_columnconfigure(0, weight=1, minsize=250)
 
         self._hide_error()
-
-    
