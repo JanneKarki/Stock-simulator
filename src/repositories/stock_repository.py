@@ -2,7 +2,7 @@ from database_connection import get_database_connection
 
 
 class StockRepository:
-    """Stocks tietokannan hallinnasta vastaava luokka.
+    """Osakkeiden tietokannan hallinnasta vastaava luokka.
 
     Attributes:
         connection: Tietokantayhteys.
@@ -22,10 +22,10 @@ class StockRepository:
         keskiarvoon per osake, sekä osakkeiden määrään lisätään uudet osakkeet.
 
         Args:
-            user (string): Käyttäjän tunnus
-            stock (string): Osakkeen symboli
-            price (float): Osakkeen hinta
-            amount (integer): Osakkeiden määrä
+            user (str): Käyttäjän tunnus jolle osakkeet lisätään.
+            stock (str): Lisättävän osakkeen symboli.
+            price (float): Lisättävän osakkeen hinta.
+            amount (int): Lisättävien osakkeiden määrä.
 
         """
         stocks_database = self.connection.cursor()
@@ -69,9 +69,9 @@ class StockRepository:
             annetun määrän verran.
         
         Args: 
-            user (string): Käyttäjän tunnus
-            stock (string): Osakkeen symboli
-            amount (integer): Osakkeiden määrä
+            user (str): Käyttäjän tunnus, jolta osakkeet poistetaan.
+            stock (str): Osakkeen symboli, joka poistetaan.
+            amount (int): Poistettavien osakkeiden määrä.
 
         """
         stocks_database = self.connection.cursor()
@@ -113,10 +113,10 @@ class StockRepository:
         """ Palauttaa tietokannasta käyttäjän portfolion.
         
         Args:
-            user (string): Käyttäjän tunnus jonka portfolio palautetaan.
+            user (str): Käyttäjän tunnus, jonka portfolio palautetaan.
             
         Returns:
-            list: Palautta listan käytäjän osakkeista, niiden määrän ja 
+            _list_: Palautta listan käytäjän osakkeista, niiden määrän ja 
             keskimääräisen hankintahinnan. 
         """
         stocks_database = self.connection.cursor()
@@ -131,7 +131,7 @@ class StockRepository:
             )
 
         results = stocks_database.fetchall()
-        print(type(results))
+
         return results
 
     
@@ -139,11 +139,11 @@ class StockRepository:
         """ Hakee osakkeen tietokannasta.
 
         Args:
-            user (string): Käyttäjän tunnus, jonka portfoliosta osake palautetaan.
-            stock (string): Osakkeen symboli, joka palautetaan
+            user (str): Käyttäjän tunnus, jonka portfoliosta osake palautetaan.
+            stock (str): Palautettavan osakkeen symboli.
 
         Returns:
-            list: Palauttaa osakkeen, sen määrän ja keskimääräisen
+            _list_: Palauttaa osakkeen, sen määrän ja keskimääräisen
             hankintahinnan.
         """
         stock_database = self.connection.cursor()
