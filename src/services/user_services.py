@@ -10,6 +10,7 @@ class InvalidCredentialsError(Exception):
 class UsernameExistsError(Exception):
     pass
 
+
 class EmptyInputError(Exception):
     pass
 
@@ -33,7 +34,7 @@ class UserServices:
 
         """
 
-        if username  == "" or password == "" or capital == "":
+        if username == "" or password == "" or capital == "":
             raise EmptyInputError('Inputs cannot be empty')
 
         existing_user = self._user_repository.find_user(username)

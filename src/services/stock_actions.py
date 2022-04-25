@@ -114,7 +114,7 @@ class StockActions:
                 long_name = data['longName']
         except SymbolNotFoundError:
             print("Symbol not found")
-         
+
         return long_name
 
 

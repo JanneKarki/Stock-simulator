@@ -4,6 +4,7 @@ from database_connection import get_database_connection
 class UserRepostory:
     """Käyttäjien tietokannan hallinnasta vastaava luokka.
     """
+
     def __init__(self, connection):
         """Luokan konstruktori.
 
@@ -11,7 +12,6 @@ class UserRepostory:
             connection (object): Tietokantayhteyden connection-olio.
         """
         self.connection = connection
-
 
     def new_user(self, user):
         """Tallentaa uuden käyttäjän tietokantaan.
@@ -32,13 +32,12 @@ class UserRepostory:
                     capital
                 )
                 values (?,?,?)""",
-                (user.username, user.password, user.capital)
-            )
+            (user.username, user.password, user.capital)
+        )
 
         self.connection.commit()
-        
-        return user
 
+        return user
 
     def print_all_users(self):
         """Tulostaa kaikki tietokantaan tallennetut käyttäjänimet.
@@ -52,7 +51,6 @@ class UserRepostory:
         for row in rows:
             username = row[0]
             print(username)
-
 
     def find_user(self, user):
         """Palauttaa tietokannasta käyttäjän.
@@ -70,8 +68,8 @@ class UserRepostory:
             """SELECT *
                 FROM Users
                 WHERE username = ?""",
-                [user]
-            )
+            [user]
+        )
 
         row = cursor.fetchone()
 
@@ -82,8 +80,7 @@ class UserRepostory:
         password = row[1]
         capital = row[2]
 
-        return (username,password,capital)
-
+        return (username, password, capital)
 
     def get_user_capital(self, user):
         """Palauttaa tietokannasta käyttäjän pääoman.
@@ -99,14 +96,13 @@ class UserRepostory:
 
         cursor = self.connection.cursor()
 
-
         cursor.execute(
             """SELECT *
                 FROM Users
                 WHERE username = ?
                 """,
-                [user]
-            )
+            [user]
+        )
 
         row = cursor.fetchone()
 
@@ -114,7 +110,6 @@ class UserRepostory:
             capital = float(f"{row[2]:.2f}")
 
         return capital
-
 
     def adjust_capital(self, user, amount):
         """Päivittää käyttäjän pääoman summan.
@@ -133,9 +128,8 @@ class UserRepostory:
                 SET capital = ?
                 WHERE username = ?
                 """,
-                [new_capital, user]
-            )
-
+            [new_capital, user]
+        )
 
     def delete_all(self):
         """Poistaa tietokannasta kaikki käyttäjät.
@@ -143,7 +137,7 @@ class UserRepostory:
         cursor = self.connection.cursor()
 
         cursor.execute("DELETE FROM Users")
-        
+
         self.connection.commit()
 
 

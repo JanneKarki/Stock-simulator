@@ -104,24 +104,27 @@ class PortfolioView:
         label_portfolio.grid(row=0, column=0, padx=5, pady=5)
         label_rank_list.grid(row=0, column=3)
 
-        label_total_portfolio_worth.grid(row=2, column=0, padx=5, pady=5, sticky=constants.E)
-        label_total_portfolio_worth_value.grid(row=2, column=1, padx=5, pady=5,sticky=constants.E)
+        label_total_portfolio_worth.grid(
+            row=2, column=0, padx=5, pady=5, sticky=constants.E)
+        label_total_portfolio_worth_value.grid(
+            row=2, column=1, padx=5, pady=5, sticky=constants.E)
 
-        label_profit.grid(row=3, column=0, padx=5, pady=5,sticky=constants.E)
-        label_profit_value.grid(row=3, column=1, padx=5, pady=5,sticky=constants.E)
-        
-        
-        label_capital.grid(row=4, column=0, padx=5, pady=5,sticky=constants.E)
-        label_capital_value.grid(row=4, column=1, padx=5, pady=5,sticky=constants.E)
+        label_profit.grid(row=3, column=0, padx=5, pady=5, sticky=constants.E)
+        label_profit_value.grid(row=3, column=1, padx=5,
+                                pady=5, sticky=constants.E)
 
-        label_total_capital.grid(row=5, column=0, padx=5, pady=5,sticky=constants.E)
-        label_total_capital_value.grid(row=5, column=1, padx=5, pady=5,sticky=constants.E)
+        label_capital.grid(row=4, column=0, padx=5, pady=5, sticky=constants.E)
+        label_capital_value.grid(
+            row=4, column=1, padx=5, pady=5, sticky=constants.E)
 
-        
+        label_total_capital.grid(
+            row=5, column=0, padx=5, pady=5, sticky=constants.E)
+        label_total_capital_value.grid(
+            row=5, column=1, padx=5, pady=5, sticky=constants.E)
 
-        listbox_stocks.grid(row=1, column=0,columnspan=3, padx=5, pady=5)
+        listbox_stocks.grid(row=1, column=0, columnspan=3, padx=5, pady=5)
         scroll_bar_stock_list.grid(row=1, column=2, sticky=(
-            'ns', constants.E), padx=5, pady=7 )
+            'ns', constants.E), padx=5, pady=7)
 
         listbox_stocks.config(yscrollcommand=scroll_bar_stock_list.set)
         scroll_bar_stock_list.config(command=listbox_stocks.yview)
@@ -133,12 +136,13 @@ class PortfolioView:
         listbox_rank.config(yscrollcommand=scroll_bar_rank_list.set)
         scroll_bar_rank_list.config(command=listbox_rank.yview)
 
-        back_to_action_button.grid(row=10, column=0,columnspan=5, padx=10, pady=20)
+        back_to_action_button.grid(
+            row=10, column=0, columnspan=5, padx=10, pady=20)
 
-        label_dollar_1.grid(row=2,column=2)
-        label_dollar_2.grid(row=3,column=2)
-        label_dollar_3.grid(row=4,column=2)
-        label_dollar_4.grid(row=5,column=2)
+        label_dollar_1.grid(row=2, column=2)
+        label_dollar_2.grid(row=3, column=2)
+        label_dollar_3.grid(row=4, column=2)
+        label_dollar_4.grid(row=5, column=2)
 
         self._frame.grid_columnconfigure(0, weight=1)
         self._frame.grid_rowconfigure(0, weight=1)

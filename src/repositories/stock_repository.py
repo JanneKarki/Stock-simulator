@@ -7,6 +7,7 @@ class StockRepository:
     Attributes:
         connection: Tietokantayhteys.
     """
+
     def __init__(self, connection):
         """Luokan konstruktori.
 
@@ -15,7 +16,6 @@ class StockRepository:
         """
         self.connection = connection
 
-    
     def add_to_portfolio(self, user, stock, price, amount):
         """Lisää osakkeen tietokantaan. Tarkistaa ensin löytyykö osake jo käyttäjän
         tietokannasta. Jos osake löytyy, hinta päivitetään uuden ja vanhan hinnan
@@ -34,41 +34,40 @@ class StockRepository:
             """SELECT avg_price,
             amount FROM Stocks WHERE user = ? and content = ?""",
             [user, stock]
-            )
+        )
 
         data = stocks_database.fetchall()
 
-        if len(data) == 0: # Osake ei löytynyt tietokannasta
+        if len(data) == 0:  # Osake ei löytynyt tietokannasta
             stocks_database.execute(
                 """INSERT INTO Stocks (
-                    user, 
-                    content, 
-                    avg_price, 
+                    user,
+                    content,
+                    avg_price,
                     amount)
                     values (?,?,?,?)""",
-                    [user, stock, price, amount]
-                )
-        else: # Osake löytyi tietokannasta
+                [user, stock, price, amount]
+            )
+        else:  # Osake löytyi tietokannasta
             old_amount = data[0][1]
             new_amount = old_amount+amount
             old_total_value = data[0][0]*data[0][1]
             new_total_value = amount*price
             new_avg_price = (old_total_value+new_total_value)/new_amount
-        
+
             stocks_database.execute(
                 """UPDATE Stocks
                     SET avg_price = ?, amount = ?
                     WHERE user = ?
                     AND content = ?""",
-                    [float(f"{new_avg_price:.2f}"),new_amount, user, stock]
-                )
+                [float(f"{new_avg_price:.2f}"), new_amount, user, stock]
+            )
 
-    
     def remove_stock_from_portfolio(self, user, stock, amount):
         """Poistaa osakkeen tietokannasta, joko kokonaan, tai vähentää sitä
             annetun määrän verran.
-        
-        Args: 
+
+        Args:
             user (str): Käyttäjän tunnus, jolta osakkeet poistetaan.
             stock (str): Osakkeen symboli, joka poistetaan.
             amount (int): Poistettavien osakkeiden määrä.
@@ -82,59 +81,57 @@ class StockRepository:
                 FROM Stocks
                 WHERE user = ?
                 AND content=?""",
-                [user, stock]
-            )
+            [user, stock]
+        )
 
         data = stocks_database.fetchall()
 
-        if len(data) > 0: #osake löytyi tietokannasta
+        if len(data) > 0:  # osake löytyi tietokannasta
             old_amount = data[0][1]
             if amount == old_amount:
                 stocks_database.execute(
-                    """DELETE FROM 
-                        Stocks WHERE 
+                    """DELETE FROM
+                        Stocks WHERE
                         user = ?
                         AND content = ?""",
-                        [user, stock]
-                    )
+                    [user, stock]
+                )
 
             if amount < old_amount:
                 new_amount = old_amount - amount
                 stocks_database.execute(
-                    """UPDATE Stocks 
+                    """UPDATE Stocks
                         SET amount = ?
-                        WHERE user = ? 
+                        WHERE user = ?
                         AND content = ?""",
-                        [new_amount, user, stock]
+                    [new_amount, user, stock]
                 )
 
-    
     def get_portfolio_from_database(self, user):
         """ Palauttaa tietokannasta käyttäjän portfolion.
-        
+
         Args:
             user (str): Käyttäjän tunnus, jonka portfolio palautetaan.
-            
+
         Returns:
-            _list_: Palautta listan käytäjän osakkeista, niiden määrän ja 
-            keskimääräisen hankintahinnan. 
+            _list_: Palautta listan käytäjän osakkeista, niiden määrän ja
+            keskimääräisen hankintahinnan.
         """
         stocks_database = self.connection.cursor()
 
         stocks_database.execute(
             """SELECT content,
                 avg_price,
-                amount 
-                FROM Stocks 
+                amount
+                FROM Stocks
                 WHERE user = ?""",
-                [user]
-            )
+            [user]
+        )
 
         results = stocks_database.fetchall()
 
         return results
 
-    
     def get_stock_from_portfolio(self, user, stock):
         """ Hakee osakkeen tietokannasta.
 
@@ -149,18 +146,17 @@ class StockRepository:
         stock_database = self.connection.cursor()
 
         stock_database.execute(
-            """SELECT * 
-                FROM Stocks 
+            """SELECT *
+                FROM Stocks
                 WHERE user = ?
                 AND content=?""",
-                [user, stock]
-            )
-        
+            [user, stock]
+        )
+
         result = stock_database.fetchone()
 
         return result
 
-    
     def delete_all(self):
         """ Poistaa tietokannasta kaikki osakkeet.
         """

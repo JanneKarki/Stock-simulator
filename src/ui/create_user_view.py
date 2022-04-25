@@ -31,8 +31,6 @@ class CreateUserView:
 
         except InvalidCredentialsError:
             self._show_error("Invalid username or password")
-        
-        
 
     def _show_error(self, message):
         self._error_variable.set(message)
@@ -44,22 +42,21 @@ class CreateUserView:
     def _handle_ok_click(self):
         self._handle_return()
 
-
     def _openOkWindow(self):
-     
+
         newWindow = Toplevel(self._frame)
-    
+
         newWindow.title("User Created")
-    
+
         newWindow.geometry("200x100")
-    
+
         Label(newWindow, pady=10,
-            text ="User succesfully created!").pack()
+              text="User succesfully created!").pack()
 
         button = Button(newWindow,
-             text ="OK",
-             command = self._handle_ok_click)
-        button.pack(pady = 3, padx= 25)
+                        text="OK",
+                        command=self._handle_ok_click)
+        button.pack(pady=3, padx=25)
 
     def _initialize(self):
 
