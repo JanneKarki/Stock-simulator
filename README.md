@@ -12,6 +12,8 @@ Sovelluksella voi sijoittaa leikisti osakkeisiin reaaliaikaisilla hinnoilla. Sov
 
 [Arkkitehtuuri](https://github.com/JanneKarki/ot-harjoitustyo/blob/main/dokumentaatio/arkkitehtuuri.md)
 
+[Käyttöohje](https://github.com/JanneKarki/ot-harjoitustyo/blob/main/dokumentaatio/kayttoohje.md)
+
 ____________________________________________
 # Releases
 [Release 1 - Viikon 5 deadline](https://github.com/JanneKarki/ot-harjoitustyo/releases/Viikon5)
