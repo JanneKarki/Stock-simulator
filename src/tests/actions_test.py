@@ -1,5 +1,5 @@
 import unittest
-from user import User
+from entities.user import User
 from services.stock_actions import StockActions
 from services.user_services import UserServices
 from repositories.user_repository import user_repository
@@ -16,7 +16,7 @@ class TestActions(unittest.TestCase):
         self.actions = StockActions()
         self.user_actions = UserServices()
         self.portfolio_services = PortfolioServices()
-        self.user_erkki = self.user_actions.create_user("Erkki", "1234", 10000)
+        self.user_erkki = self.user_actions.create_user("Erkki", "1234", "10000")
         self.user_actions.login(
             self.user_erkki.username,
             self.user_erkki.password,

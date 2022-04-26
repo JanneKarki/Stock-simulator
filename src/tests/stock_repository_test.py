@@ -1,6 +1,6 @@
 from importlib import import_module
 import unittest
-from user import User
+from entities.user import User
 from services.stock_actions import StockActions
 from repositories.user_repository import (
     user_repository as default_user_repository)
