@@ -14,6 +14,9 @@ class UsernameExistsError(Exception):
 class EmptyInputError(Exception):
     pass
 
+class CapitalInputError(Exception):
+    pass
+
 
 class UserServices:
     """Käyttäjän toiminnoista vastaava luokka."""
@@ -36,6 +39,9 @@ class UserServices:
 
         if username == "" or password == "" or capital == "":
             raise EmptyInputError('Inputs cannot be empty')
+
+        if not capital.isnumeric():
+            raise CapitalInputError('Capital entry must be only numeric')
 
         existing_user = self._user_repository.find_user(username)
 
@@ -91,7 +97,6 @@ class UserServices:
 
     def get_capital(self):
         """Palauttaa kirjautuneen käyttäjän pääoman"""
-
         return self._user_repository.get_user_capital(self._user)
 
 
