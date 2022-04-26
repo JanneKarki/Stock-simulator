@@ -18,4 +18,10 @@
 |17.4| 1h | Tkinter testi|
 |18.4| 7h | Graafisen liittymän runko ja luokan jakaminen|
 |19.4| 10h | Luokkien muutos ja sisäänkirjausongelman ratkaisu, sekä testien korjaus, arkkitehtuurin lisäykset, koodin siistiminen|
-|Yht.| 69h|
+|20.4| 1h | Virheidentilanteiden käsittely|
+|22.4| 4h | Koodausta|
+|23.4| 6h | Näkymien sunnittelua ja koodausta|
+|24.4| 6h | Näkymien suunnittelua ja koodausta|
+|25.4| 2h | DocStringien kirjoittamista ja koodin siistimistä|
+|26.4| 1h | ChangeLog ja virheentarkistus pääomasyötteelle|
+|Yht.| 89h|
