@@ -14,9 +14,8 @@ Sovelluksella voi sijoittaa leikisti osakkeisiin reaaliaikaisilla hinnoilla. Sov
 
 ____________________________________________
 # Releases
-[Release 1 - Viikon 5 deadline](https://github.com/JanneKarki/ot-harjoitustyo/releases/tag/viikko5)
+[Release 1 - Viikon 5 deadline](https://github.com/JanneKarki/ot-harjoitustyo/releases/Viikon5)
 __________________________
-
 # Asennus
 
 Sovellus käyttää riippuvuuksien hallintaan poetrya, joten se tulee olla asennettuna koneelle.
