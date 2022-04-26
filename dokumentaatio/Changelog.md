@@ -26,9 +26,21 @@ Toistaiseksi sovellus vielä kaatuu jos symbolia ei löydy. Kotimaisia osakkeita
 
 **Viikko 5**
 - Action-luokasta eriytettiin UserServices- ja PortfolioServices-luokat. UserServices vastaa nyt kaikista käyttäjiin liittyvistä toiminnoista ja PortfolioServices vastaa osakesalkkuun liittyvistä tuoton laskuista. Action-luokan nimi muutettu -> StockActions, johon jäivät osakkeiden osto, myynti, sekä yritysinfo.
-- Sisään kirjautuminen ja tunnuksen luominen toimivat nyt salasanan kanssa
-- Graafisen liittymän alustava runko rakennettu, mutta itse sovellus toimii vielä tekstikäyttöliittymällä
-- Sovellus näyttää nyt sisäänkirjautuneen käyttäjän, vapaan pääoman määrän, portfolion arvon, nettotuoton, kokonaispääoman ja portfoliossa olevien osakkeiden rank-list:n
-- Enter päivittää hinnat(pörssin ollessa kiinni hinnat eivät muutu)
+- Pakkausrakennetta parannettu
+- Sisään kirjautuminen ja tunnuksen luominen toimivat nyt salasanan kanssa.
+- Tekstiliittymä vaihdettu graafiseen liittymään. Näkymät ovat LoginView, CreateUserView, ActionView sekä PortoflioView.
+- Tunnusta luodessa tarkistaa onko tunnus jo käytössä, onko jokin syöte tyhjä ja onko capital numeerinen. Jos jokin syöte ei ollut kelvollinen tunnuksen luonti ei onnistu. Jos syöte oli kelvollinen ja tunnus oli vapaa, aukeaa uusi ikkuna, joka kertoo onnistuneesta tunnuksen luonnista ja siinä olevasta OK näppäimestä tapahtuu paluu LoginView-näkymään.
+- Sisään kirjautuessa väärällä tunnuksella ja/tai salasanalla tulostaa virhetekstin Invalid username or password.
+- ActionView-näkymässä voi nyt:
+  - hakea symbolin perusteella hinnan (tulostaa myös yrityksen nimen) 
+  - hakea yritykesn infon
+    -> info tulostuu tekstilaatikkoon 
+  - ostaa/myydä osaketta 
+  - siirtyä portfolio näkymään
+  - kirjautua ulos
+  - näkymässä näkyy myös kirjautunut käyttäjä ja vapaana oleva pääoma
+ - PortfolioView- näkymässä näkyy:
+    - Listaus osakkeista niiden määrästä ja hankinta hinnasta vieritettävässä tekstilaatikossa
+    - Rank Listaus osakkeista ja tuotosta, tuoton mukaisessa järjestyksessä vieritettävässä tekstilaatikossa
 - Testien suorittaminen tapahtuu nyt testitietokannassa eikä siten nollaa käyttäjiä testatessa
 
