@@ -116,7 +116,7 @@ class UserRepostory:
 
         Args:
             user (_str_): Käyttäjä jonka pääoma päivitetään.
-            amount (_float_): Määrä joka lisätään pääomaan. 
+            amount (_float_): Määrä joka lisätään pääomaan.
         """
         old_capital = self.get_user_capital(user)
         new_capital = old_capital + amount
