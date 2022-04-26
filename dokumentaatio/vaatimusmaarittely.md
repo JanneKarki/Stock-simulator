@@ -26,8 +26,8 @@ Käyttäjä näkee:
 
 Lisäksi:
 
-- Sovelluksella on graafinen käyttöliittymä
-- Virhetilanteet käsitellään niin että sovellus ei kaadu
+- Sovelluksella on graafinen käyttöliittymä                     #tehty
+- Virhetilanteet käsitellään niin että sovellus ei kaadu        
 - käyttäjä näkee pörssin aukioloajat
 
 
