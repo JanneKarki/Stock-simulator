@@ -13,7 +13,6 @@ Uuden käyttäjän pääset luomaan painamalla alkunäkymästä "New user". Syö
 
 ![](./kuvat/kayttoohjeen_kuvat/Create_Arto.png)
 
-![](./kuvat/kayttoohjeen_kuvat/User_created_ok .png)
 ![](./kuvat/kayttoohjeen_kuvat/User_created_ok.png)
 
   
