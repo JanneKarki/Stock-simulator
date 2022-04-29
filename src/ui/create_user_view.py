@@ -1,4 +1,4 @@
-from tkinter import ttk, constants, Toplevel, Label, Button
+from tkinter import ttk, constants, Toplevel, Label, Button, StringVar
 from services.user_services import user_services, InvalidCredentialsError
 
 
@@ -7,6 +7,8 @@ class CreateUserView:
         self._root = root
         self._handle_return = handle_return
         self._frame = None
+        self._error_variable = None
+        self._error_label = None
 
         self._initialize()
 
@@ -21,9 +23,9 @@ class CreateUserView:
         password = self._password_entry.get()
         capital = self._capital_entry.get()
 
-        self._username_entry.delete(0, constants.END)
-        self._password_entry.delete(0, constants.END)
-        self._capital_entry.delete(0, constants.END)
+       # self._username_entry.delete(0, constants.END)
+       # self._password_entry.delete(0, constants.END)
+       # self._capital_entry.delete(0, constants.END)
 
         try:
             user_services.create_user(username, password, capital)
@@ -75,6 +77,15 @@ class CreateUserView:
         capital_label = ttk.Label(master=self._frame, text="Capital:")
         self._capital_entry = ttk.Entry(master=self._frame)
 
+         # Error_label
+        self._error_variable = StringVar(self._frame)
+        self._error_label = ttk.Label(
+            master=self._frame,
+            textvariable=self._error_variable,
+            foreground="red"
+        )
+        
+        
         create_button = ttk.Button(
             master=self._frame,
             text="Create",
@@ -99,6 +110,9 @@ class CreateUserView:
         capital_label.grid(row=3, column=0, padx=5, pady=5)
         self._capital_entry.grid(row=3, column=1, sticky=(
             constants.E, constants.W), padx=5, pady=5)
-
+        self._error_label.grid(row=0, column=1, columnspan=2, padx=5, pady=5)
         create_button.grid(row=4, column=0, padx=5, pady=25)
         back_button.grid(row=4, column=1, padx=5, pady=25)
+        self._frame.grid_columnconfigure(0, weight=1, minsize=150)
+
+        self._hide_error()

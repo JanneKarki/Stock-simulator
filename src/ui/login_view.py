@@ -31,8 +31,6 @@ class LoginView:
         password = self._password_entry.get()
 
         try:
-            print(username)
-            print(password)
             user_services.login(username, password,
                                 self.stock_actions, self.portfolio_services)
             self._handle_action(self.stock_actions, self.portfolio_services)
