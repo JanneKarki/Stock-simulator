@@ -8,22 +8,29 @@ Uuden tunnukset pääset luomaan painamalla alkunäkymästä "New user". Syötä
 
 ![](./kuvat/kayttoohjeen_kuvat/Create_Arto.png)
 
-Onnistuneesta tunnuksen luomisesta ilmoittaa uusi avautuu ikkuna. "Ok"- näppäin ohjaa takaisin kirjautumisnäkymään.
+Onnistuneesta tunnuksen luomisesta ilmoittaa uusi avautuu ikkuna.
 
 ![](./kuvat/kayttoohjeen_kuvat/User_created_ok.png)
 
+"Ok"- näppäin siirtää takaisin sovelluksen kirjautumisnäkymään.
 
 
 ## Kirjautuminen
-Sovelluksen ensimmäinen näykäm on kirjautumisnäkymä. Kirjaudu sisään antamalla käyttäjä tunnus ja salasana ja paina "Login".
+
+Kirjaudu sisään antamalla käyttäjä tunnus ja salasana ja paina "Login".
+
+
 ![](./kuvat/kayttoohjeen_kuvat/Arton_kirjaus.png)
 
-## Hinnan ja yritystietojen tietojen hakeminen
+
+## Osakkeen hinnan ja yritystietojen hakeminen
 
 Osakkeen hinnan saat syöttämällä osakkeen symbolin "Symbol:"-kenttään ja painamalla "Get Price". Osakkeen hinta ja -nimi tulostuvat ikkunan yläriville. Yrityken tiedot saat esiin "Get Info"- näppäimestä. Tiedot tulostuvat ikkunan alaosassa olevaan tekstikenttään. 
 
 ![](./kuvat/kayttoohjeen_kuvat/AAPL_Get_info.png)
 
+
+Portfoliossa olevia osakkeita pääsee tarkastelemaan "Portfolio"- näppäimestä. Käyttäjän voi kirjata ulos sovelluksesta "Logout"-näppäimellä.
   
 ## Osakkeen ostaminen ja myyminen
 
@@ -31,8 +38,14 @@ Osakkeen ostaminen ja myyminen sovelluksella on helppoa. Syötä osakkeen tunnus
 
 ![](./kuvat/kayttoohjeen_kuvat/AAPL_Buy.png)
 
+
 ## Portfolion tarkastelu
 
-Portfoliossa olevia osakkeita pääsee tarkastelemaan "Portfolio"- näppäimestä. 
+Vasemmanpuoleisessa "Portfolio"- listassa näkyvät osakkeiden määrät ja niiden keskimääräiset hankinta hinnat. Oikean puoleisessa "Rank List"- listassa osakkeet ovat lajiteltuna tuoton mukaiseen järjestykseen, alimpana eniten tuottanut ja ylimpänä eniten tappiolla oleva. Takaisin päänäkymään pääset "Back"- näppäimestä.
+
   
 ![](./kuvat/kayttoohjeen_kuvat/Portfolio.png)
+
+
+
+
