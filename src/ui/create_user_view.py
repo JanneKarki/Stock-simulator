@@ -1,5 +1,5 @@
 from tkinter import ttk, constants, Toplevel, Label, Button, StringVar
-from services.user_services import user_services, InvalidCredentialsError
+from services.user_services import user_services, EmptyInputError, CapitalInputError,UsernameExistsError
 
 
 class CreateUserView:
@@ -31,8 +31,14 @@ class CreateUserView:
             user_services.create_user(username, password, capital)
             self._openOkWindow()
 
-        except InvalidCredentialsError:
-            self._show_error("Invalid username or password")
+        except EmptyInputError:
+            self._show_error("Inputs cannot be empty")
+
+        except UsernameExistsError:
+            self._show_error("Username exists")
+
+        except CapitalInputError:
+            self._show_error("Invalid capital input")
 
     def _show_error(self, message):
         self._error_variable.set(message)
