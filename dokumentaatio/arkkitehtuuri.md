@@ -1,6 +1,14 @@
 # Arkkitehtuuri
 
+## Rakenne ja sovelluslogiikka
+
+Pakkausrakenne: 
+
+![](./kuvat/pakkausrakenne.png)
+
+
 **Luokkakaavio**
+
 Sovelluksen loogisen toiminnan kannalta oleellisimmat luokat ovat User, UserServices, StockActions ja PortfolioServices.
 
 ![Luokkakaavio](./kuvat/luokkakaavio_stock_buyer.png)
