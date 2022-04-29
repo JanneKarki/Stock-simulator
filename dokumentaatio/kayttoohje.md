@@ -41,7 +41,7 @@ Osakkeen ostaminen ja myyminen sovelluksella on helppoa. Syötä osakkeen tunnus
 
 ## Portfolion tarkastelu
 
-Vasemmanpuoleisessa "Portfolio"- listassa näkyvät osakkeiden määrät ja niiden keskimääräiset hankinta hinnat. Oikean puoleisessa "Rank List"- listassa osakkeet ovat lajiteltuna tuoton mukaiseen järjestykseen, alimpana eniten tuottanut ja ylimpänä eniten tappiolla oleva. Takaisin päänäkymään pääset "Back"- näppäimestä.
+Portfolio näkymässä, vasemmanpuoleisessa "Portfolio"- listassa näkyvät osakkeiden määrät ja niiden keskimääräiset hankinta hinnat. Oikean puoleisessa "Rank List"- listassa osakkeet ovat lajiteltuna tuoton mukaiseen järjestykseen, alimpana eniten tuottanut ja ylimpänä eniten tappiolla oleva. Näkymässä näkyvät myös portfolion arvo, nettotuotto, vapaan pääoman määrä, sekä kokonaispääoma. Takaisin päänäkymään pääset "Back"- näppäimestä.
 
   
 ![](./kuvat/kayttoohjeen_kuvat/Portfolio.png)
