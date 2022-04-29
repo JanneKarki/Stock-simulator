@@ -2,9 +2,14 @@
 
 ## Rakenne ja sovelluslogiikka
 
-Pakkausrakenne: 
+**Pakkausrakenne:**
 
 ![](./kuvat/pakkausrakenne.png)
+
+
+**Luokka/pakkauskaavio:**
+
+![](./kuvat/luokka_pakkauskaavio.png)
 
 
 **Luokkakaavio**
