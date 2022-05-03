@@ -24,4 +24,6 @@
 |24.4| 6h | Näkymien suunnittelua ja koodausta|
 |25.4| 2h | DocStringien kirjoittamista ja koodin siistimistä|
 |26.4| 1h | ChangeLog ja virheentarkistus pääomasyötteelle|
-|Yht.| 89h|
+|29.4| 6h| Käyttöohje ja arkkitehtuuri + koodausta|
+|3.5| 3h| Virheellisen symbolin syötteen pähkäilyä ja testausta|
+|Yht.| 98h|
