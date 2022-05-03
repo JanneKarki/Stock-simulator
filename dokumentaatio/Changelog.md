@@ -47,6 +47,9 @@ Toistaiseksi sovellus vielä kaatuu jos symbolia ei löydy. Kotimaisia osakkeita
 
 **Viikko 6**
 
-- Nyt käyttäjätunnusta luodessa sovellus ilmoittaa punaisella virhe viestillä mikäli syöte on virheellinen. Nousevat virheilmoitukset ovat "Username exists", "Inputs cannot be empty" ja  "Invalid capital input".
-- 
+- Nyt käyttäjätunnusta luodessa sovellus näyttää ikkunassa punaisella virheviestillä mikäli syöte on virheellinen. Nousevat virheilmoitukset ovat "Username exists", "Inputs cannot be empty" ja  "Invalid capital input".
+- Tehty käyttöohje
+- Arkkitehtuuriin lisätty pakkauskaavio ja pakkaus/luokkakaavio
+- Virheellisellä symbolilla yrityksen infoa hakiessa tulostaa ikkunaan "Symbol not found".
+- Docstringiä lisätty StockRepository, UserRepository, PortfolioServices, StockActions
 
