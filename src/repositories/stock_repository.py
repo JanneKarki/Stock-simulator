@@ -108,13 +108,13 @@ class StockRepository:
                 )
 
     def get_portfolio_from_database(self, user):
-        """ Palauttaa tietokannasta käyttäjän portfolion.
+        """ Hakee jap palauttaa tietokannasta käyttäjän portfolion.
 
         Args:
             user (str): Käyttäjän tunnus, jonka portfolio palautetaan.
 
         Returns:
-            _list_: Palautta listan käytäjän osakkeista, niiden määrän ja
+            _list_: Palauttaa listan käytäjän osakkeista, niiden määrän ja
             keskimääräisen hankintahinnan.
         """
         stocks_database = self.connection.cursor()
@@ -127,9 +127,9 @@ class StockRepository:
                 WHERE user = ?""",
             [user]
         )
-
+        
         results = stocks_database.fetchall()
-
+        print(results)
         return results
 
     def get_stock_from_portfolio(self, user, stock):

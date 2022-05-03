@@ -10,32 +10,37 @@ class SymbolNotFoundError(Exception):
 
 
 class StockActions:
-    """Sovelluslogiikasta vastaava luokka"""
+    """Sovelluslogiikasta vastaava luokka.
+    """
 
     def __init__(self,  user_repository=default_user_repository,
                  stock_repository=default_stock_repository,
                  ):
-        """Konstruktori, joka luo sovelluslogiikan palvelun.
+        """Luokan konstruktori, joka luo sovelluslogiikasta vastaavan palvelun.
+        
         Args:
-            stock_repository:
+            user_repository (object, optional): 
+                UserRepository-olio jolla on UserRepository-luokkaa vastaavat metodit.
 
-                Olio, jolla on StockRepository-luokkaa vastaavat metodit.
-            user_repository:
-                Olio, jolla on UserRepository-luokkaa vastaavat metodit.
+            stock_repository (object, optional):
+                StockRepository-olio jolla on StockRepository-luokkaa vastaavat metodit.
         """
         self._logged_user = None
         self._stock_repository = stock_repository
         self._user_repository = user_repository
 
     def get_latest_price(self, stock):
-        """Palauttaa haettavan osakkeen sen hetkisen hinnan
+        """Hakee ja palauttaa yfinance-palvelusta osakkeen sen hetkisen hinnan.
 
         Args:
-            stock: Merkkijono joka kertoo osakkeen symbolin.
+            stock (str): Merkkijono joka kertoo osakkeen symbolin.
 
         Returns:
-            Paluttaa osakkeen hinnan yfinance moduulista
-            kahden desimaalin tarkkuudella
+            float: Paluttaa osakkeen hinnan kahden desimaalin tarkkuudella. 
+
+        Raises:
+            SymbolNotFoundError:
+                Virhe joka tapahtuu jos symbolia ei löydy.
 
         """
         try:
@@ -47,14 +52,15 @@ class StockActions:
             print("Symbol not found")
 
     def buy_stock(self, stock, amount):
-        """Ostaa osaketta annetun määrän ja lisää ne käyttäjän
-        portfolioon, sekä vähentää niiden hinnan käyttäjän pääomasta
+        """Ostaa osaketta annetun määrän ja lisää ne käyttäjän portfolioon,
+            sekä vähentää niiden hinnan käyttäjän pääomasta.
 
         Args:
-            stock:
-            amount:
+            stock (str): Ostettavan osakkeen symboli.
+            amount (int): Ostettavan osakkeen määrä.
 
         Returns
+            float: Palauttaa osakkeen ostolle toteutuneen hinnan.
         """
         buy_price = self.get_latest_price(stock)
         self._user_repository.adjust_capital(
@@ -64,14 +70,15 @@ class StockActions:
         return buy_price
 
     def sell_stock(self, stock, amount):
-        """Myy osaketta annetun määrän ja vähentää ne käyttäjän,
-        sekä lisää niiden hinnan käyttäjän pääomaan
+        """Myy osaketta annetun määrän ja poistaa ne käyttäjän portfoliosta,
+            sekä lisää niiden hinnan käyttäjän pääomaan.
 
         Args:
-            stock:
-            amount:
+            stock (str): Myytävän osakkeen symboli.
+            amount (int): Myytävän osakkeen määrä.
 
-        Returns:
+        Returns
+            float: Palauttaa osakkeen myynnille toteutuneen hinnan.
         """
         sell_price = self.get_latest_price(stock)
         self._user_repository.adjust_capital(
@@ -81,7 +88,7 @@ class StockActions:
         return sell_price
 
     def get_stock_info(self, stock):
-        """Hakee ja tulostaa osakkeen yritystiedot yfinance moduulista
+        """Hakee ja palauttaaexit osakkeen yritystiedot yfinance moduulista
 
         Args:
             stock:

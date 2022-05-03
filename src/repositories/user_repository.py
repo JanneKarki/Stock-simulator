@@ -20,7 +20,7 @@ class UserRepostory:
             user (object): User-olio joka tallennetaan tietokantaan
 
         Returns:
-            _object_: Tallennettu user-olio.
+            object: Tallennettu user-olio.
         """
         cursor = self.connection.cursor()
 
@@ -56,10 +56,10 @@ class UserRepostory:
         """Palauttaa tietokannasta käyttäjän.
 
         Args:
-            user (_str_): Käyttäjä joka tietokannasta palautetaan.
+            user (str): Käyttäjä joka tietokannasta palautetaan.
 
         Returns:
-            _tuple_: Palauttaa käyttäjän käyttäjänimen, salasana ja pääoman. Jos
+            tuple: Palauttaa käyttäjän käyttäjänimen, salasana ja pääoman. Jos
                     käyttäjää ei ole, palauttaa None.
         """
         cursor = self.connection.cursor()
@@ -86,10 +86,10 @@ class UserRepostory:
         """Palauttaa tietokannasta käyttäjän pääoman.
 
         Args:
-            user (_str_): Käyttäjä jonka pääoma tietokannasta palautetaan.
+            user (str): Käyttäjä jonka pääoma tietokannasta palautetaan.
 
         Returns:
-            _float_: Palauttaa käyttäjän pääoman. Jos käyttäjää ei ole,
+            float: Palauttaa käyttäjän pääoman. Jos käyttäjää ei ole,
                     palauttaa None.
         """
         capital = None
@@ -115,8 +115,8 @@ class UserRepostory:
         """Päivittää käyttäjän pääoman summan.
 
         Args:
-            user (_str_): Käyttäjä jonka pääoma päivitetään.
-            amount (_float_): Määrä joka lisätään pääomaan.
+            user (str): Käyttäjä jonka pääoma päivitetään.
+            amount (float): Määrä joka lisätään pääomaan.
         """
         old_capital = self.get_user_capital(user)
         new_capital = old_capital + amount

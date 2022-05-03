@@ -1,7 +1,6 @@
 from tkinter import E, W, Scrollbar, ttk, constants, StringVar, Text, WORD
 from services.stock_actions import stock_actions, SymbolNotFoundError
 
-
 class ActionView:
     def __init__(self, root, handle_hello, handle_portfolio, stock_actions, portfolio_services):
         self._root = root
@@ -20,7 +19,7 @@ class ActionView:
         self._get_name_label = None
         self._get_info_text = None
         self._text_info = None
-
+    
         self._initialize()
 
     def pack(self):
