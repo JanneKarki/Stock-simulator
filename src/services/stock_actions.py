@@ -1,5 +1,4 @@
 import yfinance as yf
-import pandas as pd
 from repositories.user_repository import (
     user_repository as default_user_repository)
 from repositories.stock_repository import (
@@ -44,13 +43,13 @@ class StockActions:
                 Virhe joka tapahtuu jos symbolia ei löydy.
 
         """
-        
+
         share = yf.Ticker(stock)
         dataframe = share.history(period="1d", interval="1d")
         if dataframe.empty:
             raise SymbolNotFoundError("Symbol not found")
         return float(f"{dataframe.iat[0, 3]:.2f}")
-        
+
 
     def buy_stock(self, stock, amount):
         """Ostaa osaketta annetun määrän ja lisää ne käyttäjän portfolioon,
@@ -89,20 +88,20 @@ class StockActions:
         return sell_price
 
     def get_stock_info(self, stock):
-        """Hakee ja palauttaaexit osakkeen yritystiedot yfinance moduulista
+        """Hakee ja palauttaa osakkeen yritystiedot yfinance moduulista
 
         Args:
             stock:
         """
         share = yf.Ticker(stock)
         data = share.info
-        
+
         if len(data) < 50:
             print("Symbol not found")
-            raise SymbolNotFoundError('Symbol not found')        
+            raise SymbolNotFoundError('Symbol not found')
         return data["longBusinessSummary"]
-       
-          
+
+
 
     def logged_user(self, username):
         """Kirjaa käyttäjän sisään sovellukseen.
