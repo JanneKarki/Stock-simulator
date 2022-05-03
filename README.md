@@ -18,14 +18,42 @@ ____________________________________________
 # Releases
 [Release 1 - Viikon 5 deadline](https://github.com/JanneKarki/ot-harjoitustyo/releases/Viikon5)
 __________________________
-# Asennus
 
-Sovellus käyttää riippuvuuksien hallintaan poetrya, joten se tulee olla asennettuna koneelle.
+## Asennus
+1. Asenna sovelluksen tarvitsemat riippuvuudet komennolla:
+```bash
+poetry install
+```
+2. Suorita alustustoimet ennen sovelluksen käynnistämistä komennolla:
+```bash
+poetry run invoke build
+```
+3. Käynnistä sovellus komennoilla:
 
-Asenna sovelluksen tarvitsemat riippuvuudet komennolla 'poetry install'.
+```bash
+poetry run invoke start
+```
 
-Käynnistä poetryn virtuaaliympäristö komennolla 'poetry shell'.
+### Testaus
+Testaus voidaan suorittaa komennolla:
 
-Suorita komento 'invoke build' ennen sovelluksen käynnistämistä.
+```bash
+poetry run invoke test
+```
 
-Käynnistä sovellus komennolla 'invoke start'.
+### Testikattavuus
+Testikattavuusraportin generointi tapahtuu komennolla:
+
+```bash
+poetry run invoke coverage-report
+```
+
+Raportti löytyy htmlcov-hakemistosta nimellä index.html. 
+
+### Pylint
+Pylint-tarkastukset voidaan suorittaa komennolla:
+
+```bash
+poetry run invoke lint
+```
+
