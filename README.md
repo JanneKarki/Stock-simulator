@@ -34,14 +34,14 @@ poetry run invoke build
 poetry run invoke start
 ```
 
-### Testaus
+## Testaus
 Testaus voidaan suorittaa komennolla:
 
 ```bash
 poetry run invoke test
 ```
 
-### Testikattavuus
+## Testikattavuus
 Testikattavuusraportin generointi tapahtuu komennolla:
 
 ```bash
@@ -50,7 +50,7 @@ poetry run invoke coverage-report
 
 Raportti löytyy htmlcov-hakemistosta nimellä index.html. 
 
-### Pylint
+## Pylint
 Pylint-tarkastukset voidaan suorittaa komennolla:
 
 ```bash
