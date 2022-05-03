@@ -44,3 +44,9 @@ Toistaiseksi sovellus vielä kaatuu jos symbolia ei löydy. Kotimaisia osakkeita
     - Rank Listaus osakkeista ja tuotosta, tuoton mukaisessa järjestyksessä vieritettävässä tekstilaatikossa
 - Testien suorittaminen tapahtuu nyt testitietokannassa eikä siten nollaa käyttäjiä testatessa
 
+
+**Viikko 6**
+
+- Nyt käyttäjätunnusta luodessa sovellus ilmoittaa punaisella virhe viestillä mikäli syöte on virheellinen. Nousevat virheilmoitukset ovat "Username exists", "Inputs cannot be empty" ja  "Invalid capital input".
+- 
+
