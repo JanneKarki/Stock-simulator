@@ -180,39 +180,41 @@ class ActionView:
             foreground="black"
         )
 
-
-    #sticky=(
+    # sticky=(
      #       constants.E, constants.W),
         label_user.grid(row=0, column=0)
-        label_dollar.grid(row=5,column=2, sticky=constants.W)
+        label_dollar.grid(row=5, column=2, sticky=constants.W)
         label_symbol.grid(row=1, column=0, padx=5, pady=5, sticky=E)
-        self._symbol_entry.grid(row=1, column=1, columnspan=2,  padx=5, pady=5, sticky=W)
+        self._symbol_entry.grid(
+            row=1, column=1, columnspan=2,  padx=5, pady=5, sticky=W)
 
         amount_label.grid(row=3, column=0, padx=5, pady=5, sticky=E)
-        self._amount_entry.grid(row=3, column=1, columnspan=2,  padx=5, pady=5, sticky=W)
+        self._amount_entry.grid(
+            row=3, column=1, columnspan=2,  padx=5, pady=5, sticky=W)
 
         get_price_button.grid(row=2, column=1, padx=5, pady=5, sticky=E)
-        self._get_price_label.grid(row=0,column=1, )
-        self._get_name_label.grid(row=0,column=2, )
+        self._get_price_label.grid(row=0, column=1, )
+        self._get_name_label.grid(row=0, column=2, )
 
         get_info_button.grid(row=2, column=2, padx=5, pady=5, sticky=W)
         #self._get_info_label.grid(row=7, column=3, padx=5, pady=5)
 
         #label_empty.grid(row=0, column=4)
 
-        self._error_label.grid(row=0, column=0 ,padx=5, pady=5)
+        self._error_label.grid(row=0, column=0, padx=5, pady=5)
 
-        buy_stock_button.grid(row=4, column=1,padx=5, pady=5, sticky=E)
-        sell_stock_button.grid(row=4, column=2,padx=5, pady=5, sticky=W)
-        #, sticky=constants.E
-        label_capital.grid(row=5,column=0, padx=5, pady=5, sticky=E)
-        label_capital_value.grid(row=5, column=1 ,padx=5, pady=5, sticky=E)
+        buy_stock_button.grid(row=4, column=1, padx=5, pady=5, sticky=E)
+        sell_stock_button.grid(row=4, column=2, padx=5, pady=5, sticky=W)
+        # , sticky=constants.E
+        label_capital.grid(row=5, column=0, padx=5, pady=5, sticky=E)
+        label_capital_value.grid(row=5, column=1, padx=5, pady=5, sticky=E)
 
-        portfolio_button.grid(row=6, column=1,padx=5, pady=5, sticky=E)
-        logout_button.grid(row=6, column=2,padx=5, pady=5, sticky=W)
+        portfolio_button.grid(row=6, column=1, padx=5, pady=5, sticky=E)
+        logout_button.grid(row=6, column=2, padx=5, pady=5, sticky=W)
 
-        self._text_info.grid(row=9, column=0, columnspan=4, padx=20, pady=10,sticky=(constants.W,constants.E))
-        
+        self._text_info.grid(row=9, column=0, columnspan=4,
+                             padx=20, pady=10, sticky=(constants.W, constants.E))
+
         self._text_info.config(yscrollcommand=scroll_bar_info_test.set)
 
         scroll_bar_info_test.config(command=self._text_info.yview)
