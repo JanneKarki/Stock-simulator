@@ -14,6 +14,7 @@ class UsernameExistsError(Exception):
 class EmptyInputError(Exception):
     pass
 
+
 class CapitalInputError(Exception):
     pass
 
