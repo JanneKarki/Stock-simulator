@@ -127,7 +127,7 @@ class StockRepository:
                 WHERE user = ?""",
             [user]
         )
-        
+
         results = stocks_database.fetchall()
         print(results)
         return results

@@ -17,9 +17,9 @@ class StockActions:
                  stock_repository=default_stock_repository,
                  ):
         """Luokan konstruktori, joka luo sovelluslogiikasta vastaavan palvelun.
-        
+
         Args:
-            user_repository (object, optional): 
+            user_repository (object, optional):
                 UserRepository-olio jolla on UserRepository-luokkaa vastaavat metodit.
 
             stock_repository (object, optional):

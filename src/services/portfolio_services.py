@@ -17,7 +17,7 @@ class PortfolioServices:
         """Luokan konstruktori joka luo portfolion toiminnasta vastaavan palvelun.
 
         Args:
-            user_repository (object, optional): 
+            user_repository (object, optional):
                 UserRepository-olio jolla on UserRepository-luokkaa vastaavat metodit.
 
             stock_repository (object, optional):
@@ -30,7 +30,7 @@ class PortfolioServices:
 
     def get_capital(self):
         """Palauttaa kirjautuneen käyttäjän pääoman.
-        
+
         Returns:
             float : Palauttaa kirjautuneen käyttäjän pääoman float muodossa.
         """
@@ -40,7 +40,7 @@ class PortfolioServices:
 
     def get_portfolio(self):
         """Palauttaa kirjautuneen käyttäjän portfolion
-        
+
         Returns:
             list: Palauttaa listan käytäjän osakkeista, niiden määrän ja
             keskimääräisen hankintahinnan. Jos niitä ei ole palauttaa tyhjän listan.
@@ -49,28 +49,28 @@ class PortfolioServices:
         return self._stock_repository.get_portfolio_from_database(self._logged_user)
 
     def find_stock_from_portfolio(self, stock):
-        """Palauttaa 
+        """Hakee ja palauttaa osakkeen, sen määrän ja hankintahinnan käyttäjän portfoliosta.
 
         Args:
-            stock (str): Haettavan osakkeen merkkijonoesitys
+            stock (str): Haettavan osakkeen merkkijonoesitys.
 
         Returns:
-            list: Palauttaa listan käytäjän osakkeista, niiden määrän ja
-            keskimääräisen hankintahinnan. Jos osaketta ei löydy palauttaa 
+            list: Palauttaa osakkeen, niiden määrän ja
+            keskimääräisen hankintahinnan. Jos osaketta ei löydy palauttaa
             tyhjän listan.
         """
-        
+
         return self._stock_repository.get_stock_from_portfolio(self._logged_user, stock)
 
     def rank_investments(self):
-        """Laskee ja järjestää käyttäjän sijoitukset listaan tuoton/tappion perusteella
-        
-        Returns: 
+        """Laskee ja järjestää käyttäjän sijoitukset listaan tuoton/tappion perusteella.
+
+        Returns:
             list: Palauttaa listan jossa on  osake ja sen tuotto, tuoton mukaisessa suuruus
                 järjestyksessä.
         """
         rank_list = []
-        
+
         portfolio = self.get_portfolio()
 
         for item in portfolio:
@@ -125,6 +125,7 @@ class PortfolioServices:
             total_capital = capital + self.total_portfolio_worth()
 
             return float(f"{total_capital:.2f}")
+
         return None
 
     def logged_user(self, username):
@@ -137,7 +138,7 @@ class PortfolioServices:
         self._logged_user = username
 
     def get_logged_user(self):
-        """Palauttaa kirjautuneen käyttäjän
+        """Palauttaa kirjautuneen käyttäjän.
 
         Returns:
             str: Palauttaa kirjautuneen käyttäjän käyttäjänimen

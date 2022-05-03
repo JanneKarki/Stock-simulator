@@ -38,8 +38,6 @@ class LoginView:
         except InvalidCredentialsError:
             self._show_error("Invalid username or password")
 
-        
-
     def _show_error(self, message):
         self._error_variable.set(message)
         self._error_label.grid()

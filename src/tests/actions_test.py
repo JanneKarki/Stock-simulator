@@ -16,7 +16,8 @@ class TestActions(unittest.TestCase):
         self.actions = StockActions()
         self.user_actions = UserServices()
         self.portfolio_services = PortfolioServices()
-        self.user_erkki = self.user_actions.create_user("Erkki", "1234", "10000")
+        self.user_erkki = self.user_actions.create_user(
+            "Erkki", "1234", "10000")
         self.user_actions.login(
             self.user_erkki.username,
             self.user_erkki.password,

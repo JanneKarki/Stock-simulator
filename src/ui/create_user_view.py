@@ -1,5 +1,5 @@
 from tkinter import ttk, constants, Toplevel, Label, Button, StringVar
-from services.user_services import user_services, EmptyInputError, CapitalInputError,UsernameExistsError
+from services.user_services import user_services, EmptyInputError, CapitalInputError, UsernameExistsError
 
 
 class CreateUserView:
@@ -83,15 +83,14 @@ class CreateUserView:
         capital_label = ttk.Label(master=self._frame, text="Capital:")
         self._capital_entry = ttk.Entry(master=self._frame)
 
-         # Error_label
+        # Error_label
         self._error_variable = StringVar(self._frame)
         self._error_label = ttk.Label(
             master=self._frame,
             textvariable=self._error_variable,
             foreground="red"
         )
-        
-        
+
         create_button = ttk.Button(
             master=self._frame,
             text="Create",
