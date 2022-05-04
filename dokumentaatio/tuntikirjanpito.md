@@ -26,4 +26,5 @@
 |26.4| 1h | ChangeLog ja virheentarkistus pääomasyötteelle|
 |29.4| 6h| Käyttöohje ja arkkitehtuuri + koodausta|
 |3.5| 3h| Virheellisen symbolin syötteen pähkäilyä ja testausta|
-|Yht.| 98h|
+|4.5| 2h| Virheiden käsittelyn koodausta|
+|Yht.| 100h|
