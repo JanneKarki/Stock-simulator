@@ -1,7 +1,9 @@
 import yfinance as yf
 from repositories.user_repository import (
+    NotEnoughMoneyError,
     user_repository as default_user_repository)
 from repositories.stock_repository import (
+    StockNotInPortfolioError,
     stock_repository as default_stock_repository)
 
 
@@ -62,9 +64,19 @@ class StockActions:
         Returns
             float: Palauttaa osakkeen ostolle toteutuneen hinnan.
         """
-        buy_price = self.get_latest_price(stock)
-        self._user_repository.adjust_capital(
+        try:
+            buy_price = self.get_latest_price(stock)
+        except:
+            SymbolNotFoundError('Symbol not found')
+            raise SymbolNotFoundError('Symbol not found')
+
+        try:
+            self._user_repository.adjust_capital(
             self._logged_user, -abs(buy_price*amount))
+        except:
+            NotEnoughMoneyError("Not enough money")
+            raise NotEnoughMoneyError("Not enough money")
+
         self._stock_repository.add_to_portfolio(
             self._logged_user, stock, buy_price, amount)
         return buy_price
@@ -80,11 +92,21 @@ class StockActions:
         Returns
             float: Palauttaa osakkeen myynnille toteutuneen hinnan.
         """
-        sell_price = self.get_latest_price(stock)
+        try:
+            sell_price = self.get_latest_price(stock)
+        except:
+            SymbolNotFoundError('Symbol not found')
+            raise SymbolNotFoundError('Symbol not found')
+
         self._user_repository.adjust_capital(
             self._logged_user, sell_price*amount)
-        self._stock_repository.remove_stock_from_portfolio(
-            self._logged_user, stock, amount)
+        try:
+            self._stock_repository.remove_stock_from_portfolio(
+                self._logged_user, stock, amount)
+        except:
+            StockNotInPortfolioError("Incorrect amount")
+            raise StockNotInPortfolioError("Incorrect amount")
+
         return sell_price
 
     def get_stock_info(self, stock):

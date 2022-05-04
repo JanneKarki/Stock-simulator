@@ -1,5 +1,7 @@
 from database_connection import get_database_connection
 
+class StockNotInPortfolioError(Exception):
+    pass
 
 class StockRepository:
     """Osakkeiden tietokannan hallinnasta vastaava luokka.
@@ -88,6 +90,8 @@ class StockRepository:
 
         if len(data) > 0:  # osake löytyi tietokannasta
             old_amount = data[0][1]
+            if amount > old_amount:
+                raise StockNotInPortfolioError("Too large sell order")
             if amount == old_amount:
                 stocks_database.execute(
                     """DELETE FROM
@@ -106,6 +110,8 @@ class StockRepository:
                         AND content = ?""",
                     [new_amount, user, stock]
                 )
+        else:
+            raise StockNotInPortfolioError("Stock not owned")
 
     def get_portfolio_from_database(self, user):
         """ Hakee jap palauttaa tietokannasta käyttäjän portfolion.

@@ -1,4 +1,6 @@
 from tkinter import E, W, Scrollbar, ttk, constants, StringVar, Text, WORD
+from repositories.stock_repository import StockNotInPortfolioError
+from repositories.user_repository import NotEnoughMoneyError
 from services.stock_actions import stock_actions, SymbolNotFoundError
 
 
@@ -38,9 +40,6 @@ class ActionView:
         self._get_price_label.grid()
 
     def _show_info(self, info):
-        #print(info)
-       # self._get_info_variable.set(info)
-        # self._get_info_label.grid()
         self._text_info.insert(1.0, info)
         self._text_info.grid()
 
@@ -53,9 +52,13 @@ class ActionView:
 
     def _hide_price(self):
         self._get_price_label.grid_remove()
+    
+    def _hide_name(self):
+        self._get_price_label.grid_remove()
 
     def _handle_get_price_and_name(self):
         self._hide_price()
+        self._hide_error()
         symbol = self._symbol_entry.get()
 
         try:
@@ -65,9 +68,10 @@ class ActionView:
             self._show_name(name)
 
         except SymbolNotFoundError:
-            self.show_error("Symbol not found")
+            self._show_error("Symbol not found")
 
     def _handle_get_info(self):
+        self._hide_error()
         symbol = self._symbol_entry.get()
         try:
             info = self._stock_actions.get_stock_info(symbol)
@@ -77,10 +81,15 @@ class ActionView:
             self._show_error("Symbol not found")
 
     def _handle_buy(self):
-        print("Buy")
+        self._hide_error()
         symbol = self._symbol_entry.get()
         amount = int(self._amount_entry.get())
-        self._stock_actions.buy_stock(symbol, amount)
+        try:
+            self._stock_actions.buy_stock(symbol, amount)
+        except SymbolNotFoundError:
+            self._show_error('Symbol not found')
+        except NotEnoughMoneyError:
+            self._show_error('Not enough money')
 
         self._symbol_entry.delete(0, constants.END)
         self._amount_entry.delete(0, constants.END)
@@ -88,10 +97,16 @@ class ActionView:
         self._initialize
 
     def _handle_sell(self):
-        print("Sell")
+        self._hide_error()
         symbol = self._symbol_entry.get()
         amount = int(self._amount_entry.get())
-        self._stock_actions.sell_stock(symbol, amount)
+
+        try:
+            self._stock_actions.sell_stock(symbol, amount)
+        except SymbolNotFoundError:
+            self._show_error('Symbol not found')
+        except StockNotInPortfolioError:
+            self._show_error('Incorrect amount or stock not owned')
 
         self._symbol_entry.delete(0, constants.END)
         self._amount_entry.delete(0, constants.END)
@@ -201,7 +216,7 @@ class ActionView:
 
         #label_empty.grid(row=0, column=4)
 
-        self._error_label.grid(row=0, column=0, padx=5, pady=5)
+        self._error_label.grid(row=0, column=1, columnspan=2, padx=5, pady=5)
 
         buy_stock_button.grid(row=4, column=1, padx=5, pady=5, sticky=E)
         sell_stock_button.grid(row=4, column=2, padx=5, pady=5, sticky=W)

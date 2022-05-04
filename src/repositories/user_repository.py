@@ -1,6 +1,9 @@
 from database_connection import get_database_connection
 
 
+class NotEnoughMoneyError(Exception):
+    pass
+
 class UserRepostory:
     """Käyttäjien tietokannan hallinnasta vastaava luokka.
     """
@@ -121,6 +124,9 @@ class UserRepostory:
         old_capital = self.get_user_capital(user)
         new_capital = old_capital + amount
 
+        if new_capital < 0:
+            raise NotEnoughMoneyError("Not enough money")
+            
         cursor = self.connection.cursor()
 
         cursor.execute(
