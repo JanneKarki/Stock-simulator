@@ -53,3 +53,7 @@ Toistaiseksi sovellus vielä kaatuu jos symbolia ei löydy. Kotimaisia osakkeita
 - Virheellisellä symbolilla yrityksen infoa hakiessa tulostaa ikkunaan "Symbol not found".
 - Docstringiä lisätty StockRepository, UserRepository, PortfolioServices, StockActions
 
+**Viikko7**
+- Nyt sovellus ei anna ostaa enemmän kuin on rahaa, eikä myydä enempää osakkeita kuin niitä on. Uudet nousevat virheet "StockNotInPortfolioError" ja "NotEnoughMoneyError".
+- Symbol not found virheilmoituksen toimii nyt kaikilla toiminnoilla(Get Info, Get Price, Buy, Sell)
+
