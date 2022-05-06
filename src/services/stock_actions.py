@@ -12,7 +12,7 @@ class SymbolNotFoundError(Exception):
 
 
 class StockActions:
-    """Sovelluslogiikasta vastaava luokka.
+    """Osakkeisiin liittyvästä sovelluslogiikasta vastaava luokka.
     """
 
     def __init__(self,  user_repository=default_user_repository,
