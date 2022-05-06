@@ -3,29 +3,38 @@ from services.user_services import user_services, EmptyInputError, CapitalInputE
 
 
 class CreateUserView:
+    """Käyttöliittymäluokka, joka vastaa CreateUser-näkymästä
+    """
     def __init__(self, root, handle_return):
+        """Luokan konstruktori, joka luo näkymän, jossa osakkeiden uuden tunnuksen luonti tapahtuu.
+
+        Args:
+            root (tkinter.TK): Graafisen käyttöliittymän moduuli.
+            handle_return (method): Metodi joka siirtää takaisin Login-näkymään.
+        """
         self._root = root
         self._handle_return = handle_return
         self._frame = None
         self._error_variable = None
         self._error_label = None
-
         self._initialize()
 
     def pack(self):
+        """Määrittää ikkunan geometrian.
+        """
         self._frame.pack(fill=constants.X)
 
     def destroy(self):
+        """Sulkee nykyisen näkymän.
+        """
         self._frame.destroy()
 
     def _create_user_handler(self):
+        """_summary_
+        """
         username = self._username_entry.get()
         password = self._password_entry.get()
         capital = self._capital_entry.get()
-
-       # self._username_entry.delete(0, constants.END)
-       # self._password_entry.delete(0, constants.END)
-       # self._capital_entry.delete(0, constants.END)
 
         try:
             user_services.create_user(username, password, capital)
@@ -41,33 +50,40 @@ class CreateUserView:
             self._show_error("Invalid capital input")
 
     def _show_error(self, message):
+        """Asettaa virheviestin näkyville.
+
+        Args:
+            message (str): Näytettävä virheviesti.
+        """
         self._error_variable.set(message)
         self._error_label.grid()
 
     def _hide_error(self):
+        """Piilottaa näytetyn virheviestin.
+        """
         self._error_label.grid_remove()
 
     def _handle_ok_click(self):
+        """Käsittelee "ok"-painikkeen klikkauksen.
+        """
         self._handle_return()
 
     def _openOkWindow(self):
-
+        """Avaa uuden "User Created"-ikkunan.
+        """
         newWindow = Toplevel(self._frame)
-
         newWindow.title("User Created")
-
         newWindow.geometry("200x100")
-
         Label(newWindow, pady=10,
               text="User succesfully created!").pack()
-
         button = Button(newWindow,
                         text="OK",
                         command=self._handle_ok_click)
         button.pack(pady=3, padx=25)
 
     def _initialize(self):
-
+        """Alustaa CreateUser-näkymän.
+        """
         self._frame = ttk.Frame(master=self._root)
         heading_label = ttk.Label(master=self._frame, text="Create new user")
 
