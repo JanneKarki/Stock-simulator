@@ -126,16 +126,23 @@ class StockActions:
 
 
     def logged_user(self, username):
-        """Kirjaa käyttäjän sisään sovellukseen.
+        """Kertoo luokalle sisään kirjautuneen käyttäjän.
 
         Args:
-            username:
+            username(str): Sisäänkirjautunut käyttäjä.
 
         """
         self._logged_user = username
 
     def get_stock_name(self, symbol):
+        """_summary_
 
+        Args:
+            symbol (_type_): _description_
+
+        Returns:
+            _type_: _description_
+        """
         try:
             ticker = yf.Ticker(symbol)
             data = ticker.info

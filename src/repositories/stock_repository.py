@@ -114,13 +114,13 @@ class StockRepository:
             raise StockNotInPortfolioError("Stock not owned")
 
     def get_portfolio_from_database(self, user):
-        """ Hakee jap palauttaa tietokannasta käyttäjän portfolion.
+        """ Hakee ja palauttaa tietokannasta käyttäjän portfolion.
 
         Args:
             user (str): Käyttäjän tunnus, jonka portfolio palautetaan.
 
         Returns:
-            _list_: Palauttaa listan käytäjän osakkeista, niiden määrän ja
+            list: Palauttaa listan käytäjän osakkeista, niiden määrän ja
             keskimääräisen hankintahinnan.
         """
         stocks_database = self.connection.cursor()
@@ -146,7 +146,7 @@ class StockRepository:
             stock (str): Palautettavan osakkeen symboli.
 
         Returns:
-            _list_: Palauttaa osakkeen, sen määrän ja keskimääräisen
+            list: Palauttaa osakkeen, sen määrän ja keskimääräisen
             hankintahinnan.
         """
         stock_database = self.connection.cursor()
