@@ -5,7 +5,7 @@ from ui.ui import UI
 def main():
     window = Tk()
 
-    window.title("TkInter example")
+    window.title("Stock-Simulator")
 
     ui = UI(window)
 
