@@ -4,6 +4,7 @@ from repositories.user_repository import (
     user_repository as default_user_repository)
 from repositories.stock_repository import (
     StockNotInPortfolioError,
+    TooLargeSellOrderError,
     stock_repository as default_stock_repository)
 
 
@@ -48,8 +49,10 @@ class StockActions:
 
         share = yf.Ticker(stock)
         dataframe = share.history(period="1d", interval="1d")
+
         if dataframe.empty:
             raise SymbolNotFoundError("Symbol not found")
+        
         return float(f"{dataframe.iat[0, 3]:.2f}")
 
 
@@ -61,20 +64,25 @@ class StockActions:
             stock (str): Ostettavan osakkeen symboli.
             amount (int): Ostettavan osakkeen määrä.
 
-        Returns
+        Returns:
             float: Palauttaa osakkeen ostolle toteutuneen hinnan.
+
+        Raises:
+            SymbolNotFoundError:
+                Virhe joka tapahtuu jos symbolia ei löydy.
+            NotEnoughMoneyError:
+                Virhe joka tapahtuu jos käyttäjällä ei ole tarpeeksi rahaa.
+
         """
         try:
             buy_price = self.get_latest_price(stock)
-        except:
-            SymbolNotFoundError('Symbol not found')
+        except SymbolNotFoundError:
             raise SymbolNotFoundError('Symbol not found')
 
         try:
             self._user_repository.adjust_capital(
             self._logged_user, -abs(buy_price*amount))
-        except:
-            NotEnoughMoneyError("Not enough money")
+        except NotEnoughMoneyError:
             raise NotEnoughMoneyError("Not enough money")
 
         self._stock_repository.add_to_portfolio(
@@ -83,7 +91,7 @@ class StockActions:
 
     def sell_stock(self, stock, amount):
         """Myy osaketta annetun määrän ja poistaa ne käyttäjän portfoliosta,
-            sekä lisää niiden hinnan käyttäjän pääomaan.
+            sekä lisää niiden myynnistä saadun hinnan käyttäjän pääomaan.
 
         Args:
             stock (str): Myytävän osakkeen symboli.
@@ -91,38 +99,53 @@ class StockActions:
 
         Returns
             float: Palauttaa osakkeen myynnille toteutuneen hinnan.
+
+        Raises:
+            SymbolNotFoundError:
+                Virhe joka tapahtuu jos symbolia ei löydy.
+            StockNotInPortfolioError:
+                Virhe joka tapahtuu jos osaketta ei ole portfoliossa.
+            TooLargeSellOrderError:
+                Virhe joka tapahtuu jos myyntitoimeksianto on suurempi kuin osakkeiden määrä portfoliossa.
         """
         try:
             sell_price = self.get_latest_price(stock)
-        except:
-            SymbolNotFoundError('Symbol not found')
+        except SymbolNotFoundError:
             raise SymbolNotFoundError('Symbol not found')
 
         self._user_repository.adjust_capital(
             self._logged_user, sell_price*amount)
+
         try:
             self._stock_repository.remove_stock_from_portfolio(
                 self._logged_user, stock, amount)
-        except:
-            StockNotInPortfolioError("Incorrect amount")
+        except StockNotInPortfolioError:
             raise StockNotInPortfolioError("Incorrect amount")
+
+        except TooLargeSellOrderError:
+            raise TooLargeSellOrderError('Too large sell order')
 
         return sell_price
 
     def get_stock_info(self, stock):
-        """Hakee ja palauttaa osakkeen yritystiedot yfinance moduulista
+        """Hakee ja palauttaa osakkeen yritystiedot yfinance-moduulista
 
         Args:
-            stock:
+            stock(str): Haettavan yrityksen osakkeen symboli.
+
+        Returns:
+            str: Palauttaa yrityksen info-tekstin.
         """
+
         share = yf.Ticker(stock)
-        data = share.info
+        get_data = share.history(period="1d", interval="1d")
 
-        if len(data) < 50:
-            print("Symbol not found")
+        if get_data.empty:
             raise SymbolNotFoundError('Symbol not found')
-        return data["longBusinessSummary"]
+        
+        info_data = share.info
 
+        return info_data["longBusinessSummary"]
 
 
     def logged_user(self, username):
@@ -135,23 +158,25 @@ class StockActions:
         self._logged_user = username
 
     def get_stock_name(self, symbol):
-        """_summary_
+        """Hakee ja palauttaa yhtiön nimen osakkeen symbolin perusteella.
 
         Args:
-            symbol (_type_): _description_
+            symbol (str): Osakkeen symboli.
 
         Returns:
-            _type_: _description_
-        """
-        try:
-            ticker = yf.Ticker(symbol)
-            data = ticker.info
-            if len(data) > 50:
-                long_name = data['longName']
-        except SymbolNotFoundError:
-            print("Symbol not found")
+            str: Yhtiön nimi.
 
-        return long_name
+        """
+        share = yf.Ticker(symbol)
+        get_data = share.history(period="1d", interval="1d")
+
+        if get_data.empty:
+            raise SymbolNotFoundError('Symbol not found')
+        
+        data =  share.info
+        company_name = data['longName']
+
+        return company_name
 
 
 stock_actions = StockActions()

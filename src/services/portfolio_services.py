@@ -29,7 +29,7 @@ class PortfolioServices:
         self.actions = StockActions()
 
     def get_capital(self):
-        """Palauttaa kirjautuneen käyttäjän pääoman.
+        """Palauttaa kirjautuneen käyttäjän pääoman, kutsumalla UserRepository-luokan metodia.
 
         Returns:
             float : Palauttaa kirjautuneen käyttäjän pääoman float muodossa.
@@ -39,7 +39,7 @@ class PortfolioServices:
         return capital
 
     def get_portfolio(self):
-        """Palauttaa kirjautuneen käyttäjän portfolion
+        """Palauttaa kirjautuneen käyttäjän portfolion kutsumalla UserRepository-luokan metodia.
 
         Returns:
             list: Palauttaa listan käytäjän osakkeista, niiden määrän ja
@@ -49,7 +49,7 @@ class PortfolioServices:
         return self._stock_repository.get_portfolio_from_database(self._logged_user)
 
     def find_stock_from_portfolio(self, stock):
-        """Hakee ja palauttaa osakkeen, sen määrän ja hankintahinnan käyttäjän portfoliosta.
+        """Hakee ja palauttaa osakkeen, sen määrän ja hankintahinnan käyttäjän portfoliosta kutsumalla StockRepository-luokan metodia.
 
         Args:
             stock (str): Haettavan osakkeen merkkijonoesitys.
@@ -87,7 +87,7 @@ class PortfolioServices:
         """Laskee käyttäjän portfolissa olevien osakkeiden kokonaistuoton.
 
         Returns:
-            float: Palauttaa käyttäjän portfoliossa olevien osakkeiden kokonaistuoton.
+            float: Palauttaa käyttäjän portfoliossa olevien osakkeiden kokonaistuoton, kahden desimaalin tarkkuudella.
         """
         total = 0
         portfolio = self.get_portfolio()
@@ -103,7 +103,7 @@ class PortfolioServices:
         """Laskee käyttäjän portfoliossa olevien osakkeiden kokonaisarvon.
 
         Returns:
-            float: Palauttaa käyttäjän osakkeiden kokonaisarvon.
+            float: Palauttaa käyttäjän osakkeiden kokonaisarvon kahden desimaalin tarkkuudella.
         """
         portfolio = self._stock_repository.get_portfolio_from_database(
             self._logged_user)
@@ -118,7 +118,7 @@ class PortfolioServices:
         """Laskee ja palauttaa käyttäjän kokonaispääoman.
 
         Returns:
-            float: Palauttaa käyttäjän kokonaispääoman.
+            float: Palauttaa käyttäjän kokonaispääoman kahden desimaalin tarkkuudella.
         """
         if self._logged_user:
             capital = self.get_capital()

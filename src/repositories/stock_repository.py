@@ -27,7 +27,7 @@ class StockRepository:
         keskiarvoon per osake, sekä osakkeiden määrään lisätään uudet osakkeet.
 
         Args:
-            user (str): Käyttäjän tunnus jolle osakkeet lisätään.
+            user (str): Käyttäjän tunnus, jolle osakkeet lisätään.
             stock (str): Lisättävän osakkeen symboli.
             price (float): Lisättävän osakkeen hinta.
             amount (int): Lisättävien osakkeiden määrä.
@@ -77,6 +77,11 @@ class StockRepository:
             stock (str): Osakkeen symboli, joka poistetaan.
             amount (int): Poistettavien osakkeiden määrä.
 
+        Raises:
+            TooLargeSellOrderError:
+                Virhe joka tapahtuu jos myyntimäärä on suurempi kuin portofliossa olevien osakkeiden määrä.
+            StockNotInPortfolioError:
+                Virhe joka tapahtuu jos myytävää osaketta ei ole portfoliossa.
         """
         stocks_database = self.connection.cursor()
 

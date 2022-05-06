@@ -1,5 +1,5 @@
 from tkinter import E, W, Scrollbar, ttk, constants, StringVar, Text, WORD
-from repositories.stock_repository import StockNotInPortfolioError
+from repositories.stock_repository import StockNotInPortfolioError, TooLargeSellOrderError
 from repositories.user_repository import NotEnoughMoneyError
 from services.stock_actions import stock_actions, SymbolNotFoundError
 
@@ -56,7 +56,7 @@ class ActionView:
         self._error_label.grid()
 
     def _show_price(self, price):
-        """Asettaa hinnan näkyville.
+        """Asettaa osakkeen hinnan näkyville.
 
         Args:
             price (float): Näytettävä hinta.
@@ -155,6 +155,7 @@ class ActionView:
         """Käsittelee myyntitapahtuman kutsumalla StockActions-luokan sell_stock-metodia.
         """
         self._hide_error()
+
         symbol = self._symbol_entry.get()
         amount = int(self._amount_entry.get())
 
@@ -163,7 +164,9 @@ class ActionView:
         except SymbolNotFoundError:
             self._show_error('Symbol not found')
         except StockNotInPortfolioError:
-            self._show_error('Incorrect amount or stock not owned')
+            self._show_error('Stock not owned')
+        except TooLargeSellOrderError:
+            self._show_error('Too large sell order')
 
         self._symbol_entry.delete(0, constants.END)
         self._amount_entry.delete(0, constants.END)
@@ -185,14 +188,12 @@ class ActionView:
 
 
     def _set_labels(self):
-        """Määrittelee ja asettaa näkymän Labelit.
+        """Määrittelee ja asettaa näkymään Labelit.
         """
         label_user = ttk.Label(master=self._frame, text=str(
             self._portfolio_services.get_logged_user()) + " is logged")
         label_symbol = ttk.Label(master=self._frame, text="Symbol:")
-        
         label_amount = ttk.Label(master=self._frame, text="Amount:")
-        
         label_capital = ttk.Label(master=self._frame, text="Free capital:")
         label_capital_value = ttk.Label(
             master=self._frame, text=self._portfolio_services.get_capital())
@@ -231,7 +232,7 @@ class ActionView:
         self._error_label.grid(row=0, column=1, columnspan=2, padx=5, pady=5)
 
     def _set_buttons(self):
-        """Määrittelee ja asettaa näkymän Button-painikkeet.
+        """Määrittelee ja asettaa näkymään Button-painikkeet.
         """
         get_price_button = ttk.Button(
             master=self._frame,
@@ -272,25 +273,22 @@ class ActionView:
         logout_button.grid(row=6, column=2, padx=5, pady=5, sticky=W)
 
     def _set_textbox(self):
-        """Määrittelee ja asettaa näkymän info-tekstilaatikon ja sille scroll-barin.
+        """Määrittelee ja asettaa näkymään info-tekstilaatikon ja sille scroll-barin.
         """
-
         self._text_info = Text(self._frame, wrap=WORD, height=15,
                                width=65, padx=5, pady=5,
                                bg="lightgrey")
-
         scroll_bar_info = Scrollbar(self._frame, orient='vertical')
         scroll_bar_info.config(command=self._text_info.yview)
         scroll_bar_info.grid(row=9, column=3, sticky=(
             'ns', constants.E), padx=10, pady=12)
-
         self._text_info.grid(row=9, column=0, columnspan=4,
                              padx=20, pady=10, sticky=(constants.W, constants.E))
         self._text_info.config(yscrollcommand=scroll_bar_info.set)
-    
+
 
     def _set_up_entries(self):
-        """Määrittelee ja asettaa näkymän "Symbol"- ja "Amount"-syötteiden Entry-kentät.
+        """Määrittelee ja asettaa näkymään "Symbol"- ja "Amount"-syötteiden Entry-kentät.
         """
 
         self._amount_entry = ttk.Entry(master=self._frame, width=40)

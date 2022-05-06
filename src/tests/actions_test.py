@@ -69,6 +69,7 @@ class TestActions(unittest.TestCase):
             capital_before-capital_after)), price)
 
     def test_sell_stock_capital_increases_correctly(self):
+        self.actions.buy_stock('AAPL', 1)
         capital_before = self.user_actions.get_capital()
         price = self.actions.sell_stock("AAPL", 1)
         capital_after = self.user_actions.get_capital()
