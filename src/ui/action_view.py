@@ -1,7 +1,11 @@
+from curses.ascii import EM
 from tkinter import E, W, Scrollbar, ttk, constants, StringVar, Text, WORD
+import webbrowser
+from numpy import pad
 from repositories.stock_repository import StockNotInPortfolioError, TooLargeSellOrderError
 from repositories.user_repository import NotEnoughMoneyError
-from services.stock_actions import stock_actions, SymbolNotFoundError
+from services.stock_actions import InvalidAmountError, stock_actions, SymbolNotFoundError, EmptyInputError
+
 
 
 class ActionView:
@@ -95,7 +99,7 @@ class ActionView:
     def _hide_name(self):
         """Piilottaa näytetyn osakkeen nimen.
         """
-        self._get_price_label.grid_remove()
+        self._get_name_label.grid_remove()
 
     def _handle_get_price_and_name(self):
         """Hakee osakkeen hinnan ja nimen kutsumalla StockActions-luokan metodeita,
@@ -103,8 +107,10 @@ class ActionView:
         """
         self._hide_price()
         self._hide_error()
-
+        self._hide_name()
+        
         symbol_entry = self._symbol_entry.get()
+
 
         try:
             latest_price = self._stock_actions.get_latest_price(symbol_entry)
@@ -137,14 +143,21 @@ class ActionView:
         """Käsittelee ostotapahtuman kutsumalla StockActions-luokan buy_stock-metodia.
         """
         self._hide_error()
+        self._hide_price()
+        self._hide_name()
         symbol = self._symbol_entry.get()
-        amount = int(self._amount_entry.get())
+        amount = self._amount_entry.get()
+            
         try:
             self._stock_actions.buy_stock(symbol, amount)
         except SymbolNotFoundError:
             self._show_error('Symbol not found')
         except NotEnoughMoneyError:
             self._show_error('Not enough money')
+        except EmptyInputError:
+            self._show_error('Inputs cannot be empty')
+        except InvalidAmountError:
+            self._show_error('Invalid amount')
 
         self._symbol_entry.delete(0, constants.END)
         self._amount_entry.delete(0, constants.END)
@@ -155,9 +168,11 @@ class ActionView:
         """Käsittelee myyntitapahtuman kutsumalla StockActions-luokan sell_stock-metodia.
         """
         self._hide_error()
+        self._hide_name()
+        self._hide_price()
 
         symbol = self._symbol_entry.get()
-        amount = int(self._amount_entry.get())
+        amount = self._amount_entry.get()
 
         try:
             self._stock_actions.sell_stock(symbol, amount)
@@ -167,6 +182,10 @@ class ActionView:
             self._show_error('Stock not owned')
         except TooLargeSellOrderError:
             self._show_error('Too large sell order')
+        except InvalidAmountError:
+            self._show_error('Invalid amount')
+        except EmptyInputError:
+            self._show_error('Inputs cannot be empty')
 
         self._symbol_entry.delete(0, constants.END)
         self._amount_entry.delete(0, constants.END)
@@ -186,6 +205,8 @@ class ActionView:
         self._set_textbox()
         self._set_up_entries()
 
+    def callback(self,url):
+            webbrowser.open_new(url)
 
     def _set_labels(self):
         """Määrittelee ja asettaa näkymään Labelit.

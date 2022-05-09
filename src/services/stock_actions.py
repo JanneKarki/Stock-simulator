@@ -11,6 +11,12 @@ from repositories.stock_repository import (
 class SymbolNotFoundError(Exception):
     pass
 
+class EmptyInputError(Exception):
+    pass
+
+class InvalidAmountError(Exception):
+    pass
+
 
 class StockActions:
     """Osakkeisiin liittyvästä sovelluslogiikasta vastaava luokka.
@@ -72,8 +78,17 @@ class StockActions:
                 Virhe joka tapahtuu jos symbolia ei löydy.
             NotEnoughMoneyError:
                 Virhe joka tapahtuu jos käyttäjällä ei ole tarpeeksi rahaa.
+            EmptyInputError:
+                Virhe joka tapahtuu jos syötteet ovat tyhjiä.
+            IvalidAmountError:
+                Virhe joka tapahtuu jos ostettavien osakkeiden määrän syöte ei ole numeerinen.
 
         """
+        if not amount or not stock:
+            raise EmptyInputError
+
+        if not amount.isnumeric():
+            raise InvalidAmountError('Invalid amount')
         try:
             buy_price = self.get_latest_price(stock)
         except SymbolNotFoundError:
@@ -81,12 +96,12 @@ class StockActions:
 
         try:
             self._user_repository.adjust_capital(
-            self._logged_user, -abs(buy_price*amount))
+            self._logged_user, -abs(buy_price*int(amount)))
         except NotEnoughMoneyError:
             raise NotEnoughMoneyError("Not enough money")
 
         self._stock_repository.add_to_portfolio(
-            self._logged_user, stock, buy_price, amount)
+            self._logged_user, stock, buy_price, int(amount))
         return buy_price
 
     def sell_stock(self, stock, amount):
@@ -107,18 +122,28 @@ class StockActions:
                 Virhe joka tapahtuu jos osaketta ei ole portfoliossa.
             TooLargeSellOrderError:
                 Virhe joka tapahtuu jos myyntitoimeksianto on suurempi kuin osakkeiden määrä portfoliossa.
+            InvalidAmountError:
+                Virhe joka tapahtuu jos osakkeiden määrän syöte ei ole numeerinen.
+            EmptyInpurError:
+                Virhe joka tapahtuu jos syötteet ovat tyhjiä.
         """
+        if not amount or not stock:
+            raise EmptyInputError
+
+        if not amount.isnumeric():
+            raise InvalidAmountError('Invalid amount')
+
         try:
             sell_price = self.get_latest_price(stock)
         except SymbolNotFoundError:
             raise SymbolNotFoundError('Symbol not found')
 
         self._user_repository.adjust_capital(
-            self._logged_user, sell_price*amount)
+            self._logged_user, sell_price*int(amount))
 
         try:
             self._stock_repository.remove_stock_from_portfolio(
-                self._logged_user, stock, amount)
+                self._logged_user, stock, int(amount))
         except StockNotInPortfolioError:
             raise StockNotInPortfolioError("Incorrect amount")
 
