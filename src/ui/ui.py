@@ -67,11 +67,17 @@ class UI:
 
     def _show_portfolio_view(self, stock_actionss, portfolio):
         self._hide_current_view()
+        try:
+            self._current_view = PortfolioView(
+                self._root,
+                self._handle_action,
+                stock_actionss,
+                portfolio
+            )
+            self._current_view.pack()
+        except:
+            self._handle_action(stock_actionss,portfolio)
+            print("Connection problem in yfinance-module. Check your internet connection and try again.")
 
-        self._current_view = PortfolioView(
-            self._root,
-            self._handle_action,
-            stock_actionss,
-            portfolio
-        )
-        self._current_view.pack()
+
+        #
