@@ -1,5 +1,5 @@
 from curses.ascii import EM
-from tkinter import E, W, Scrollbar, ttk, constants, StringVar, Text, WORD
+from tkinter import E, W, Scrollbar, ttk, constants, StringVar, Text, WORD, Toplevel, Label, Button, BOTTOM
 import webbrowser
 from numpy import pad
 from repositories.stock_repository import StockNotInPortfolioError, TooLargeSellOrderError
@@ -37,6 +37,8 @@ class ActionView:
         self._get_name_label = None
         self._get_info_text = None
         self._text_info = None
+        self._capital_label = None
+        self._capital_variable = None
 
         self._initialize()
 
@@ -85,6 +87,10 @@ class ActionView:
         """
         self._get_name_variable.set(name)
         self._get_name_label.grid()
+    
+    def _show_capital(self):
+        self._capital_variable.set(self._portfolio_services.get_capital())
+        self._capital_label.grid()
 
     def _hide_error(self):
         """Piilottaa näytetyn virheviestin.
@@ -108,7 +114,6 @@ class ActionView:
         self._hide_price()
         self._hide_error()
         self._hide_name()
-        
         symbol_entry = self._symbol_entry.get()
 
 
@@ -149,7 +154,10 @@ class ActionView:
         amount = self._amount_entry.get()
             
         try:
-            self._stock_actions.buy_stock(symbol, amount)
+            price = self._stock_actions.buy_stock(symbol, amount)
+            self._openOkWindow(price, amount,"bought", symbol)
+            self._show_capital()
+
         except SymbolNotFoundError:
             self._show_error('Symbol not found')
         except NotEnoughMoneyError:
@@ -175,7 +183,9 @@ class ActionView:
         amount = self._amount_entry.get()
 
         try:
-            self._stock_actions.sell_stock(symbol, amount)
+            price = self._stock_actions.sell_stock(symbol, amount)
+            self._openOkWindow(price, amount,"sold", symbol)
+            self._show_capital()
         except SymbolNotFoundError:
             self._show_error('Symbol not found')
         except StockNotInPortfolioError:
@@ -193,7 +203,10 @@ class ActionView:
     def _handle_portfolio_click(self):
         """Siirtää sovelluksen portfolio-näkymään.
         """
-        self._handle_portfolio(self._stock_actions, self._portfolio_services)
+        try:
+            self._handle_portfolio(self._stock_actions, self._portfolio_services)
+        except SymbolNotFoundError:
+            self._show_error("Connection issues in yfinance-module. Please try again.")
 
     def _initialize(self):
         """Alustaa StockActions-näkymän.
@@ -207,6 +220,25 @@ class ActionView:
 
     def callback(self,url):
             webbrowser.open_new(url)
+
+    def _openOkWindow(self, price, amount, order_type, stock):
+        """Avaa uuden "Trade success"-ikkunan joka näyttää vahvistuksen onnistuneista kaupoista.
+        """
+        newWindow = Toplevel(self._frame)
+        newWindow.title("Trade success")
+        newWindow.geometry("300x100")
+        Label(newWindow, pady=10,
+              text=("Succesfully " + order_type +" "+str(amount) + " shares of " + stock + " @" + str(price))).pack()
+        
+        button = Button(newWindow,
+                        text="OK",
+                        command=newWindow.destroy)
+        button.pack(pady=3, padx=25, side = BOTTOM)
+
+    def _handle_ok_click(self):
+        """Käsittelee "ok"-painikkeen klikkauksen.
+        """
+        self._initialize()
 
     def _set_labels(self):
         """Määrittelee ja asettaa näkymään Labelit.
@@ -241,7 +273,16 @@ class ActionView:
             master=self._frame,
             textvariable=self._get_name_variable,
             foreground="black"
-        )      
+        )
+        # Capital label
+        self._capital_variable = StringVar(self._frame)
+        self._capital_label = ttk.Label(
+            master=self._frame,
+            textvariable=self._capital_variable,
+            foreground="black"
+        )
+
+
         
         label_address.bind("<Button-1>", lambda e: self.callback("https://finance.yahoo.com/"))
         #Label positions
@@ -256,6 +297,7 @@ class ActionView:
         self._get_price_label.grid(row=0, column=1, padx=5, pady=5)
         self._get_name_label.grid(row=0, column=2, padx=5, pady=5)
         self._error_label.grid(row=0, column=1, columnspan=2, padx=5, pady=5)
+        self._capital_label.grid(row=5, column=1, padx=5, pady=5, sticky=E)
         
     def _set_buttons(self):
         """Määrittelee ja asettaa näkymään Button-painikkeet.
