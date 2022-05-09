@@ -219,7 +219,8 @@ class ActionView:
         label_capital_value = ttk.Label(
             master=self._frame, text=self._portfolio_services.get_capital())
         label_dollar = ttk.Label(master=self._frame, text="$")
-
+        label_address = ttk.Label(master=self._frame, text = "https://finance.yahoo.com/", foreground='blue', cursor="hand2")
+        label_find_symbols_text = ttk.Label(master=self._frame, text="Find symbols ->")
         # Error_label
         self._error_variable = StringVar(self._frame)
         self._error_label = ttk.Label(
@@ -240,7 +241,9 @@ class ActionView:
             master=self._frame,
             textvariable=self._get_name_variable,
             foreground="black"
-        )
+        )      
+        
+        label_address.bind("<Button-1>", lambda e: self.callback("https://finance.yahoo.com/"))
         #Label positions
         label_user.grid(row=0, column=0)
         label_dollar.grid(row=5, column=2, sticky=constants.W)
@@ -248,10 +251,12 @@ class ActionView:
         label_amount.grid(row=3, column=0, padx=5, pady=5, sticky=E)
         label_capital.grid(row=5, column=0, padx=5, pady=5, sticky=E)
         label_capital_value.grid(row=5, column=1, padx=5, pady=5, sticky=E)
-        self._get_price_label.grid(row=0, column=1, )
-        self._get_name_label.grid(row=0, column=2, )
+        label_address.grid(row=13, column=1, columnspan=3, padx=5, pady=5, sticky=W)
+        label_find_symbols_text.grid(row=13, column=0, padx=5, pady=5, sticky=E)
+        self._get_price_label.grid(row=0, column=1, padx=5, pady=5)
+        self._get_name_label.grid(row=0, column=2, padx=5, pady=5)
         self._error_label.grid(row=0, column=1, columnspan=2, padx=5, pady=5)
-
+        
     def _set_buttons(self):
         """Määrittelee ja asettaa näkymään Button-painikkeet.
         """
