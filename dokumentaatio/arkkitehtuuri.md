@@ -42,13 +42,13 @@ Konfiguraatiotiedostossa .env on määritelty tietokantatiedoston nimi ja testej
 
 ## Sovelluksen päätoiminnallisuudet
 
-**Osakkeen osto**
+### Osakkeen ostaminen
 
 Osaketta ostettaessa kontrolli kulkee sovelluksessa seuraavanlaisesti:
 
 ![](./kuvat/buying.png)
 
-**Osakkeen myynti**
+### Osakkeen myyminen
 
 Osaketta myytäessa kontrolli kulkee sovelluksessa seuraavanlaisesti:
 
