@@ -1,16 +1,9 @@
-from multiprocessing.spawn import old_main_modules
-from sqlite3 import Row
-from tkinter import BOTH, LEFT, NS, RIGHT, Y, Label, Scrollbar, ttk, constants, Listbox
-import tkinter as tk
-
-from numpy import pad
-from services import stock_actions
-from services.portfolio_services import PortfolioServices
-
-from services.stock_actions import StockActions
+from tkinter import  Scrollbar, ttk, constants, Listbox
 
 
 class PortfolioView:
+    """_summary_
+    """
     def __init__(self, root, handle_action, stock_actions, portfolio_services):
         self._root = root
         self._handle_action = handle_action
@@ -40,7 +33,6 @@ class PortfolioView:
 
         for count, item in enumerate(portfolio):
             symbol = str(item[0])
-            #name = self.stock_actions.get_stock_name(item[0])
             avg_price = str(item[1])
             amount = str(item[2])
             text_row = amount + " shares of " + symbol + " at $" + avg_price

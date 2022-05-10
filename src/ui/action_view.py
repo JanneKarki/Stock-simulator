@@ -4,7 +4,7 @@ import webbrowser
 from numpy import pad
 from repositories.stock_repository import StockNotInPortfolioError, TooLargeSellOrderError
 from repositories.user_repository import NotEnoughMoneyError
-from services.stock_actions import InvalidAmountError, stock_actions, SymbolNotFoundError, EmptyInputError
+from services.stock_actions import InvalidAmountError, SymbolNotFoundError, EmptyInputError
 
 
 
