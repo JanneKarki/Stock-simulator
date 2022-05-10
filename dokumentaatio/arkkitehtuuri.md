@@ -22,7 +22,7 @@ UI-luokka vastaa näkymien näyttämisestä ja jokaiselle näkymälle on oma luo
 ## Luokka/pakkauskaavio
 
 
-![](./kuvat/luokka_pakkauskaavio.png)
+![](./kuvat/luokka_pakkaus_kaavio.png)
 
 
 **Luokkakaavio**
