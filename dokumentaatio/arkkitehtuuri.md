@@ -19,17 +19,17 @@ Käyttöliittymä sisältää neljä erillaista näkymää:
 
 UI-luokka vastaa näkymien näyttämisestä ja jokaiselle näkymälle on oma luokkansa. Luokat ovat _login_view_, _create_user_view_, _action_view_ ja _portfolio_view_. Näkymien luokat kutsuvat ainoastaan _services_ -luokkien metodeita, joten käyttöliittymä on tällä tavoin kokonaan eriytetty sovelluslogiikasta. 
 
-## Luokka/pakkauskaavio
+## Sovelluslogiikka
 
 
 ![](./kuvat/luokka_pakkaus_kaavio.png)
 
 
-**Luokkakaavio**
+**Luokat**
 
-Sovelluksen loogisen toiminnan kannalta oleellisimmat luokat ovat User, UserServices, StockActions ja PortfolioServices.
+Sovelluslogiikan kannalta oleellisimmat luokat ovat User, UserServices, StockActions ja PortfolioServices.
 
-![Luokkakaavio](./kuvat/luokkakaavio_stock_buyer.png)
+![Luokkakaavio](./kuvat/luokat.png)
 
 **Osakkeen ostaminen**
 
