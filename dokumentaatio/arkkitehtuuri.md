@@ -31,13 +31,23 @@ Sovelluslogiikan kannalta oleellisimmat luokat ovat User, UserServices, StockAct
 
 ![Luokkakaavio](./kuvat/luokat.png)
 
-## Osakkeen osto
+## Tietojen pysyväistallennus
+
+Sovellus tallentaa käyttäjien ja osakkeiden tiedot SQLite- tietokantaan tauluihin nimeltä _Stocks_ ja _Users_, jotka alustetaan initialize_database.py-tiedostossa.
+
+**Tiedostot**
+
+Konfiguraatiotiedostossa .env on määritelty tietokantatiedoston nimi ja testejä suoritettaessa käytetään erikseen .env.test-konfiguraatiotiedostossa määriteltyä tietokantatiedoston nimeä. Tiedostojen polku on määritelty config.py-tiedostossa.
+
+## Sovelluksen päätoiminnallisuudet
+
+**Osakkeen osto**
 
 Osaketta ostettaessa kontrolli kulkee sovelluksessa seuraavanlaisesti:
 
 ![](./kuvat/buying.png)
 
-## Osakkeen myynti
+**Osakkeen myynti**
 
 Osaketta myytäessa kontrolli kulkee sovelluksessa seuraavanlaisesti:
 
