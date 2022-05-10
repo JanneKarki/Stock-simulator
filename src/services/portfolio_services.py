@@ -128,7 +128,7 @@ class PortfolioServices:
 
         return None
 
-    def logged_user(self, username):
+    def set_logged_user(self, username):
         """Asettaa kirjautuneen käyttäjän palveluun.
 
         Args:

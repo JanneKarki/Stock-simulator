@@ -79,6 +79,15 @@ class UserServices:
             return True
         return False
 
+    def get_capital(self):
+        """Hakee kirjautuneen käyttäjän pääoman kutsumalla UserRepository-luokan metodia.
+        
+        Returns:
+            float: Palauttaa käyttäjän pääoman.
+        """
+        return self._user_repository.get_user_capital(self._user)
+
+
     def login(self, username, password, stock_actions, portfolio_services):
         """Kirjaa käyttäjän sisään sovellukseen.
 
@@ -107,9 +116,11 @@ class UserServices:
         
         #Login
         self._user = user_username
-        stock_actions.logged_user(self._user)
-        portfolio_services.logged_user(self._user)
+        stock_actions.set_logged_user(self._user)
+        portfolio_services.set_logged_user(self._user)
+
         
+
 
     def get_logged_user(self):
         """Palauttaa kirjautuneen käyttäjän.
@@ -119,18 +130,11 @@ class UserServices:
         """
         return self._user
 
+
     def logout(self):
         """Kirjaa käyttäjän ulos sovelluksesta.
         """
         self._user = None
-
-    def get_capital(self):
-        """Hakee kirjautuneen käyttäjän pääoman kutsumalla UserRepository-luokan metodia.
-        
-        Returns:
-            float: Palauttaa käyttäjän pääoman.
-        """
-        return self._user_repository.get_user_capital(self._user)
 
 
 user_services = UserServices()

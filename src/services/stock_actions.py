@@ -172,16 +172,6 @@ class StockActions:
 
         return info_data["longBusinessSummary"]
 
-
-    def logged_user(self, username):
-        """Kertoo luokalle sisään kirjautuneen käyttäjän.
-
-        Args:
-            username(str): Sisäänkirjautunut käyttäjä.
-
-        """
-        self._logged_user = username
-
     def get_stock_name(self, symbol):
         """Hakee ja palauttaa yhtiön nimen osakkeen symbolin perusteella.
 
@@ -202,6 +192,18 @@ class StockActions:
         company_name = data['longName']
 
         return company_name
+
+
+    def set_logged_user(self, username):
+        """Kertoo luokalle sisään kirjautuneen käyttäjän.
+
+        Args:
+            username(str): Sisäänkirjautunut käyttäjä.
+
+        """
+        self._logged_user = username
+
+    
 
 
 stock_actions = StockActions()

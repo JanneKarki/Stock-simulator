@@ -1,6 +1,3 @@
-from argparse import Action
-from asyncio import constants
-from tkinter import Button, Radiobutton, Tk, ttk, constants
 from ui.login_view import LoginView
 from ui.create_user_view import CreateUserView
 from ui.action_view import ActionView
@@ -65,19 +62,18 @@ class UI:
         )
         self._current_view.pack()
 
-    def _show_portfolio_view(self, stock_actionss, portfolio):
+    def _show_portfolio_view(self, stock_actions, portfolio):
         self._hide_current_view()
         try:
             self._current_view = PortfolioView(
                 self._root,
                 self._handle_action,
-                stock_actionss,
+                stock_actions,
                 portfolio
             )
             self._current_view.pack()
         except:
-            self._handle_action(stock_actionss,portfolio)
+            self._handle_action(stock_actions,portfolio)
             print("Connection problem in yfinance-module. Check your internet connection and try again.")
 
 
-        #
