@@ -226,14 +226,14 @@ class ActionView:
         """
         newWindow = Toplevel(self._frame)
         newWindow.title("Trade success")
-        newWindow.geometry("300x100")
+        newWindow.geometry("350x90")
         Label(newWindow, pady=10,
               text=("Succesfully " + order_type +" "+str(amount) + " shares of " + stock + " @" + str(price))).pack()
         
         button = Button(newWindow,
                         text="OK",
                         command=newWindow.destroy)
-        button.pack(pady=3, padx=25, side = BOTTOM)
+        button.pack(pady=10, padx=25, side = BOTTOM)
 
     def _handle_ok_click(self):
         """Käsittelee "ok"-painikkeen klikkauksen.
@@ -252,7 +252,7 @@ class ActionView:
             master=self._frame, text=self._portfolio_services.get_capital())
         label_dollar = ttk.Label(master=self._frame, text="$")
         label_address = ttk.Label(master=self._frame, text = "https://finance.yahoo.com/", foreground='blue', cursor="hand2")
-        label_find_symbols_text = ttk.Label(master=self._frame, text="Find symbols ->")
+        label_find_symbols_text = ttk.Label(master=self._frame, text="Find stocks ->")
         # Error_label
         self._error_variable = StringVar(self._frame)
         self._error_label = ttk.Label(
@@ -292,8 +292,8 @@ class ActionView:
         label_amount.grid(row=3, column=0, padx=5, pady=5, sticky=E)
         label_capital.grid(row=5, column=0, padx=5, pady=5, sticky=E)
         label_capital_value.grid(row=5, column=1, padx=5, pady=5, sticky=E)
-        label_address.grid(row=13, column=1, columnspan=3, padx=5, pady=5, sticky=W)
-        label_find_symbols_text.grid(row=13, column=0, padx=5, pady=5, sticky=E)
+        label_address.grid(row=12, column=1, columnspan=3, padx=5, pady=7, sticky=W)
+        label_find_symbols_text.grid(row=12, column=0, padx=5, pady=7, sticky=E)
         self._get_price_label.grid(row=0, column=1, padx=5, pady=5)
         self._get_name_label.grid(row=0, column=2, padx=5, pady=5)
         self._error_label.grid(row=0, column=1, columnspan=2, padx=5, pady=5)
@@ -351,7 +351,7 @@ class ActionView:
         scroll_bar_info.grid(row=9, column=3, sticky=(
             'ns', constants.E), padx=10, pady=12)
         self._text_info.grid(row=9, column=0, columnspan=4,
-                             padx=20, pady=10, sticky=(constants.W, constants.E))
+                             padx=20, pady=7, sticky=(constants.W, constants.E))
         self._text_info.config(yscrollcommand=scroll_bar_info.set)
 
 
