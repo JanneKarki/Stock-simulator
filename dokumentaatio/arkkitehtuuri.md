@@ -17,7 +17,7 @@ Käyttöliittymä sisältää neljä erillaista näkymää:
 - Osakkeiden osto ja myynti, sekä yritystietojen ja hintojen hakeminen
 - Portfolion tarkastelu
 
-UI-luokka vastaa näkymien näyttämisestä ja jokaiselle näkymälle on oma luokkansa. Luokat ovat _login_view_, _create_user_view_, _action_view_ ja _portfolio_view_. Näkymien luokat kutsuvat ainoastaan _services_ -luokkien metodeita, joten käyttöliittymä on tällä tavoin kokonaan eriytetty sovelluslogiikasta. 
+UI-luokka vastaa näkymien näyttämisestä ja jokaiselle näkymälle on oma luokkansa. Luokat ovat _LoginView_, _CreateUserView_, _ActionView_ ja _PortfolioView_. Näkymien luokat kutsuvat ainoastaan _services_ -luokkien metodeita, joten käyttöliittymä on tällä tavoin kokonaan eriytetty sovelluslogiikasta. 
 
 ## Sovelluslogiikka
 
