@@ -83,24 +83,15 @@ class StockRepository:
             StockNotInPortfolioError:
                 Virhe joka tapahtuu jos myytävää osaketta ei ole portfoliossa.
         """
+        data = self.get_stock_from_portfolio(user, stock)
         stocks_database = self.connection.cursor()
-
-        stocks_database.execute(
-            """SELECT avg_price,
-                amount
-                FROM Stocks
-                WHERE user = ?
-                AND content=?""",
-            [user, stock]
-        )
-
-        data = stocks_database.fetchall()
-
+        
         if len(data) > 0:  # osake löytyi tietokannasta
             old_amount = data[0][1]
             if amount > old_amount:
                 raise TooLargeSellOrderError("Too large sell order")
             if amount == old_amount:
+                
                 stocks_database.execute(
                     """DELETE FROM
                         Stocks WHERE
@@ -160,14 +151,15 @@ class StockRepository:
         stock_database = self.connection.cursor()
 
         stock_database.execute(
-            """SELECT *
+            """SELECT avg_price,
+                amount
                 FROM Stocks
                 WHERE user = ?
                 AND content=?""",
             [user, stock]
         )
 
-        result = stock_database.fetchone()
+        result = stock_database.fetchall()
 
         return result
 
