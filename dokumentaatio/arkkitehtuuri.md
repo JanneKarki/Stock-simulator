@@ -24,6 +24,7 @@ UI-luokka vastaa näkymien näyttämisestä ja jokaiselle näkymälle on oma luo
 
 ![](./kuvat/luokka_pakkaus_kaavio.png)
 
+StockActions ja PortfolioServices-luokat pääsevät käsiksi tietokantaan pakkauksen repositories luokkien kautta ja UserServices luokka UserRepository-luokan kautta.   
 
 **Luokat**
 
