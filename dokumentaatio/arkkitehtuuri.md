@@ -42,6 +42,15 @@ Konfiguraatiotiedostossa .env on määritelty tietokantatiedoston nimi ja testej
 
 ## Sovelluksen päätoiminnallisuudet
 
+### Sovellukseen kirjautuminen
+
+![](./kuvat/login_kontrolli.png)
+
+### Uuden käyttäjän luominen
+
+![](./kuvat/new_user_kontrolli.png)
+
+
 ### Osakkeen ostaminen
 
 Osaketta ostettaessa kontrolli kulkee sovelluksessa seuraavanlaisesti:
