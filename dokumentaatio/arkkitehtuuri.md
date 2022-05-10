@@ -33,6 +33,12 @@ Sovelluslogiikan kannalta oleellisimmat luokat ovat User, UserServices, StockAct
 
 ## Osakkeen ostaminen
 
-Kun käyttäjä ostaa osaketta sovelluksen kontrolli kulkee seuraavanlaisesti:
+Osaketta ostettaessa sovelluksen kontrolli kulkee seuraavanlaisesti:
 
-![asdf](./kuvat/Sekvenssikaavio_buy_stock)
+![](./kuvat/buying.png)
+
+## Osakkeen myynti
+
+Osaketta myytäessa sovelluksen kontrolli kulkee seuraavanlaisesti:
+
+![](./kuvat/selling.png)
