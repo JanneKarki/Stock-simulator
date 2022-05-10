@@ -31,7 +31,7 @@ Sovelluslogiikan kannalta oleellisimmat luokat ovat User, UserServices, StockAct
 
 ![Luokkakaavio](./kuvat/luokat.png)
 
-**Osakkeen ostaminen**
+## Osakkeen ostaminen
 
 Kun käyttäjä ostaa osaketta sovelluksen kontrolli kulkee seuraavanlaisesti:
 
