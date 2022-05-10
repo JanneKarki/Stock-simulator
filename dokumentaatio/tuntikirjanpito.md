@@ -27,4 +27,7 @@
 |29.4| 6h| Käyttöohje ja arkkitehtuuri + koodausta|
 |3.5| 3h| Virheellisen symbolin syötteen pähkäilyä ja testausta|
 |4.5| 2h| Virheiden käsittelyn koodausta|
-|Yht.| 100h|
+|6.5| 4h| Docstringiä ja ui-luokan siistiminen|
+|9.5| 6h| Virhetilanteiden käsittelyn koodausta ja linkin lisäys|
+|10.5|5h| Arkkitehtuuria ja siistimistä|
+|Yht.| 115h|
