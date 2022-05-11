@@ -1,12 +1,13 @@
-from tkinter import  Scrollbar, ttk, constants, Listbox
+from tkinter import Scrollbar, ttk, constants, Listbox
 
 
 class PortfolioView:
     """Käyttöliittymäluokka, joka vastaa portfolionäkymästä.
     """
+
     def __init__(self, root, handle_action, stock_actions, portfolio_services):
         """Luokan konstruktori, joka luo portfolionäkymän.
-        
+
 
         Args:
             root (tkinter.TK): Graafisen käyttöliittymän moduuli.
@@ -33,9 +34,17 @@ class PortfolioView:
         self._frame.destroy()
 
     def _handle_back_to_action_click(self):
+        """Siirtää sovelluksen StockActions-näkymään.
+        """
         self._handle_action(self.stock_actions, self.portfolio_services)
 
     def _set_stocks_listbox(self):
+        """_summary_
+
+        Returns:
+            tKinter.Listbox: Palauttaa listboxiin, johon on lisätty käyttäjän omistamat osakkeet, niiden määrä ja
+                sekä keskimääräinen hankintahinta.
+        """
         portfolio = self.portfolio_services.get_portfolio()
 
         listbox = Listbox(self._frame, height=10,
@@ -53,12 +62,13 @@ class PortfolioView:
         return listbox
 
     def _set_rank_listbox(self):
-        """_summary_
+        """Järjestää osakkeet tuotonmukaiseen järjestykseen kutsumalla PortfolioServices-luokan metodia
+            ja syöttää ne järjestyksessä listbox-widgettiin, jonka se palauttaa.
 
         Returns:
-            _type_: _description_
+            tKinter.Listbox: Palauttaa listboxiin, johon on lisätty osakkeet tuotonmukaisessa järjestyksessä.
         """
-        
+
         ranked_list = self.portfolio_services.rank_investments()
 
         ranked_list_box = Listbox(self._frame, height=10,
@@ -68,7 +78,7 @@ class PortfolioView:
                                   fg="Black")
         for count, item in enumerate(ranked_list):
             ranked_list_box.insert(count, item)
-        print(ranked_list_box)
+
         return ranked_list_box
 
     def _initialize(self):
@@ -83,11 +93,11 @@ class PortfolioView:
         self._frame.grid_rowconfigure(0, weight=1)
 
     def _set_labels(self):
-        """Määrittelee ja asettaa näkymän Labelit.
+        """Määrittelee ja asettaa näkymän teksti-labelit.
         """
 
         label_portfolio = ttk.Label(master=self._frame, text='Portfolio')
-        label_rank_list = ttk.Label(master=self._frame, text="Rank List")        
+        label_rank_list = ttk.Label(master=self._frame, text="Rank List")
         label_total_portfolio_worth = ttk.Label(
             master=self._frame, text="Portfolio's worth:")
         label_total_portfolio_worth_value = ttk.Label(
@@ -108,7 +118,7 @@ class PortfolioView:
         label_dollar_3 = ttk.Label(self._frame, text="$")
         label_dollar_4 = ttk.Label(self._frame, text="$")
 
-        #Label positions
+        # Label positions
         label_portfolio.grid(row=0, column=0, padx=5, pady=5)
         label_rank_list.grid(row=0, column=3)
         label_total_portfolio_worth.grid(
@@ -131,20 +141,20 @@ class PortfolioView:
         label_dollar_4.grid(row=5, column=2)
 
     def _set_listboxes(self):
-        """Määrittelee ja asettaa näkymän Listboxit.
+        """Määrittelee ja asettaa näkymän listboxit.
         """
         listbox_stocks = self._set_stocks_listbox()
         listbox_rank = self._set_rank_listbox()
 
         scroll_bar_for_stock_list = Scrollbar(self._frame, orient='vertical')
-        scroll_bar_for_rank_list = Scrollbar(self._frame, orient='vertical')       
+        scroll_bar_for_rank_list = Scrollbar(self._frame, orient='vertical')
 
         listbox_stocks.config(yscrollcommand=scroll_bar_for_stock_list.set)
         scroll_bar_for_stock_list.config(command=listbox_stocks.yview)
         listbox_rank.config(yscrollcommand=scroll_bar_for_rank_list.set)
         scroll_bar_for_rank_list.config(command=listbox_rank.yview)
-        
-        #Positions
+
+        # Positions
         listbox_stocks.grid(row=1, column=0, columnspan=3, padx=5, pady=5)
         scroll_bar_for_stock_list.grid(row=1, column=2, sticky=(
             'ns', constants.E), padx=5, pady=7)
@@ -153,7 +163,7 @@ class PortfolioView:
             'ns', constants.E), padx=5, pady=7)
 
     def _set_buttons(self):
-        """Määrittelee ja asettaa näkymään Button-painikkeet.
+        """Määrittelee ja asettaa näkymään button-painikkeet.
         """
 
         back_to_action_button = ttk.Button(
@@ -161,6 +171,6 @@ class PortfolioView:
             text="Back",
             command=self._handle_back_to_action_click
         )
-        #Button position       
+        # Button position
         back_to_action_button.grid(
             row=10, column=0, columnspan=5, padx=10, pady=20)

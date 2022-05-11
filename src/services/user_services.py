@@ -6,14 +6,18 @@ from repositories.user_repository import (
 class InvalidCredentialsError(Exception):
     pass
 
+
 class UsernameExistsError(Exception):
     pass
+
 
 class EmptyInputError(Exception):
     pass
 
+
 class CapitalInputError(Exception):
     pass
+
 
 class UserServices:
     """Käyttäjään liittyvistä toiminnoista vastaava luokka.
@@ -81,12 +85,11 @@ class UserServices:
 
     def get_capital(self):
         """Hakee kirjautuneen käyttäjän pääoman kutsumalla UserRepository-luokan metodia.
-        
+
         Returns:
             float: Palauttaa käyttäjän pääoman.
         """
         return self._user_repository.get_user_capital(self._user)
-
 
     def login(self, username, password, stock_actions, portfolio_services):
         """Kirjaa käyttäjän sisään sovellukseen.
@@ -105,7 +108,7 @@ class UserServices:
         result = None, None
 
         user = self._user_repository.find_user(username)
-        
+
         if user:
             result = user
         user_password = result[1]
@@ -113,14 +116,11 @@ class UserServices:
 
         if user_password != password:
             raise InvalidCredentialsError('Väärä käyttäjätunnus tai salasana')
-        
-        #Login
+
+        # Login
         self._user = user_username
         stock_actions.set_logged_user(self._user)
         portfolio_services.set_logged_user(self._user)
-
-        
-
 
     def get_logged_user(self):
         """Palauttaa kirjautuneen käyttäjän.
@@ -129,7 +129,6 @@ class UserServices:
             str: Palauttaa kirjautuneen käyttäjän käyttäjänimen.
         """
         return self._user
-
 
     def logout(self):
         """Kirjaa käyttäjän ulos sovelluksesta.

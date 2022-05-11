@@ -73,7 +73,6 @@ class UI:
             )
             self._current_view.pack()
         except:
-            self._handle_action(stock_actions,portfolio)
-            print("Connection problem in yfinance-module. Check your internet connection and try again.")
-
-
+            self._handle_action(stock_actions, portfolio)
+            print(
+                "Connection problem in yfinance-module. Check your internet connection and try again.")

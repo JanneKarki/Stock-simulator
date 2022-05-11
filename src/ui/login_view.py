@@ -1,5 +1,5 @@
 from tkinter import StringVar, ttk, constants
-from services.stock_actions import StockActions, stock_actions as actions
+from services.stock_actions import stock_actions as actions
 from services.user_services import user_services, InvalidCredentialsError
 from services.portfolio_services import portfolio_services as portofolio
 

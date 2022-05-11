@@ -7,10 +7,10 @@ from repositories.user_repository import NotEnoughMoneyError
 from services.stock_actions import InvalidAmountError, SymbolNotFoundError, EmptyInputError
 
 
-
 class ActionView:
     """Käyttöliittymäluokka, joka vastaa osakkeiden osto- ja myyntinäkymästä.
     """
+
     def __init__(self, root, handle_login, handle_portfolio, stock_actions, portfolio_services):
         """Luokan konstruktori, joka luo näkymän, jossa osakkeiden osto ja myynti tapahtuu.
 
@@ -87,8 +87,11 @@ class ActionView:
         """
         self._get_name_variable.set(name)
         self._get_name_label.grid()
-    
+
     def _show_capital(self):
+        """Päivittää pääoman muuttujaan kutsumalla PortfolioServices-luokan metodia
+            ja asettaa sen näkyville.
+        """
         self._capital_variable.set(self._portfolio_services.get_capital())
         self._capital_label.grid()
 
@@ -101,7 +104,7 @@ class ActionView:
         """Piilottaa näytetyn osakkeen hinnan.
         """
         self._get_price_label.grid_remove()
-    
+
     def _hide_name(self):
         """Piilottaa näytetyn osakkeen nimen.
         """
@@ -116,7 +119,6 @@ class ActionView:
         self._hide_name()
         symbol_entry = self._symbol_entry.get()
 
-
         try:
             latest_price = self._stock_actions.get_latest_price(symbol_entry)
             stock_name = self._stock_actions.get_stock_name(symbol_entry)
@@ -126,7 +128,6 @@ class ActionView:
 
         except SymbolNotFoundError:
             self._show_error("Symbol not found")
-
 
     def _handle_get_info(self):
         """Hakee yrityksen esittelytekstin kutsumalla StockActions-luokan get_stock_info-metodia,
@@ -143,19 +144,19 @@ class ActionView:
         except SymbolNotFoundError:
             self._show_error("Symbol not found")
 
-
     def _handle_buy(self):
         """Käsittelee ostotapahtuman kutsumalla StockActions-luokan buy_stock-metodia.
+            Avaa vahvistusikkunan onnistuneesta ostosta ja päivittää pääoman.
         """
         self._hide_error()
         self._hide_price()
         self._hide_name()
         symbol = self._symbol_entry.get()
         amount = self._amount_entry.get()
-            
+
         try:
             price = self._stock_actions.buy_stock(symbol, amount)
-            self._openOkWindow(price, amount,"bought", symbol)
+            self._openOkWindow(price, amount, "bought", symbol)
             self._show_capital()
 
         except SymbolNotFoundError:
@@ -174,6 +175,7 @@ class ActionView:
 
     def _handle_sell(self):
         """Käsittelee myyntitapahtuman kutsumalla StockActions-luokan sell_stock-metodia.
+            Avaa vahvistusikkunan onnistuneesta myynnistä ja päivittää pääoman.
         """
         self._hide_error()
         self._hide_name()
@@ -184,7 +186,7 @@ class ActionView:
 
         try:
             price = self._stock_actions.sell_stock(symbol, amount)
-            self._openOkWindow(price, amount,"sold", symbol)
+            self._openOkWindow(price, amount, "sold", symbol)
             self._show_capital()
         except SymbolNotFoundError:
             self._show_error('Symbol not found')
@@ -204,9 +206,11 @@ class ActionView:
         """Siirtää sovelluksen portfolio-näkymään.
         """
         try:
-            self._handle_portfolio(self._stock_actions, self._portfolio_services)
+            self._handle_portfolio(self._stock_actions,
+                                   self._portfolio_services)
         except SymbolNotFoundError:
-            self._show_error("Connection issues in yfinance-module. Please try again.")
+            self._show_error(
+                "Connection issues in yfinance-module. Please try again.")
 
     def _initialize(self):
         """Alustaa StockActions-näkymän.
@@ -218,8 +222,13 @@ class ActionView:
         self._set_textbox()
         self._set_up_entries()
 
-    def callback(self,url):
-            webbrowser.open_new(url)
+    def callback(self, url):
+        """Avaa internet-selaimen.
+
+        Args:
+            url (str): Osoite johon selain ohjautuu
+        """
+        webbrowser.open_new(url)
 
     def _openOkWindow(self, price, amount, order_type, stock):
         """Avaa uuden "Trade success"-ikkunan joka näyttää vahvistuksen onnistuneista kaupoista.
@@ -228,12 +237,12 @@ class ActionView:
         newWindow.title("Trade success")
         newWindow.geometry("350x90")
         Label(newWindow, pady=10,
-              text=("Succesfully " + order_type +" "+str(amount) + " shares of " + stock + " @" + str(price))).pack()
-        
+              text=("Succesfully " + order_type + " "+str(amount) + " shares of " + stock + " @" + str(price))).pack()
+
         button = Button(newWindow,
                         text="OK",
                         command=newWindow.destroy)
-        button.pack(pady=10, padx=25, side = BOTTOM)
+        button.pack(pady=10, padx=25, side=BOTTOM)
 
     def _handle_ok_click(self):
         """Käsittelee "ok"-painikkeen klikkauksen.
@@ -241,8 +250,9 @@ class ActionView:
         self._initialize()
 
     def _set_labels(self):
-        """Määrittelee ja asettaa näkymään Labelit.
+        """Määrittelee ja asettaa näkymän teksti-labelit.
         """
+
         label_user = ttk.Label(master=self._frame, text=str(
             self._portfolio_services.get_logged_user()) + " is logged")
         label_symbol = ttk.Label(master=self._frame, text="Symbol:")
@@ -251,8 +261,13 @@ class ActionView:
         label_capital_value = ttk.Label(
             master=self._frame, text=self._portfolio_services.get_capital())
         label_dollar = ttk.Label(master=self._frame, text="$")
-        label_address = ttk.Label(master=self._frame, text = "https://finance.yahoo.com/", foreground='blue', cursor="hand2")
-        label_find_symbols_text = ttk.Label(master=self._frame, text="Find stocks ->")
+        label_address = ttk.Label(
+            master=self._frame, text="https://finance.yahoo.com/", foreground='blue', cursor="hand2")
+        label_find_symbols_text = ttk.Label(
+            master=self._frame, text="Find stocks ->")
+        label_address.bind(
+            "<Button-1>", lambda e: self.callback("https://finance.yahoo.com/"))
+
         # Error_label
         self._error_variable = StringVar(self._frame)
         self._error_label = ttk.Label(
@@ -281,26 +296,24 @@ class ActionView:
             textvariable=self._capital_variable,
             foreground="black"
         )
-
-
-        
-        label_address.bind("<Button-1>", lambda e: self.callback("https://finance.yahoo.com/"))
-        #Label positions
+        # Label positions
         label_user.grid(row=0, column=0)
         label_dollar.grid(row=5, column=2, sticky=constants.W)
         label_symbol.grid(row=1, column=0, padx=5, pady=5, sticky=E)
         label_amount.grid(row=3, column=0, padx=5, pady=5, sticky=E)
         label_capital.grid(row=5, column=0, padx=5, pady=5, sticky=E)
         label_capital_value.grid(row=5, column=1, padx=5, pady=5, sticky=E)
-        label_address.grid(row=12, column=1, columnspan=3, padx=5, pady=7, sticky=W)
-        label_find_symbols_text.grid(row=12, column=0, padx=5, pady=7, sticky=E)
+        label_address.grid(row=12, column=1, columnspan=3,
+                           padx=5, pady=7, sticky=W)
+        label_find_symbols_text.grid(
+            row=12, column=0, padx=5, pady=7, sticky=E)
         self._get_price_label.grid(row=0, column=1, padx=5, pady=5)
         self._get_name_label.grid(row=0, column=2, padx=5, pady=5)
         self._error_label.grid(row=0, column=1, columnspan=2, padx=5, pady=5)
         self._capital_label.grid(row=5, column=1, padx=5, pady=5, sticky=E)
-        
+
     def _set_buttons(self):
-        """Määrittelee ja asettaa näkymään Button-painikkeet.
+        """Määrittelee ja asettaa näkymään button-painikkeet.
         """
         get_price_button = ttk.Button(
             master=self._frame,
@@ -332,7 +345,7 @@ class ActionView:
             text="Logout",
             command=self._handle_login
         )
-        #Button positions
+        # Button positions
         get_price_button.grid(row=2, column=1, padx=5, pady=5, sticky=E)
         buy_stock_button.grid(row=4, column=1, padx=5, pady=5, sticky=E)
         sell_stock_button.grid(row=4, column=2, padx=5, pady=5, sticky=W)
@@ -354,15 +367,14 @@ class ActionView:
                              padx=20, pady=7, sticky=(constants.W, constants.E))
         self._text_info.config(yscrollcommand=scroll_bar_info.set)
 
-
     def _set_up_entries(self):
-        """Määrittelee ja asettaa näkymään "Symbol"- ja "Amount"-syötteiden Entry-kentät.
+        """Määrittelee ja asettaa näkymään "Symbol"- ja "Amount"-syötteiden entry-kentät.
         """
 
         self._amount_entry = ttk.Entry(master=self._frame, width=40)
         self._symbol_entry = ttk.Entry(master=self._frame, width=40)
-        
-        #Entry positions
+
+        # Entry positions
         self._symbol_entry.grid(
             row=1, column=1, columnspan=2,  padx=5, pady=5, sticky=W)
         self._amount_entry.grid(

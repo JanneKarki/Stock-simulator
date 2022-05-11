@@ -11,8 +11,10 @@ from repositories.stock_repository import (
 class SymbolNotFoundError(Exception):
     pass
 
+
 class EmptyInputError(Exception):
     pass
+
 
 class InvalidAmountError(Exception):
     pass
@@ -58,9 +60,8 @@ class StockActions:
 
         if dataframe.empty:
             raise SymbolNotFoundError("Symbol not found")
-        
-        return float(f"{dataframe.iat[0, 3]:.2f}")
 
+        return float(f"{dataframe.iat[0, 3]:.2f}")
 
     def buy_stock(self, stock, amount):
         """Ostaa osaketta annetun määrän ja lisää ne käyttäjän portfolioon,
@@ -96,7 +97,7 @@ class StockActions:
 
         try:
             self._user_repository.adjust_capital(
-            self._logged_user, -abs(buy_price*int(amount)))
+                self._logged_user, -abs(buy_price*int(amount)))
         except NotEnoughMoneyError:
             raise NotEnoughMoneyError("Not enough money")
 
@@ -167,7 +168,7 @@ class StockActions:
 
         if get_data.empty:
             raise SymbolNotFoundError('Symbol not found')
-        
+
         info_data = share.info
 
         return info_data["longBusinessSummary"]
@@ -187,12 +188,11 @@ class StockActions:
 
         if get_data.empty:
             raise SymbolNotFoundError('Symbol not found')
-        
-        data =  share.info
+
+        data = share.info
         company_name = data['longName']
 
         return company_name
-
 
     def set_logged_user(self, username):
         """Kertoo luokalle sisään kirjautuneen käyttäjän.
@@ -202,8 +202,6 @@ class StockActions:
 
         """
         self._logged_user = username
-
-    
 
 
 stock_actions = StockActions()
