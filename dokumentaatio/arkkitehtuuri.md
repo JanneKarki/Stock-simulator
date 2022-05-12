@@ -67,6 +67,8 @@ Osaketta ostettaessa kontrolli kulkee sovelluksessa seuraavanlaisesti:
 
 ![](./kuvat/buying.png)
 
+Kun käyttäjä painaa Buy-painiketta tapahtumankäsittelijä handle_buy kutsuu StockActions-luokan buy_stock-metodia joka saa parametrina syötetyt osakkeen symbolin ja osakkeiden määrän. buy_stock-metodi kutsuu saman luokan get_latest_price-metodia joka saa parametrinaan käyttäjän syöttämän osakkeen symbolin. Mikäli symboli löytyy jatkuu metodin suoritus kutsumalla UserRepository-luokan adjust_capital-metodia, joka saa parametrinaan haetun hinnan kerrottuna käyttäjän syöttämällä osakkeiden määrällä ja negatiiviseksi muutettuna. UserRepository hakee käyttäjän pääoman tietokannasta ja päivittää sen mikäli pääomaa on riittävästi. Jos pääomaa oli riittävästi jatkuu suoritus kutsumalla StockRepository-luokan add_to_portfolio-metodia, joka saa parametrinaan käyttäjätunnuksen, osakkeen symbolin, ostohinnan ja osakkeiden määrän tallettaakseen ne tietokantaan. 
+
 ### Osakkeen myyminen
 
 Osaketta myytäessa kontrolli kulkee sovelluksessa seuraavanlaisesti:
