@@ -86,7 +86,7 @@ class StockActions:
 
         """
         if not amount or not stock:
-            raise EmptyInputError
+            raise EmptyInputError()
 
         if not amount.isnumeric():
             raise InvalidAmountError('Invalid amount')
@@ -99,7 +99,7 @@ class StockActions:
             self._user_repository.adjust_capital(
                 self._logged_user, -abs(buy_price*int(amount)))
         except NotEnoughMoneyError:
-            raise NotEnoughMoneyError("Not enough money")
+            raise NotEnoughMoneyError("Not enough money") from self._user_repository
 
         self._stock_repository.add_to_portfolio(
             self._logged_user, stock, buy_price, int(amount))
@@ -122,7 +122,8 @@ class StockActions:
             StockNotInPortfolioError:
                 Virhe joka tapahtuu jos osaketta ei ole portfoliossa.
             TooLargeSellOrderError:
-                Virhe joka tapahtuu jos myyntitoimeksianto on suurempi kuin osakkeiden määrä portfoliossa.
+                Virhe joka tapahtuu jos myyntitoimeksianto on suurempi kuin
+                osakkeiden määrä portfoliossa.
             InvalidAmountError:
                 Virhe joka tapahtuu jos osakkeiden määrän syöte ei ole numeerinen.
             EmptyInpurError:
@@ -146,10 +147,10 @@ class StockActions:
             self._stock_repository.remove_stock_from_portfolio(
                 self._logged_user, stock, int(amount))
         except StockNotInPortfolioError:
-            raise StockNotInPortfolioError("Incorrect amount")
+            raise StockNotInPortfolioError("Incorrect amount") from self._stock_repository
 
         except TooLargeSellOrderError:
-            raise TooLargeSellOrderError('Too large sell order')
+            raise TooLargeSellOrderError('Too large sell order') from self._user_repository
 
         return sell_price
 

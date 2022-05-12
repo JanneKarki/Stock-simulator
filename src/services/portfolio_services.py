@@ -49,7 +49,8 @@ class PortfolioServices:
         return self._stock_repository.get_portfolio_from_database(self._logged_user)
 
     def find_stock_from_portfolio(self, stock):
-        """Hakee ja palauttaa osakkeen, sen määrän ja hankintahinnan käyttäjän portfoliosta kutsumalla StockRepository-luokan metodia.
+        """Hakee ja palauttaa osakkeen, sen määrän ja hankintahinnan käyttäjän portfoliosta
+            kutsumalla StockRepository-luokan metodia.
 
         Args:
             stock (str): Haettavan osakkeen merkkijonoesitys.
@@ -87,7 +88,8 @@ class PortfolioServices:
         """Laskee käyttäjän portfolissa olevien osakkeiden kokonaistuoton.
 
         Returns:
-            float: Palauttaa käyttäjän portfoliossa olevien osakkeiden kokonaistuoton, kahden desimaalin tarkkuudella.
+            float: Palauttaa käyttäjän portfoliossa olevien osakkeiden kokonaistuoton,
+                kahden desimaalin tarkkuudella.
         """
         total = 0
         portfolio = self.get_portfolio()

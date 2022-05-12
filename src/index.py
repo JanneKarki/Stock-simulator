@@ -7,9 +7,9 @@ def main():
 
     window.title("Stock-Simulator")
 
-    ui = UI(window)
+    user_interface = UI(window)
 
-    ui.start()
+    user_interface.start()
 
     window.mainloop()
 

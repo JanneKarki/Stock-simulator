@@ -82,7 +82,8 @@ class StockRepository:
 
         Raises:
             TooLargeSellOrderError:
-                Virhe joka tapahtuu jos myyntimäärä on suurempi kuin portofliossa olevien osakkeiden määrä.
+                Virhe joka tapahtuu jos myyntimäärä on suurempi kuin portofliossa
+                olevien osakkeiden määrä.
             StockNotInPortfolioError:
                 Virhe joka tapahtuu jos myytävää osaketta ei ole portfoliossa.
         """
