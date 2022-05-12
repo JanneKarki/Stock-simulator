@@ -140,17 +140,17 @@ class StockActions:
         except SymbolNotFoundError:
             raise SymbolNotFoundError('Symbol not found')
 
-        self._user_repository.adjust_capital(
-            self._logged_user, sell_price*int(amount))
-
         try:
             self._stock_repository.remove_stock_from_portfolio(
                 self._logged_user, stock, int(amount))
         except StockNotInPortfolioError:
-            raise StockNotInPortfolioError("Incorrect amount") from self._stock_repository
+            raise StockNotInPortfolioError("Incorrect amount")
 
         except TooLargeSellOrderError:
-            raise TooLargeSellOrderError('Too large sell order') from self._user_repository
+            raise TooLargeSellOrderError('Too large sell order')
+
+        self._user_repository.adjust_capital(
+            self._logged_user, sell_price*int(amount))
 
         return sell_price
 

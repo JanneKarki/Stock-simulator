@@ -18,6 +18,7 @@ class CreateUserView:
         self._frame = None
         self._error_variable = None
         self._error_label = None
+        
         self._initialize()
 
     def pack(self):
@@ -39,7 +40,7 @@ class CreateUserView:
 
         try:
             user_services.create_user(username, password, capital)
-            self._openOkWindow()
+            self._open_ok_window()
 
         except EmptyInputError:
             self._show_error("Inputs cannot be empty")
@@ -69,7 +70,7 @@ class CreateUserView:
         """
         self._handle_return()
 
-    def _openOkWindow(self):
+    def _open_ok_window(self):
         """Avaa uuden "User Created"-ikkunan.
         """
         newWindow = Toplevel(self._frame)

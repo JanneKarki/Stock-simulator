@@ -88,7 +88,7 @@ class ActionView:
         self._get_name_variable.set(name)
         self._get_name_label.grid()
 
-    def _show_capital(self):
+    def _show_updated_capital(self):
         """Päivittää pääoman muuttujaan kutsumalla PortfolioServices-luokan metodia
             ja asettaa sen näkyville.
         """
@@ -156,8 +156,8 @@ class ActionView:
 
         try:
             price = self._stock_actions.buy_stock(symbol, amount)
-            self._openOkWindow(price, amount, "bought", symbol)
-            self._show_capital()
+            self._open_ok_window(price, amount, "bought", symbol)
+            self._show_updated_capital()
 
         except SymbolNotFoundError:
             self._show_error('Symbol not found')
@@ -186,8 +186,8 @@ class ActionView:
 
         try:
             price = self._stock_actions.sell_stock(symbol, amount)
-            self._openOkWindow(price, amount, "sold", symbol)
-            self._show_capital()
+            self._open_ok_window(price, amount, "sold", symbol)
+            self._show_updated_capital()
         except SymbolNotFoundError:
             self._show_error('Symbol not found')
         except StockNotInPortfolioError:
@@ -230,24 +230,20 @@ class ActionView:
         """
         webbrowser.open_new(url)
 
-    def _openOkWindow(self, price, amount, order_type, stock):
+    def _open_ok_window(self, price, amount, order_type, stock):
         """Avaa uuden "Trade success"-ikkunan joka näyttää vahvistuksen onnistuneista kaupoista.
         """
-        newWindow = Toplevel(self._frame)
-        newWindow.title("Trade success")
-        newWindow.geometry("350x90")
-        Label(newWindow, pady=10,
+        ok_window = Toplevel(self._frame)
+        ok_window.title("Trade success")
+        ok_window.geometry("350x90")
+        Label(ok_window, pady=10,
               text=("Succesfully " + order_type + " "+str(amount) + " shares of " + stock + " @" + str(price))).pack()
 
-        button = Button(newWindow,
+        button = Button(ok_window,
                         text="OK",
-                        command=newWindow.destroy)
+                        command=ok_window.destroy)
         button.pack(pady=10, padx=25, side=BOTTOM)
 
-    def _handle_ok_click(self):
-        """Käsittelee "ok"-painikkeen klikkauksen.
-        """
-        self._initialize()
 
     def _set_labels(self):
         """Määrittelee ja asettaa näkymän teksti-labelit.
