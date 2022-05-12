@@ -25,7 +25,7 @@ Luokkien välistä suhdetta kuvaava pakkaus/luokkakaavio:
 
 ![](./kuvat/luokka_pakkaus_kaavio.png)
 
-StockActions ja PortfolioServices-luokat pääsevät käsiksi tietokantaan pakkauksen repositories luokkien kautta ja UserServices luokka UserRepository-luokan kautta.   
+StockActions ja PortfolioServices-luokat pääsevät käsiksi tietokantaan pakkauksen repositories luokkien kautta ja UserServices-luokka UserRepository-luokan kautta.   
 
 **Luokat**
 
@@ -65,7 +65,7 @@ Kun käyttäjä painaa "New User"-painiketta käyttöliittymä vaihtaa näkymäk
 
 Osaketta ostettaessa kontrolli kulkee sovelluksessa seuraavanlaisesti:
 
-![](./kuvat/buying.png)
+![](./kuvat/buy_kontrolli.png)
 
 Kun käyttäjä painaa Buy-painiketta tapahtumankäsittelijä handle_buy kutsuu StockActions-luokan buy_stock-metodia joka saa parametrina syötetyt osakkeen symbolin ja osakkeiden määrän. buy_stock-metodi kutsuu saman luokan get_latest_price-metodia joka saa parametrinaan käyttäjän syöttämän osakkeen symbolin. Mikäli symboli löytyy jatkuu metodin suoritus kutsumalla UserRepository-luokan adjust_capital-metodia, joka saa parametrinaan haetun hinnan kerrottuna käyttäjän syöttämällä osakkeiden määrällä ja negatiiviseksi muutettuna. UserRepository hakee käyttäjän pääoman tietokannasta ja päivittää sen mikäli pääomaa on riittävästi. Jos pääomaa oli riittävästi jatkuu suoritus kutsumalla StockRepository-luokan add_to_portfolio-metodia, joka saa parametrinaan käyttäjätunnuksen, osakkeen symbolin, ostohinnan ja osakkeiden määrän tallettaakseen ne tietokantaan. 
 
@@ -73,4 +73,7 @@ Kun käyttäjä painaa Buy-painiketta tapahtumankäsittelijä handle_buy kutsuu 
 
 Osaketta myytäessa kontrolli kulkee sovelluksessa seuraavanlaisesti:
 
-![](./kuvat/selling.png)
+![](./kuvat/sell_kontrolli.png)
+
+Kun käyttäjä painaa Sell-painiketta tapahtumankäsittelijä handle_sell kutsuu StockActions-luokan sell_stock-metodia, joka saa parametrina syötetyn osakkeen symbolin ja osakkeiden määrän. Metodi sell_stock kutsuu saman luokan get_latest_price-metodia, joka saa parametrinaan käyttäjän syöttämän osakkeen symbolin. Mikäli symboli löytyy yfinance-palvelusta jatkuu metodin suoritus kutsumalla StockRepository-luokan remove_stock_from_portfolio-metodia, joka saa parametrinaan käyttäjätunnuksen, osakkeen symbolin ja osakkeiden määrän. Jos osake löytyy tietokannasta ja niitä on riittävästi jatkuu sell_stock-metodin suoritus kutsumalla UserRepository-luokan adjust_capital-metodia, joka saa parametrinaan haetun hinnan kerrottuna käyttäjän syöttämällä osakkeiden määrällä.
+
