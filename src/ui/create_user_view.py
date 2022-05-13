@@ -88,7 +88,10 @@ class CreateUserView:
         """
 
         self._frame = ttk.Frame(master=self._root)
-
+        self._set_labels()
+        self._set_buttons()
+        self._set_entries()
+        
         self._frame.grid_columnconfigure(0, weight=1, minsize=150)
 
         self._hide_error()

@@ -29,7 +29,7 @@ class PortfolioView:
         self._frame.pack(fill=constants.X)
 
     def destroy(self):
-        """Sulkee nykyisen näkymän
+        """Sulkee nykyisen näkymän.
         """
         self._frame.destroy()
 
@@ -39,11 +39,11 @@ class PortfolioView:
         self._handle_action(self.stock_actions, self.portfolio_services)
 
     def _set_stocks_listbox(self):
-        """_summary_
+        """Lisää osakkeet listbox-widgettiin ja palauttaa sen.
 
         Returns:
-            tKinter.Listbox: Palauttaa listboxiin, johon on lisätty käyttäjän omistamat osakkeet, niiden määrä ja
-                sekä keskimääräinen hankintahinta.
+            tKinter.Listbox: Palauttaa listboxiin, johon on lisätty käyttäjän omistamat osakkeet, niiden määrät ja
+                keskimääräiset hankintahinnnat.
         """
         portfolio = self.portfolio_services.get_portfolio()
 
