@@ -73,7 +73,7 @@ Kun käyttäjä painaa Buy-painiketta tapahtumankäsittelijä handle_buy kutsuu 
 
 Osaketta myytäessa kontrolli kulkee sovelluksessa seuraavanlaisesti:
 
-![](./kuvat/sell_kontrolli.png)
+![](./kuvat/sell_control.png)
 
 Kun käyttäjä painaa Sell-painiketta tapahtumankäsittelijä handle_sell kutsuu StockActions-luokan sell_stock-metodia, joka saa parametrina syötetyn osakkeen symbolin ja osakkeiden määrän. Metodi sell_stock kutsuu saman luokan get_latest_price-metodia, joka saa parametrinaan käyttäjän syöttämän osakkeen symbolin. Mikäli symboli löytyy yfinance-palvelusta jatkuu metodin suoritus kutsumalla StockRepository-luokan remove_stock_from_portfolio-metodia, joka saa parametrinaan käyttäjätunnuksen, osakkeen symbolin ja osakkeiden määrän. Jos osake löytyy tietokannasta ja niitä on riittävästi jatkuu sell_stock-metodin suoritus kutsumalla UserRepository-luokan adjust_capital-metodia, joka saa parametrinaan haetun hinnan kerrottuna käyttäjän syöttämällä osakkeiden määrällä.
 
