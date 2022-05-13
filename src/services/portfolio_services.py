@@ -111,6 +111,7 @@ class PortfolioServices:
             self._logged_user)
         total_worth = 0
         for i in portfolio:
+            print(i)
             stock_amount = i[2]
             present_price = self.actions.get_latest_price(i[0])
             total_worth += (stock_amount*present_price)
@@ -124,8 +125,7 @@ class PortfolioServices:
         """
         if self._logged_user:
             capital = self.get_capital()
-            total_capital = capital + self.total_portfolio_worth()
-
+            total_capital = self.total_portfolio_worth()+capital
             return float(f"{total_capital:.2f}")
 
         return None

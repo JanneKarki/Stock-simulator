@@ -2,10 +2,10 @@ import unittest
 
 from numpy import empty
 from entities.user import User
-from services.stock_actions import StockActions
+from services.stock_actions import InvalidAmountError, StockActions
 from services.user_services import UserServices
 from repositories.user_repository import NotEnoughMoneyError, user_repository
-from repositories.stock_repository import stock_repository
+from repositories.stock_repository import StockNotInPortfolioError, TooLargeSellOrderError, stock_repository
 from services.portfolio_services import PortfolioServices
 
 
@@ -83,8 +83,35 @@ class TestActions(unittest.TestCase):
 
     def test_if_not_enough_money_stock_not_bought(self):
         with self.assertRaises(NotEnoughMoneyError) as cm:
+            self.actions.buy_stock("TSLA", "10000000")
+        stock = self.portfolio_services.find_stock_from_portfolio("TSLA")
+        isempty = []
+        self.assertEqual(stock,isempty)
+
+    def test_if_stock_not_owned_stock_not_sold(self):
+        with self.assertRaises(StockNotInPortfolioError) as cm:
+            self.actions.sell_stock("BB", "1")
+        capital = self.user_actions.get_capital()
+        self.assertEqual(int(capital), 10000)
 
         
-            self.actions.buy_stock("TSLA", "10000000")
-        the_exception = cm.exception
-        self.assertEqual(the_exception, NotEnoughMoneyError('Not enough money'))
+
+    def test_if_sell_order_is_too_large_stock_not_sold(self):
+        self.actions.buy_stock("AAPL", "1")
+        with self.assertRaises(TooLargeSellOrderError) as cm:
+            self.actions.sell_stock("AAPL", "2")
+        stock_data = self.portfolio_services.find_stock_from_portfolio("AAPL")
+        isempty = []
+        amount = stock_data[0][1]
+        self.assertEqual(amount,1)
+        self.assertNotEqual(stock_data,isempty)
+        #the_exception = cm.exception
+        #self.assertEqual(the_exception, TooLargeSellOrderError('Too large sell order'))
+    
+    def test_get_stock_name_is_correct(self):
+        name = self.actions.get_stock_name("AAPL")
+        self.assertEqual(name, "Apple Inc.")
+
+    
+
+    

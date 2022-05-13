@@ -56,7 +56,7 @@ class TestPortfolioServices(unittest.TestCase):
         stock_repository.add_to_portfolio("Erkki", "ABEV", -2000, 1)
         stock_repository.add_to_portfolio("Erkki", "TLRY", 100, 1)
         stock_repository.add_to_portfolio("Erkki", "ZOM", -1000, 1)
-        
+
         profit_a = self.actions.get_latest_price("ABEV")+2000
         profit_b = self.actions.get_latest_price("TLRY")-100
         profit_c = self.actions.get_latest_price("ZOM")+1000
@@ -65,3 +65,8 @@ class TestPortfolioServices(unittest.TestCase):
         total_win_loss = self.portfolio_services.total_win_loss()
         self.assertEqual(int(total_win_loss),int(total_profit))
     
+    def test_total_capital_is_correct(self):
+        price = self.actions.buy_stock("ABEV", "10")
+        capital = self.user_actions.get_capital()
+        total_capital = (price*10)+capital
+        self.assertEqual(total_capital, self.portfolio_services.total_capital())

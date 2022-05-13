@@ -144,7 +144,7 @@ class StockActions:
             self._stock_repository.remove_stock_from_portfolio(
                 self._logged_user, stock, int(amount))
         except StockNotInPortfolioError:
-            raise StockNotInPortfolioError("Incorrect amount")
+            raise StockNotInPortfolioError("Stock not owned")
 
         except TooLargeSellOrderError:
             raise TooLargeSellOrderError('Too large sell order')
@@ -204,5 +204,12 @@ class StockActions:
         """
         self._logged_user = username
 
+    def get_logged_user(self):
+        """Palauttaa kirjautuneen käyttäjän.
+
+        Returns:
+            str: Palauttaa kirjautuneen käyttäjän käyttäjänimen.
+        """
+        return self._logged_user
 
 stock_actions = StockActions()

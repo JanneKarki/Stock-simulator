@@ -43,19 +43,6 @@ class UserRepostory:
 
         return user
 
-    def print_all_users(self):
-        """Tulostaa kaikki tietokantaan tallennetut käyttäjänimet.
-        """
-        cursor = self.connection.cursor()
-
-        cursor.execute("SELECT * FROM Users")
-
-        rows = cursor.fetchall()
-
-        for row in rows:
-            username = row[0]
-            print(username)
-
     def find_user(self, user):
         """Palauttaa tietokannasta käyttäjän.
 
