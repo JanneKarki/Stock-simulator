@@ -99,7 +99,7 @@ class StockActions:
             self._user_repository.adjust_capital(
                 self._logged_user, -abs(buy_price*int(amount)))
         except NotEnoughMoneyError:
-            raise NotEnoughMoneyError("Not enough money") from self._user_repository
+            raise NotEnoughMoneyError("Not enough money")
 
         self._stock_repository.add_to_portfolio(
             self._logged_user, stock, buy_price, int(amount))

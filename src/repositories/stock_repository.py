@@ -164,7 +164,7 @@ class StockRepository:
         )
 
         result = stock_database.fetchall()
-
+        print(result)
         return result
 
     def delete_all(self):
