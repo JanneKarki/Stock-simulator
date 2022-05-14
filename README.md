@@ -1,6 +1,6 @@
 # Stock-Simulator
 
-Sovelluksella voi sijoittaa leikisti osakkeisiin reaaliaikaisilla hinnoilla. Sovelluksella on myös mahdollista hakea yrityksen esittelytietoja. Osakkeden osto, myynti ja esittelytietojen hakeminen tapahtuu osakkeen symbolin avulla, joita voi etsiä kätevästi vaikka täältä https://stockanalysis.com/stocks/. 
+Sovelluksella voi sijoittaa leikisti osakkeisiin reaaliaikaisilla hinnoilla. Sovelluksella on myös mahdollista hakea yrityksen esittelytietoja. Osakkeden osto, myynti ja esittelytietojen hakeminen tapahtuu osakkeen symbolin avulla, joita voi etsiä kätevästi vaikka täältä https://finance.yahoo.com/. 
 
 **Dokumentaatio**
 
@@ -13,6 +13,9 @@ Sovelluksella voi sijoittaa leikisti osakkeisiin reaaliaikaisilla hinnoilla. Sov
 [Arkkitehtuuri](https://github.com/JanneKarki/ot-harjoitustyo/blob/main/dokumentaatio/arkkitehtuuri.md)
 
 [Käyttöohje](https://github.com/JanneKarki/ot-harjoitustyo/blob/main/dokumentaatio/kayttoohje.md)
+
+[Testidokumentti](https://github.com/JanneKarki/ot-harjoitustyo/blob/main/dokumentaatio/testausdokumentti.md)
+
 
 ____________________________________________
 # Releases
