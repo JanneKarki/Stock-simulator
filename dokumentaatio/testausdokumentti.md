@@ -24,7 +24,7 @@ Käyttöliittymäkerrosta lukuunottamatta testien haarautumakattavuus on 99%.
 
 ## Järjestelmätestaus
 
-Kaikki [vaatimusmäärittelyn](https://github/vaatimusmaarittely.md) 
+Kaikki [vaatimusmäärittelyn](https://github.com/JanneKarki/ot-harjoitustyo/blob/main/dokumentaatio/vaatimusmaarittely.md) 
 mukaiset toiminnot on testattu monipuolisesti manuaalisesti ja myös virheellisillä syötteillä.
 
 ## Asennus ja konfigurointi
