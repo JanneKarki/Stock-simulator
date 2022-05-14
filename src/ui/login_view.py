@@ -1,4 +1,5 @@
 from tkinter import StringVar, ttk, constants
+from turtle import bgcolor
 from services.stock_actions import stock_actions as actions
 from services.user_services import user_services, InvalidCredentialsError
 from services.portfolio_services import portfolio_services as portofolio
@@ -71,6 +72,11 @@ class LoginView:
         """
 
         self._frame = ttk.Frame(master=self._root)
+        s = ttk.Style()
+        s.configure("TFrame", background='skyblue')
+        s.configure("TButton", background="lightblue")
+        s.configure("TLabel", background="skyblue")
+        s.configure("TListbox", background="blue")
         self._set_buttons()
         self._set_entries()
         self._set_labels()

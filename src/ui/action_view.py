@@ -216,6 +216,8 @@ class ActionView:
         """Alustaa StockActions-näkymän.
         """
         self._frame = ttk.Frame(master=self._root)
+
+        
         self._frame.grid_columnconfigure(0, weight=0, minsize=30)
         self._set_labels()
         self._set_buttons()
@@ -347,6 +349,7 @@ class ActionView:
         sell_stock_button.grid(row=4, column=2, padx=5, pady=5, sticky=W)
         get_info_button.grid(row=2, column=2, padx=5, pady=5, sticky=W)
         portfolio_button.grid(row=6, column=1, padx=5, pady=5, sticky=E)
+
         logout_button.grid(row=6, column=2, padx=5, pady=5, sticky=W)
 
     def _set_textbox(self):
@@ -355,6 +358,7 @@ class ActionView:
         self._text_info = Text(self._frame, wrap=WORD, height=15,
                                width=65, padx=5, pady=5,
                                bg="lightgrey")
+        self._text_info.configure(background="white")
         scroll_bar_info = Scrollbar(self._frame, orient='vertical')
         scroll_bar_info.config(command=self._text_info.yview)
         scroll_bar_info.grid(row=9, column=3, sticky=(

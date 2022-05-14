@@ -52,7 +52,7 @@ class PortfolioView:
                           bg="lightgrey",
                           activestyle='dotbox',
                           fg="Black")
-
+        
         for count, item in enumerate(portfolio):
             symbol = str(item[0])
             avg_price = str(item[1])
@@ -153,7 +153,8 @@ class PortfolioView:
         scroll_bar_for_stock_list.config(command=listbox_stocks.yview)
         listbox_rank.config(yscrollcommand=scroll_bar_for_rank_list.set)
         scroll_bar_for_rank_list.config(command=listbox_rank.yview)
-
+        listbox_stocks.configure(background="white")
+        listbox_rank.configure(background="white")
         # Positions
         listbox_stocks.grid(row=1, column=0, columnspan=3, padx=5, pady=5)
         scroll_bar_for_stock_list.grid(row=1, column=2, sticky=(
