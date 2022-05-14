@@ -1,8 +1,5 @@
 import unittest
-
-from numpy import empty
-from entities.user import User
-from services.stock_actions import InvalidAmountError, StockActions
+from services.stock_actions import EmptyInputError, InvalidAmountError, SymbolNotFoundError, StockActions
 from services.user_services import UserServices
 from repositories.user_repository import NotEnoughMoneyError, user_repository
 from repositories.stock_repository import StockNotInPortfolioError, TooLargeSellOrderError, stock_repository
@@ -92,9 +89,7 @@ class TestActions(unittest.TestCase):
         with self.assertRaises(StockNotInPortfolioError) as cm:
             self.actions.sell_stock("BB", "1")
         capital = self.user_actions.get_capital()
-        self.assertEqual(int(capital), 10000)
-
-        
+        self.assertEqual(int(capital), 10000)     
 
     def test_if_sell_order_is_too_large_stock_not_sold(self):
         self.actions.buy_stock("AAPL", "1")
@@ -112,6 +107,39 @@ class TestActions(unittest.TestCase):
         name = self.actions.get_stock_name("AAPL")
         self.assertEqual(name, "Apple Inc.")
 
-    
+    def test_buy_stock_invalid_symbol(self):
+        with self.assertRaises(SymbolNotFoundError):
+            self.actions.buy_stock("AAAAAAAAA", "1")
 
+    def test_sell_stock_invalid_symbol(self):
+        with self.assertRaises(SymbolNotFoundError):
+            self.actions.sell_stock("AAAAAAAAA", "1")
+
+    def test_buy_stock_with_empty_inputs(self):
+        with self.assertRaises(EmptyInputError):
+            self.actions.buy_stock("","")
+
+    def test_sell_stock_with_empty_inputs(self):
+        with self.assertRaises(EmptyInputError):
+            self.actions.sell_stock("","")
+
+    def test_get_stock_info_with_correct_symbol(self):
+        info = self.actions.get_stock_info("AAPL")
+        self.assertEqual(type(info),str)
+
+    def test_get_stock_info_with_invalid_symbol(self):
+        with self.assertRaises(SymbolNotFoundError):
+            self.actions.get_stock_info("AAAAAAAA")
+
+    def test_get_stock_name_with_invalid_symbol(self):
+        with self.assertRaises(SymbolNotFoundError):
+            self.actions.get_stock_name("AAAAAAAA")
+
+    def test_buy_stock_with_nonnumeric_amount(self):
+        with self.assertRaises(InvalidAmountError):
+            self.actions.buy_stock("AAPL", "five")
+
+    def test_sell_stock_with_nonnumeric_amount(self):
+        with self.assertRaises(InvalidAmountError):
+            self.actions.sell_stock("AAPL", "five")
     

@@ -66,7 +66,12 @@ class TestPortfolioServices(unittest.TestCase):
         self.assertEqual(int(total_win_loss),int(total_profit))
     
     def test_total_capital_is_correct(self):
-        price = self.actions.buy_stock("ABEV", "10")
+        price = self.actions.buy_stock("ABEV", "1")
         capital = self.user_actions.get_capital()
-        total_capital = (price*10)+capital
+        total_capital = (price)+capital
         self.assertEqual(total_capital, self.portfolio_services.total_capital())
+
+    def test_not_logged_user_total_capital_returns_none(self):
+        self.portfolio_services.set_logged_user(None)
+        capital = self.portfolio_services.total_capital()
+        self.assertEqual(capital,None)
