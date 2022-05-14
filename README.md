@@ -18,7 +18,7 @@ Sovelluksella voi sijoittaa leikisti osakkeisiin reaaliaikaisilla hinnoilla. Sov
 
 
 ____________________________________________
-# Releases
+## Releases
 [Release 1 - Viikon 5 deadline](https://github.com/JanneKarki/ot-harjoitustyo/releases/Viikon5)
 __________________________
 
