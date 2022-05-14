@@ -68,7 +68,7 @@ class LoginView:
         self._error_label.grid_remove()
 
     def _initialize(self):
-        """Alustaa StockActions-näkymän.
+        """Alustaa LoginView-näkymän.
         """
 
         self._frame = ttk.Frame(master=self._root)
@@ -76,7 +76,7 @@ class LoginView:
         s.configure("TFrame", background='skyblue')
         s.configure("TButton", background="lightblue")
         s.configure("TLabel", background="skyblue")
-        s.configure("TListbox", background="blue")
+        
         self._set_buttons()
         self._set_entries()
         self._set_labels()

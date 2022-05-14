@@ -6,6 +6,11 @@ from ui.portfolio_view import PortfolioView
 
 class UI:
     def __init__(self, root):
+        """_summary_
+
+        Args:
+            root (_type_): _description_
+        """
         
         self._root = root
         self._entry = None

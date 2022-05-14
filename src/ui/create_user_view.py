@@ -84,7 +84,7 @@ class CreateUserView:
         button.pack(pady=3, padx=25)
 
     def _initialize(self):
-        """Alustaa CreateUser-näkymän.
+        """Alustaa CreateUserView-näkymän.
         """
 
         self._frame = ttk.Frame(master=self._root)
