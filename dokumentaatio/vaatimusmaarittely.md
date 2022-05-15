@@ -39,11 +39,12 @@ Sovellus koostuu neljästä eri näkymästä:
     - Myytävien osakkeiden määrän syöte ei voi olla suurempi kuin omistettavien osakkeiden määrä. 
 - Hakea yrityksen esittelytiedot osakkeen symbolin avulla
     - Mikäli symbolia ei löydy sovellus ilmoittaa siitä
-- Tarkastella osakesalkkua ja sen kehittymistä
-    - salkun arvo
-    - kokonaistuotto/-tappio
-    - parhaiten menestyneet osakkeet
-    - huonoiten menestyneet osakkeet
+- Tarkastella osakesalkkua ja sen kehittymistä. Nähtävissä on:
+    - Omistuksessa olevat osakkeet, niiden määrä ja keskimääräinen hankinta hinta
+    - Osakkeet järjestettynä tuoton mukaiseen suurusjärjestykseen
+    - Osakesalkun kokonaistuotto/-tappio
+    - Avoin pääoma
+    - Kokonaisoääoma
     
 
 
