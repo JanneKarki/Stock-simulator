@@ -24,7 +24,7 @@ Sovellus koostuu neljästä eri näkymästä:
 
 
 - Luoda käyttäjätilin ja valita haluamansa suuruisen pääoman
-    - Käyttäjätunnusksen tulee olla uniikki.
+    - Käyttäjätunnuksen tulee olla uniikki.
     - Syötteet eivät voi olla tyhjiä ja pääoman tulee olla numeerinen.
 - Kirjautua sovellukseen
     - Jos salasana on väärin tai tunnusta ei löydy, kirjautuminen ei onnistu.
