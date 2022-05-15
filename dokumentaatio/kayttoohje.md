@@ -29,7 +29,7 @@ poetry run invoke start
 
 ## Kirjautuminen
 
-Kirjaudu sisään antamalla käyttäjätunnus ja salasana ja paina "Login".
+Kirjaudu sisään antamalla käyttäjätunnus, salasana ja paina "Login".
 
 
 ![](./kuvat/kayttoohjeen_kuvat/login_user_view.png)
