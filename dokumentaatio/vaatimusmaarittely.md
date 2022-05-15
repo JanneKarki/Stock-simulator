@@ -3,7 +3,7 @@
 ## Vaatimusmäärittely
 
 Sovelluksen idea on simuloida osakkeisiin sijoittamista haluamansa suuruisella pääomalla reaaliaikaisilla hinnoilla. 
-Osakkeiden hinta- ja yritystiedot sovellukselle tulevat yfinance-moduulista. Sovelluksella on graafinen käyttöliittymä.
+Osakkeiden hinta- ja yritystiedot sovellukselle tulevat yfinance-moduulista. Sovelluksella on graafinen käyttöliittymä. Toimiakseen sovellus vaatii internetyhteyden. Pörssin ollessa kiinni osakkeiden hinnat eivät muutu. Sovellus sallii osakkeiden ostamisen ja myymisen myös pörssin ollessa kiinni.
 
 ## Käyttäjät
 
