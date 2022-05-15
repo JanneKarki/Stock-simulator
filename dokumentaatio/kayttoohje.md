@@ -1,6 +1,13 @@
 # Käyttöohje
 
+Lataa viimeisimmän [releasen](https://github.com) lähdekoodi valitsemalla Assets-osion alta Source code.
+
 ## Konfigurointi
+
+Tietokantatiedosto tallentuu _data_-hakemistoon ja sen nimeä voi halutessaan konfiguroida käynnistyshakemiston .env-tiedostossa. Tiedoston muoto on seuraava:
+```bash
+DATABASE_FILENAME=database.sqlite
+```
 
 ## Ohjelman käynnistäminen
 
@@ -20,7 +27,12 @@ poetry run invoke build
 poetry run invoke start
 ```
 
+## Kirjautuminen
 
+Kirjaudu sisään antamalla käyttäjätunnus ja salasana ja paina "Login".
+
+
+![](./kuvat/kayttoohjeen_kuvat/login_user_view.png)
 
 ## Tunnuksen luominen
 Uuden tunnukset pääset luomaan painamalla alkunäkymästä "New user". Syötä käyttäjänimi, salasana, sekä valitsemasi pääoman määrä. Käyttäjän luonti tapahtuu "Create"-näppäimestä. Jos haluat peruuttaa tunnuksen luonnin ja siirtyä takaisin kirjautumisnäkymään onnistuu se näppäimestä "Back". 
@@ -34,17 +46,9 @@ Onnistuneesta tunnuksen luomisesta ilmoittaa uusi avautuu ikkuna.
 "Ok"- näppäin siirtää takaisin sovelluksen kirjautumisnäkymään.
 
 
-## Kirjautuminen
-
-Kirjaudu sisään antamalla käyttäjätunnus ja salasana ja paina "Login".
-
-
-![](./kuvat/kayttoohjeen_kuvat/login_user_view.png)
-
-
 ## Osakkeen hinnan ja yritystietojen hakeminen
 
-Osakkeen hinnan saat syöttämällä osakkeen symbolin "Symbol:"-kenttään ja painamalla "Get Price". Osakkeen hinta ja -nimi tulostuvat ikkunan yläriville. Yrityken tiedot saat esiin "Get Info"- näppäimestä. Tiedot tulostuvat ikkunan alaosassa olevaan tekstikenttään. 
+Osakkeen hinnan saat syöttämällä osakkeen symbolin "Symbol:"-kenttään ja painamalla "Get Price". Osakkeen hinta ja -nimi tulostuvat ikkunan yläriville. Yrityken tiedot saat esiin "Get Info"- näppäimestä. Tiedot tulostuvat ikkunan alaosassa olevaan tekstikenttään. Ikkunan alareunassa on linkki yahoofinance-nettisivulle, josta voi etsiä osakkeita ja niiden tunnuksia.
 
 ![](./kuvat/kayttoohjeen_kuvat/action_view.png)
 
@@ -70,7 +74,7 @@ Onnistuneesta myynti- ja ostotapahtumasta avautuu siitä ilmoittava ikkuna.
 Portfolio näkymässä, vasemmanpuoleisessa "Portfolio"- listassa näkyvät osakkeiden määrät ja niiden keskimääräiset hankinta hinnat. Oikean puoleisessa "Rank List"- listassa osakkeet ovat lajiteltuna tuoton mukaiseen järjestykseen, ylimpänä eniten tuottanut ja alimpana eniten tappiolla oleva. Näkymässä näkyvät myös portfolion arvo, omistusten nettotuotto, vapaan pääoman määrä, kokonaispääoma, aloituspääoma, sekä nettotulos. Takaisin päänäkymään pääset "Back"- näppäimestä.
 
   
-![](./kuvat/kayttoohjeen_kuvat/portfolio_view2.png)
+![](./kuvat/kayttoohjeen_kuvat/portfolio_view3.png)
 
 
 
