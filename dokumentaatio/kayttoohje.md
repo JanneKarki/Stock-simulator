@@ -6,7 +6,7 @@
 ## Tunnuksen luominen
 Uuden tunnukset pääset luomaan painamalla alkunäkymästä "New user". Syötä käyttäjänimi, salasana, sekä valitsemasi pääoman määrä. Käyttäjän luonti tapahtuu "Create"-näppäimestä. Jos haluat peruuttaa tunnuksen luonnin ja siirtyä takaisin kirjautumisnäkymään onnistuu se näppäimestä "Back". 
 
-![](./kuvat/kayttoohjeen_kuvat/Create_Arto.png)
+![](./kuvat/kayttoohjeen_kuvat/create_user_view.png)
 
 Onnistuneesta tunnuksen luomisesta ilmoittaa uusi avautuu ikkuna.
 
@@ -20,14 +20,14 @@ Onnistuneesta tunnuksen luomisesta ilmoittaa uusi avautuu ikkuna.
 Kirjaudu sisään antamalla käyttäjä tunnus ja salasana ja paina "Login".
 
 
-![](./kuvat/kayttoohjeen_kuvat/Arton_kirjaus.png)
+![](./kuvat/kayttoohjeen_kuvat/login_user_view.png)
 
 
 ## Osakkeen hinnan ja yritystietojen hakeminen
 
 Osakkeen hinnan saat syöttämällä osakkeen symbolin "Symbol:"-kenttään ja painamalla "Get Price". Osakkeen hinta ja -nimi tulostuvat ikkunan yläriville. Yrityken tiedot saat esiin "Get Info"- näppäimestä. Tiedot tulostuvat ikkunan alaosassa olevaan tekstikenttään. 
 
-![](./kuvat/kayttoohjeen_kuvat/AAPL_Get_info.png)
+![](./kuvat/kayttoohjeen_kuvat/action_view.png)
 
 
 Portfoliossa olevia osakkeita pääsee tarkastelemaan "Portfolio"- näppäimestä. Käyttäjän voi kirjata ulos sovelluksesta "Logout"-näppäimellä.
@@ -36,7 +36,7 @@ Portfoliossa olevia osakkeita pääsee tarkastelemaan "Portfolio"- näppäimest�
 
 Osakkeen ostaminen ja myyminen sovelluksella on helppoa. Syötä osakkeen tunnus "Symbol"-kenttään ja haluamasi määrä "Amount"- kenttään ja paina "Buy" ostaaksesi ja "Sell"-myydäksesi osaketta. Sovellus hakee aina viimeisimmän hinnan osakkeelle toimeksiannon yhteydessä.
 
-![](./kuvat/kayttoohjeen_kuvat/AAPL_Buy.png)
+![](./kuvat/kayttoohjeen_kuvat/.png)
 
 
 ## Portfolion tarkastelu
