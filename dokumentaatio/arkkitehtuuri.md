@@ -31,7 +31,7 @@ StockActions ja PortfolioServices-luokat pääsevät käsiksi tietokantaan pakka
 
 Sovelluslogiikan kannalta oleellisimmat luokat ovat User, UserServices, StockActions ja PortfolioServices.
 
-![Luokkakaavio](./kuvat/luokat.png)
+![Luokkakaavio](./kuvat/classes.png)
 
 ## Tietojen pysyväistallennus
 
@@ -59,7 +59,7 @@ Kun käyttäjä haluaa luoda uuden käyttäjätunnuksen etenee sovelluksen kontr
 
 ![](./kuvat/new_user_kontrolli.png)
 
-Kun käyttäjä painaa "New User"-painiketta käyttöliittymä vaihtaa näkymäksi CreateUserView-näkymän. "Create User" - painalluksen seurauksena tapahtumankäsittelijä create_user_handler kutsuu UserServices luokan create_user-metodia joka saa parametrina syötetyt käyttäjätunnuksen, salasanan ja pääoman. UserServices kutsuu UserRepositroy-luokan find_user-metodia tarkistaakseen löytyykö käyttäjätunnus. Mikäli käyttäjätunnus ei ole käytössä, tunnuksen luonti onnistuu, jolloin UserServices luo User-olion ja tallentaa sen kutsumalla UserRepository-luokan new_user-metodia. Onnistuneen tunnuksen luonnin jälkeen open_ok_window-metodi avaa uuden ikkunan joka näyttää vahvistuksen onnistuneesta tunnuksen luonnista. "OK"-painikkeen klikkaus sulkee ikkunan siirtää sovelluksen takaisin LoginView-näkymään.
+Kun käyttäjä painaa "New User"-painiketta käyttöliittymä vaihtaa näkymäksi CreateUserView-näkymän. "Create User" - painalluksen seurauksena tapahtumankäsittelijä create_user_handler kutsuu UserServices luokan create_user-metodia joka saa parametrina syötetyt käyttäjätunnuksen, salasanan ja pääoman. UserServices kutsuu UserRepositroy-luokan find_user-metodia tarkistaakseen löytyykö käyttäjätunnus. Mikäli käyttäjätunnus ei ole käytössä, tunnuksen luonti onnistuu, jolloin UserServices luo User-olion ja tallentaa sen kutsumalla UserRepository-luokan new_user-metodia. Onnistuneen tunnuksen luonnin jälkeen open_ok_window-metodi avaa uuden ikkunan, joka näyttää vahvistuksen onnistuneesta tunnuksen luonnista. "OK"-painikkeen klikkaus sulkee ikkunan siirtää sovelluksen takaisin LoginView-näkymään.
 
 ### Osakkeen ostaminen
 
@@ -67,7 +67,7 @@ Osaketta ostettaessa kontrolli kulkee sovelluksessa seuraavanlaisesti:
 
 ![](./kuvat/buy_kontrolli.png)
 
-Kun käyttäjä painaa Buy-painiketta tapahtumankäsittelijä handle_buy kutsuu StockActions-luokan buy_stock-metodia joka saa parametrina syötetyt osakkeen symbolin ja osakkeiden määrän. buy_stock-metodi kutsuu saman luokan get_latest_price-metodia joka saa parametrinaan käyttäjän syöttämän osakkeen symbolin. Mikäli symboli löytyy jatkuu metodin suoritus kutsumalla UserRepository-luokan adjust_capital-metodia, joka saa parametrinaan haetun hinnan kerrottuna käyttäjän syöttämällä osakkeiden määrällä ja negatiiviseksi muutettuna. UserRepository hakee käyttäjän pääoman tietokannasta ja päivittää sen mikäli pääomaa on riittävästi. Jos pääomaa oli riittävästi jatkuu suoritus kutsumalla StockRepository-luokan add_to_portfolio-metodia, joka saa parametrinaan käyttäjätunnuksen, osakkeen symbolin, ostohinnan ja osakkeiden määrän tallettaakseen ne tietokantaan. 
+Kun käyttäjä painaa Buy-painiketta tapahtumankäsittelijä handle_buy kutsuu StockActions-luokan buy_stock-metodia joka saa parametrina syötetyt osakkeen symbolin ja osakkeiden määrän. buy_stock-metodi kutsuu saman luokan get_latest_price-metodia joka saa parametrinaan käyttäjän syöttämän osakkeen symbolin. Mikäli symboli löytyy jatkuu metodin suoritus kutsumalla UserRepository-luokan adjust_capital-metodia, joka saa parametrinaan haetun hinnan kerrottuna käyttäjän syöttämällä osakkeiden määrällä ja negatiiviseksi muutettuna. UserRepository hakee käyttäjän pääoman tietokannasta ja päivittää sen mikäli pääomaa on riittävästi. Jos pääomaa oli riittävästi jatkuu suoritus kutsumalla StockRepository-luokan add_to_portfolio-metodia, joka saa parametrinaan käyttäjätunnuksen, osakkeen symbolin, ostohinnan ja osakkeiden määrän tallettaakseen ne tietokantaan. UI-luokka päivittää muuttunueen pääoman näkyville ja onnistuneesta tapahtumasta avautuu siitä kertova uusi ikkuna, joka sulkeutuu painamalla "OK"-näppäintä.
 
 ### Osakkeen myyminen
 
@@ -75,5 +75,6 @@ Osaketta myytäessa kontrolli kulkee sovelluksessa seuraavanlaisesti:
 
 ![](./kuvat/sell_control.png)
 
-Kun käyttäjä painaa Sell-painiketta tapahtumankäsittelijä handle_sell kutsuu StockActions-luokan sell_stock-metodia, joka saa parametrina syötetyn osakkeen symbolin ja osakkeiden määrän. Metodi sell_stock kutsuu saman luokan get_latest_price-metodia, joka saa parametrinaan käyttäjän syöttämän osakkeen symbolin. Mikäli symboli löytyy yfinance-palvelusta jatkuu metodin suoritus kutsumalla StockRepository-luokan remove_stock_from_portfolio-metodia, joka saa parametrinaan käyttäjätunnuksen, osakkeen symbolin ja osakkeiden määrän. Jos osake löytyy tietokannasta ja niitä on riittävästi jatkuu sell_stock-metodin suoritus kutsumalla UserRepository-luokan adjust_capital-metodia, joka saa parametrinaan haetun hinnan kerrottuna käyttäjän syöttämällä osakkeiden määrällä.
+Kun käyttäjä painaa Sell-painiketta tapahtumankäsittelijä handle_sell kutsuu StockActions-luokan sell_stock-metodia, joka saa parametrina syötetyn osakkeen symbolin ja osakkeiden määrän. Metodi sell_stock kutsuu saman luokan get_latest_price-metodia, joka saa parametrinaan käyttäjän syöttämän osakkeen symbolin. Mikäli symboli löytyy yfinance-palvelusta jatkuu metodin suoritus kutsumalla StockRepository-luokan remove_stock_from_portfolio-metodia, joka saa parametrinaan käyttäjätunnuksen, osakkeen symbolin ja osakkeiden määrän. Jos osake löytyy tietokannasta ja niitä on riittävästi jatkuu sell_stock-metodin suoritus kutsumalla UserRepository-luokan adjust_capital-metodia, joka saa parametrinaan haetun hinnan kerrottuna käyttäjän syöttämällä osakkeiden määrällä. UI-luokka päivittää muuttunueen pääoman näkyville ja onnistuneesta tapahtumasta avautuu siitä kertova uusi ikkuna, joka sulkeutuu painamalla "OK"-näppäintä.
+
 
