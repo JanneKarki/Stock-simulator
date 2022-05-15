@@ -15,11 +15,11 @@ Testeissä käytetään erillistä testitietokantaa, joka on määritelty .env.t
 
 ## Automatisoidut yksikkö- ja integraatiotestit
 
-Käyttöliittymäkerrosta lukuunottamatta testien haarautumakattavuus on 99%.
+Käyttöliittymäkerrosta lukuunottamatta testien haarautumakattavuus on 97%.
 
-![](./kuvat/coverage-report.png)
+![](./kuvat/coverage-report3.png)
 
-
+PortfolioServices-luokan metodit get_starting_capital ja get_net_result ei tule testatuiksi automatisoiduissa testeissä.
 
 
 ## Järjestelmätestaus
