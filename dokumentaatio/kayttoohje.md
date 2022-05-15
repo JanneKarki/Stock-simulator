@@ -4,6 +4,11 @@ Lataa viimeisimmän [releasen](https://github.com) lähdekoodi valitsemalla Asse
 
 ## Konfigurointi
 
+Tietokantatiedosto tallentuu _data_-hakemistoon ja sen nimeä voi halutessaan konfiguroida käynnistyshakemiston .env-tiedostossa. Tiedoston muoto on seuraava:
+```bash
+DATABASE_FILENAME=database.sqlite
+```
+
 ## Ohjelman käynnistäminen
 
 Ennen sovelluksen käynnistämistä, suorita komentoriviltä ot-harjoitustyo-hakemistossa seuraavat komennot:
@@ -43,7 +48,7 @@ Onnistuneesta tunnuksen luomisesta ilmoittaa uusi avautuu ikkuna.
 
 ## Osakkeen hinnan ja yritystietojen hakeminen
 
-Osakkeen hinnan saat syöttämällä osakkeen symbolin "Symbol:"-kenttään ja painamalla "Get Price". Osakkeen hinta ja -nimi tulostuvat ikkunan yläriville. Yrityken tiedot saat esiin "Get Info"- näppäimestä. Tiedot tulostuvat ikkunan alaosassa olevaan tekstikenttään. 
+Osakkeen hinnan saat syöttämällä osakkeen symbolin "Symbol:"-kenttään ja painamalla "Get Price". Osakkeen hinta ja -nimi tulostuvat ikkunan yläriville. Yrityken tiedot saat esiin "Get Info"- näppäimestä. Tiedot tulostuvat ikkunan alaosassa olevaan tekstikenttään. Ikkunan alareunassa on linkki yfinance-nettisivulle, josta voi etsiä osakkeita ja niiden tunnuksia.
 
 ![](./kuvat/kayttoohjeen_kuvat/action_view.png)
 
