@@ -30,4 +30,10 @@
 |6.5| 4h| Docstringiä ja ui-luokan siistiminen|
 |9.5| 6h| Virhetilanteiden käsittelyn koodausta ja linkin lisäys|
 |10.5|5h| Arkkitehtuuria ja siistimistä|
-|Yht.| 115h|
+|11.5|4h| Docstringien kirjoittelua ym|
+|12.5|4h| Arkkitehtuuria|
+|13.5|2h| Käyttöliittymien siistiminen ja docstringien lisäys|
+|14.5|3h| Testit kuntoon ja testausdokumentti|
+|15.5|4h| Viimeiset testailut, siivoilut ja dokumentointi|
+
+|Yht.| 132h|
