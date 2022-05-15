@@ -55,7 +55,8 @@ Toistaiseksi sovellus vielä kaatuu jos symbolia ei löydy. Kotimaisia osakkeita
 
 **Viikko7**
 - Nyt sovellus ei anna ostaa enemmän kuin on rahaa, eikä myydä enempää osakkeita kuin niitä on. Uudet nousevat virheet "StockNotInPortfolioError" ja "NotEnoughMoneyError".
-- Symbol not found virheilmoituksen toimii nyt kaikilla toiminnoilla(Get Info, Get Price, Buy, Sell).
+- "Symbol not found" virheilmoitus toimii nyt kaikilla toiminnoilla(Get Info, Get Price, Buy, Sell).
+- "Stock not owned" virheilmoitus, jos yrittää myydä osaketta jota ei omista.
 - Aloituspääoma tallentuu nyt User-tietokantatauluun starting_capital sarakkeeseen.
 - PortfolioServeices-luokkaan lisätty get_starting_capital ja get_net_result -metodit.
 - Portfolionäkymään lisätty aloituspääoma ja nettotulos.
