@@ -59,7 +59,7 @@ Kun käyttäjä haluaa luoda uuden käyttäjätunnuksen etenee sovelluksen kontr
 
 ![](./kuvat/new_user_kontrolli.png)
 
-Kun käyttäjä painaa "New User"-painiketta käyttöliittymä vaihtaa näkymäksi CreateUserView-näkymän. "Create User" - painalluksen seurauksena tapahtumankäsittelijä create_user_handler kutsuu UserServices luokan create_user-metodia joka saa parametrina syötetyt käyttäjätunnuksen, salasanan ja pääoman. UserServices kutsuu UserRepositroy-luokan find_user-metodia tarkistaakseen löytyykö käyttäjätunnus. Mikäli käyttäjätunnus ei ole käytössä, tunnuksen luonti onnistuu, jolloin UserServices luo User-olion ja tallentaa sen kutsumalla UserRepository-luokan new_user-metodia. Onnistuneen tunnuksen luonnin jälkeen open_ok_window-metodi avaa uuden ikkunan joka näyttää vahvistuksen onnistuneesta tunnuksen luonnista. "OK"-painikkeen klikkaus sulkee ikkunan siirtää sovelluksen takaisin LoginView-näkymään.
+Kun käyttäjä painaa "New User"-painiketta käyttöliittymä vaihtaa näkymäksi CreateUserView-näkymän. "Create User" - painalluksen seurauksena tapahtumankäsittelijä create_user_handler kutsuu UserServices luokan create_user-metodia joka saa parametrina syötetyt käyttäjätunnuksen, salasanan ja pääoman. UserServices kutsuu UserRepositroy-luokan find_user-metodia tarkistaakseen löytyykö käyttäjätunnus. Mikäli käyttäjätunnus ei ole käytössä, tunnuksen luonti onnistuu, jolloin UserServices luo User-olion ja tallentaa sen kutsumalla UserRepository-luokan new_user-metodia. Onnistuneen tunnuksen luonnin jälkeen open_ok_window-metodi avaa uuden ikkunan, joka näyttää vahvistuksen onnistuneesta tunnuksen luonnista. "OK"-painikkeen klikkaus sulkee ikkunan siirtää sovelluksen takaisin LoginView-näkymään.
 
 ### Osakkeen ostaminen
 
