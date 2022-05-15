@@ -71,7 +71,7 @@ Onnistuneesta myynti- ja ostotapahtumasta avautuu siitä ilmoittava ikkuna.
 
 ## Portfolion tarkastelu
 
-Portfolio näkymässä, vasemmanpuoleisessa "Portfolio"- listassa näkyvät osakkeiden määrät ja niiden keskimääräiset hankinta hinnat. Oikean puoleisessa "Rank List"- listassa osakkeet ovat lajiteltuna tuoton mukaiseen järjestykseen, ylimpänä eniten tuottanut ja alimpana eniten tappiolla oleva. Näkymässä näkyvät myös portfolion arvo, omistusten nettotuotto, vapaan pääoman määrä, kokonaispääoma, aloituspääoma, sekä nettotulos. Takaisin päänäkymään pääset "Back"- näppäimestä.
+Portfolio näkymässä, vasemmanpuoleisessa "Portfolio"- listassa näkyvät osakkeiden määrät ja niiden keskimääräiset hankintahinnat. Oikean puoleisessa "Rank List"- listassa osakkeet ovat lajiteltuna tuoton mukaiseen järjestykseen, ylimpänä eniten tuottanut ja alimpana eniten tappiolla oleva. Näkymässä näkyvät myös portfolion arvo, omistusten nettotuotto, vapaan pääoman määrä, kokonaispääoma, aloituspääoma, sekä nettotulos. Takaisin päänäkymään pääset "Back"- näppäimestä.
 
   
 ![](./kuvat/kayttoohjeen_kuvat/portfolio_view3.png)
