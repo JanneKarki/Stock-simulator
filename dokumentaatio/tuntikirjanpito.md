@@ -35,5 +35,4 @@
 |13.5|2h| Käyttöliittymien siistiminen ja docstringien lisäys|
 |14.5|3h| Testit kuntoon ja testausdokumentti|
 |15.5|4h| Viimeiset testailut, siivoilut ja dokumentointi|
-
 |Yht.| 132h|
