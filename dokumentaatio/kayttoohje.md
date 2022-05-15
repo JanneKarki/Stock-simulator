@@ -1,5 +1,7 @@
 # Käyttöohje
 
+Lataa viimeisimmän [releasen](https://github.com) lähdekoodi valitsemalla Assets-osion alta Source code.
+
 ## Konfigurointi
 
 ## Ohjelman käynnistäminen
@@ -20,7 +22,12 @@ poetry run invoke build
 poetry run invoke start
 ```
 
+## Kirjautuminen
 
+Kirjaudu sisään antamalla käyttäjätunnus ja salasana ja paina "Login".
+
+
+![](./kuvat/kayttoohjeen_kuvat/login_user_view.png)
 
 ## Tunnuksen luominen
 Uuden tunnukset pääset luomaan painamalla alkunäkymästä "New user". Syötä käyttäjänimi, salasana, sekä valitsemasi pääoman määrä. Käyttäjän luonti tapahtuu "Create"-näppäimestä. Jos haluat peruuttaa tunnuksen luonnin ja siirtyä takaisin kirjautumisnäkymään onnistuu se näppäimestä "Back". 
@@ -32,14 +39,6 @@ Onnistuneesta tunnuksen luomisesta ilmoittaa uusi avautuu ikkuna.
 ![](./kuvat/kayttoohjeen_kuvat/User_created_ok.png)
 
 "Ok"- näppäin siirtää takaisin sovelluksen kirjautumisnäkymään.
-
-
-## Kirjautuminen
-
-Kirjaudu sisään antamalla käyttäjätunnus ja salasana ja paina "Login".
-
-
-![](./kuvat/kayttoohjeen_kuvat/login_user_view.png)
 
 
 ## Osakkeen hinnan ja yritystietojen hakeminen
@@ -70,7 +69,7 @@ Onnistuneesta myynti- ja ostotapahtumasta avautuu siitä ilmoittava ikkuna.
 Portfolio näkymässä, vasemmanpuoleisessa "Portfolio"- listassa näkyvät osakkeiden määrät ja niiden keskimääräiset hankinta hinnat. Oikean puoleisessa "Rank List"- listassa osakkeet ovat lajiteltuna tuoton mukaiseen järjestykseen, ylimpänä eniten tuottanut ja alimpana eniten tappiolla oleva. Näkymässä näkyvät myös portfolion arvo, omistusten nettotuotto, vapaan pääoman määrä, kokonaispääoma, aloituspääoma, sekä nettotulos. Takaisin päänäkymään pääset "Back"- näppäimestä.
 
   
-![](./kuvat/kayttoohjeen_kuvat/portfolio_view2.png)
+![](./kuvat/kayttoohjeen_kuvat/portfolio_view3.png)
 
 
 
