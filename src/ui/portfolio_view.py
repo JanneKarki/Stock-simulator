@@ -1,6 +1,5 @@
 from tkinter import Scrollbar, ttk, constants, Listbox
 
-
 class PortfolioView:
     """Käyttöliittymäluokka, joka vastaa portfolionäkymästä.
     """

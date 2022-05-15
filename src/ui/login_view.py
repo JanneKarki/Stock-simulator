@@ -1,5 +1,4 @@
 from tkinter import StringVar, ttk, constants
-from turtle import bgcolor
 from services.stock_actions import stock_actions as actions
 from services.user_services import user_services, InvalidCredentialsError
 from services.portfolio_services import portfolio_services as portofolio
@@ -103,8 +102,6 @@ class LoginView:
         password_label.grid(row=2, column=0, padx=5, pady=5)
         self._error_label.grid(row=5, column=0, columnspan=2, padx=5, pady=5)
 
-        
-    
     def _set_buttons(self):
         """Määrittelee ja asettaa näkymään button-painikkeet.
         """

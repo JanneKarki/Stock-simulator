@@ -1,7 +1,5 @@
-from curses.ascii import EM
 from tkinter import E, W, Scrollbar, ttk, constants, StringVar, Text, WORD, Toplevel, Label, Button, BOTTOM
 import webbrowser
-from numpy import pad
 from repositories.stock_repository import StockNotInPortfolioError, TooLargeSellOrderError
 from repositories.user_repository import NotEnoughMoneyError
 from services.stock_actions import InvalidAmountError, SymbolNotFoundError, EmptyInputError
@@ -228,7 +226,7 @@ class ActionView:
         """Avaa internet-selaimen.
 
         Args:
-            url (str): Osoite johon selain ohjautuu
+            url (str): Osoite johon selain ohjautuu.
         """
         webbrowser.open_new(url)
 

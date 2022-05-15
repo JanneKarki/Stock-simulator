@@ -134,7 +134,6 @@ class PortfolioServices:
             self._logged_user)
         total_worth = 0
         for i in portfolio:
-            print(i)
             stock_amount = i[2]
             present_price = self.actions.get_latest_price(i[0])
             total_worth += (stock_amount*present_price)

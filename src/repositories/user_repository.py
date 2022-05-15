@@ -51,7 +51,7 @@ class UserRepostory:
             user (str): Käyttäjä joka tietokannasta palautetaan.
 
         Returns:
-            tuple: Palauttaa käyttäjän käyttäjänimen, salasana ja pääoman. Jos
+            tuple: Palauttaa käyttäjän käyttäjänimen, salasana, pääoman ja aloituspääoman. Jos
                     käyttäjää ei ole, palauttaa None.
         """
         cursor = self.connection.cursor()

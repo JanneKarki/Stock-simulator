@@ -1,5 +1,4 @@
 import unittest
-from entities.user import User
 from services.stock_actions import StockActions
 from services.user_services import InvalidCredentialsError, UsernameExistsError, CapitalInputError, EmptyInputError, UserServices
 from repositories.user_repository import user_repository
@@ -24,11 +23,6 @@ class TestUserServices(unittest.TestCase):
             self.actions,
             self.portfolio_services
         )
-
-    def test_delete_user_not_found(self):
-        user_repository.delete_all()
-        found = self.user_services.find_user("Erkki")
-        self.assertEqual(found, False)
 
     def test_login_with_invalid_username_and_password(self):
         self.user_services.logout()
