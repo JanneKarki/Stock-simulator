@@ -38,6 +38,29 @@ class PortfolioServices:
 
         return capital
 
+    def get_starting_capital(self):
+        """Palauttaa kirjautuneen käyttäjän aloituspääoman,
+            kutsumalla UserRepository-luokan metodia.
+
+        Returns:
+            float : Palauttaa kirjautuneen käyttäjän aloituspääoman float muodossa.
+        """
+        starting_capital = self._user_repository.get_user_starting_capital(self._logged_user)
+
+        return starting_capital
+
+    def get_net_result(self):
+        """Palauttaa kirjautuneen käyttäjän nettotuloksen.
+
+        Returns:
+            float : Palauttaa kirjautuneen käyttäjän nettotulokset float muodossa.
+        """
+        starting_capital = self._user_repository.get_user_starting_capital(self._logged_user)
+        total_capital = self.total_capital()
+        net_result = total_capital-starting_capital
+
+        return net_result
+
     def get_portfolio(self):
         """Palauttaa kirjautuneen käyttäjän portfolion kutsumalla UserRepository-luokan metodia.
 

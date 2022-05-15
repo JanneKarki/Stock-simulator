@@ -33,10 +33,11 @@ class UserRepostory:
                 Users(
                     username,
                     password,
-                    capital
+                    capital,
+                    starting_capital
                 )
-                values (?,?,?)""",
-            (user.username, user.password, user.capital)
+                values (?,?,?,?)""",
+            (user.username, user.password, user.capital, user.capital)
         )
 
         self.connection.commit()
@@ -70,8 +71,9 @@ class UserRepostory:
         username = row[0]
         password = row[1]
         capital = row[2]
+        starting_capital = row[3]
 
-        return (username, password, capital)
+        return (username, password, capital,starting_capital)
 
     def get_user_capital(self, user):
         """Palauttaa tietokannasta käyttäjän pääoman.
@@ -101,6 +103,35 @@ class UserRepostory:
             capital = float(f"{row[2]:.2f}")
 
         return capital
+
+    def get_user_starting_capital(self, user):
+        """Palauttaa tietokannasta käyttäjän aloituspääoman.
+
+        Args:
+            user (str): Käyttäjä jonka aloituspääoma tietokannasta palautetaan.
+
+        Returns:
+            float: Palauttaa käyttäjän aloituspääoman. Jos käyttäjää ei ole,
+                    palauttaa None.
+        """
+        starting_capital = None
+
+        cursor = self.connection.cursor()
+
+        cursor.execute(
+            """SELECT *
+                FROM Users
+                WHERE username = ?
+                """,
+            [user]
+        )
+
+        row = cursor.fetchone()
+
+        if row:
+            starting_capital = row[3]
+
+        return starting_capital
 
     def adjust_capital(self, user, amount):
         """Päivittää käyttäjän pääoman summan.

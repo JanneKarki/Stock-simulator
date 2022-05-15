@@ -110,14 +110,28 @@ class PortfolioView:
         label_total_capital_value = ttk.Label(
             master=self._frame, text=self.portfolio_services.total_capital())
         label_profit = ttk.Label(
-            master=self._frame, text="Net profit:", foreground='black')
+            master=self._frame, text="Open profit:", foreground='black')
         label_profit_value = ttk.Label(
             master=self._frame, text=self.portfolio_services.total_win_loss())
+
+        label_starting_capital = ttk.Label(
+            master=self._frame, text="Starting capital:")
+
+        label_starting_capital_value = ttk.Label(
+            master=self._frame, text=self.portfolio_services.get_starting_capital())
+
+        label_net_result = ttk.Label(
+            master=self._frame, text="Net result:")
+
+        label_net_result_value = ttk.Label(
+            master=self._frame, text=self.portfolio_services.get_net_result())
+
         label_dollar_1 = ttk.Label(self._frame, text="$")
         label_dollar_2 = ttk.Label(self._frame, text="$")
         label_dollar_3 = ttk.Label(self._frame, text="$")
         label_dollar_4 = ttk.Label(self._frame, text="$")
-
+        label_dollar_5 = ttk.Label(self._frame, text="$")
+        label_dollar_6 = ttk.Label(self._frame, text="$")
         # Label positions
         label_portfolio.grid(row=0, column=0, padx=5, pady=5)
         label_rank_list.grid(row=0, column=3)
@@ -135,11 +149,23 @@ class PortfolioView:
             row=5, column=0, padx=5, pady=5, sticky=constants.E)
         label_total_capital_value.grid(
             row=5, column=1, padx=5, pady=5, sticky=constants.E)
+
+        label_starting_capital.grid(
+            row=6, column=0, padx=5, pady=5, sticky=constants.E)
+        label_starting_capital_value.grid(
+            row=6, column=1, padx=5, pady=5, sticky=constants.E)
+
+        label_net_result.grid(
+            row=7, column=0, padx=5, pady=5, sticky=constants.E)
+        label_net_result_value.grid(
+            row=7, column=1, padx=5, pady=5, sticky=constants.E)
+        
         label_dollar_1.grid(row=2, column=2)
         label_dollar_2.grid(row=3, column=2)
         label_dollar_3.grid(row=4, column=2)
         label_dollar_4.grid(row=5, column=2)
-
+        label_dollar_5.grid(row=6, column=2)
+        label_dollar_6.grid(row=6, column=2)
     def _set_listboxes(self):
         """Määrittelee ja asettaa näkymän listboxit.
         """

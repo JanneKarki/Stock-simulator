@@ -23,7 +23,8 @@ def create_tables(connection):
     cursor.execute("""CREATE TABLE Users(
                     username text primary key, 
                     password text, 
-                    capital float(24))""")
+                    capital float(24),
+                    starting_capital float(24))""")
     connection.commit()
 
 
