@@ -55,5 +55,15 @@ Toistaiseksi sovellus vielä kaatuu jos symbolia ei löydy. Kotimaisia osakkeita
 
 **Viikko7**
 - Nyt sovellus ei anna ostaa enemmän kuin on rahaa, eikä myydä enempää osakkeita kuin niitä on. Uudet nousevat virheet "StockNotInPortfolioError" ja "NotEnoughMoneyError".
-- Symbol not found virheilmoituksen toimii nyt kaikilla toiminnoilla(Get Info, Get Price, Buy, Sell)
+- Symbol not found virheilmoituksen toimii nyt kaikilla toiminnoilla(Get Info, Get Price, Buy, Sell).
+- Aloituspääoma tallentuu nyt User-tietokantatauluun starting_capital sarakkeeseen.
+- PortfolioServeices-luokkaan lisätty get_starting_capital ja get_net_result -metodit.
+- Portfolionäkymään lisätty aloituspääoma ja nettotulos.
+- ActionsView-näkymään lisätty linkki yahoo finance nettisivulle, josta voi etsiä osakkeiden tunnuksia.
+- Sovelluksen väri muutettu siniseksi.
+- Portfolionäkymän rank-list järjestys vaihdettu niin että eniten tuottanut on ylin.
+- Testien haaraumakattavauus nyt 97%.
+- Arkkitehtuuri päivitetty vastaamaan lopullista versiota.
+- Käyttöohje muutettu vastaamaan lopullista versiota.
+- Loppurelease.
 
