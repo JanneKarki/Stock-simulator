@@ -31,7 +31,7 @@ StockActions ja PortfolioServices-luokat pääsevät käsiksi tietokantaan pakka
 
 Sovelluslogiikan kannalta oleellisimmat luokat ovat User, UserServices, StockActions ja PortfolioServices.
 
-![Luokkakaavio](./kuvat/luokat.png)
+![Luokkakaavio](./kuvat/classes.png)
 
 ## Tietojen pysyväistallennus
 
