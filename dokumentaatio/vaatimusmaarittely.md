@@ -52,9 +52,9 @@ Sovellus koostuu neljästä eri näkymästä:
 
 **Laajennusideoita:**
 
-- osakkeiden lyhyeksimyynti mahdollisuus
-- käyttäjien ranking list
-- käyttäjä näkee pörssin aukioloajat
+- Osakkeiden lyhyeksimyyntimahdollisuus
+- Käyttäjien ranking-list
+- Käyttäjä näkee pörssin aukioloajat
 - Portfolion tuottolaskut prosentteina
 - Portfolion tiedot lajiteltuna sarakkeittain
 - Kaupankäyntihistoria
