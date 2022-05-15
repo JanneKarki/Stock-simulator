@@ -1,6 +1,6 @@
 # Käyttöohje
 
-Lataa viimeisimmän [releasen](https://github.com) lähdekoodi valitsemalla Assets-osion alta Source code.
+Lataa viimeisimmän [releasen](https://github.com/JanneKarki/ot-harjoitustyo/releases/tag/Loppupalautus) lähdekoodi valitsemalla Assets-osion alta Source code.
 
 ## Konfigurointi
 
