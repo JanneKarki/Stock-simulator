@@ -19,7 +19,7 @@ Käyttöliittymäkerrosta lukuunottamatta testien haarautumakattavuus on 97%.
 
 ![](./kuvat/coverage-report3.png)
 
-PortfolioServices-luokan metodit get_starting_capital ja get_net_result ei tule testatuiksi automatisoiduissa testeissä.
+PortfolioServices-luokan metodit _get_starting_capital_ ja _get_net_result_ ei tule testatuiksi automatisoiduissa testeissä.
 
 
 ## Järjestelmätestaus
