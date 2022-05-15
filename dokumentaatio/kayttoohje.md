@@ -1,6 +1,25 @@
 # Käyttöohje
 
+## Konfigurointi
+
 ## Ohjelman käynnistäminen
+
+Ennen sovelluksen käynnistämistä, suorita komentoriviltä ot-harjoitustyo-hakemistossa seuraavat komennot:
+
+1. Asenna sovelluksen tarvitsemat riippuvuudet komennolla:
+```bash
+poetry install
+```
+2. Suorita alustustoimet ennen sovelluksen käynnistämistä komennolla:
+```bash
+poetry run invoke build
+```
+3. Käynnistä sovellus komennoilla:
+
+```bash
+poetry run invoke start
+```
+
 
 
 ## Tunnuksen luominen
