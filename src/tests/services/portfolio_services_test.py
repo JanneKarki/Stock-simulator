@@ -40,9 +40,9 @@ class TestPortfolioServices(unittest.TestCase):
         stock_repository.add_to_portfolio("Erkki", "AAPL", -1000, 1)
 
         rank_list = self.portfolio_services.rank_investments()
-        self.assertEqual(rank_list[0][0], "NOK")
+        self.assertEqual(rank_list[0][0], "TSLA")
         self.assertEqual(rank_list[1][0], "AAPL")
-        self.assertEqual(rank_list[2][0], "TSLA")
+        self.assertEqual(rank_list[2][0], "NOK")
 
     def test_portfolio_worth_is_correct(self):
         price_a = self.actions.buy_stock("ABEV", "10")

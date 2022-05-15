@@ -65,6 +65,7 @@ class ActionView:
         Args:
             price (float): Näytettävä hinta.
         """
+        self._hide_price()
         self._get_price_variable.set(price)
         self._get_price_label.grid()
 

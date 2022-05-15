@@ -53,13 +53,13 @@ class PortfolioServices:
         """Palauttaa kirjautuneen käyttäjän nettotuloksen.
 
         Returns:
-            float : Palauttaa kirjautuneen käyttäjän nettotulokset float muodossa.
+            float : Palauttaa kirjautuneen käyttäjän nettotuloksen.
         """
         starting_capital = self._user_repository.get_user_starting_capital(self._logged_user)
         total_capital = self.total_capital()
         net_result = total_capital-starting_capital
 
-        return net_result
+        return float(f"{net_result:.2f}")
 
     def get_portfolio(self):
         """Palauttaa kirjautuneen käyttäjän portfolion kutsumalla UserRepository-luokan metodia.
@@ -103,7 +103,7 @@ class PortfolioServices:
             end_price = latest_price*item[2]
             profit = end_price-entry_price
             rank_list.append((item[0], float(f"{profit:.2f}")))
-        rank_list.sort(key=lambda y: y[1])
+        rank_list.sort(key=lambda y: y[1], reverse=True)
 
         return rank_list
 

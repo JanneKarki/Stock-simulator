@@ -21,6 +21,10 @@ class TestUserRepository(unittest.TestCase):
         capital = user_repository.get_user_capital(self.testaaja.username)
         self.assertEqual(capital, self.testaaja.capital)
 
+    def test_get_user_starting_capital_is_correct(self):
+        starting_capital = user_repository.get_user_starting_capital(self.testaaja.username)
+        self.assertEqual(starting_capital,10000)
+
     def test_adjust_capital_changes_capital_correctly(self):
         self.user_repository.adjust_capital(self.testaaja.username, -233)
         self.user_repository.adjust_capital(self.testaaja.username, 450)

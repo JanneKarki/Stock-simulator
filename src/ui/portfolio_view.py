@@ -164,7 +164,7 @@ class PortfolioView:
         label_dollar_3.grid(row=4, column=2)
         label_dollar_4.grid(row=5, column=2)
         label_dollar_5.grid(row=6, column=2)
-        label_dollar_6.grid(row=6, column=2)
+        label_dollar_6.grid(row=7, column=2)
     def _set_listboxes(self):
         """Määrittelee ja asettaa näkymän listboxit.
         """

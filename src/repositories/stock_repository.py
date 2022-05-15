@@ -138,7 +138,7 @@ class StockRepository:
         )
 
         results = stocks_database.fetchall()
-        print(results)
+
         return results
 
     def get_stock_from_portfolio(self, user, stock):
@@ -164,7 +164,7 @@ class StockRepository:
         )
 
         result = stock_database.fetchall()
-        print(result)
+
         return result
 
     def delete_all(self):
