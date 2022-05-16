@@ -163,10 +163,6 @@ class StockActions:
         Returns:
             str: Palauttaa yrityksen info-tekstin.
         """
-        self._stock_repository.add_to_portfolio("Esko", "TSLA", 133, 10)
-        self._stock_repository.add_to_portfolio("Esko", "BB", 3.55, 20)
-        self._stock_repository.add_to_portfolio("Esko", "NDA-FI.HE", 5, 20)
-        self._stock_repository.add_to_portfolio("Esko", "NOK", 12, 20)
 
         share = yf.Ticker(stock)
         get_data = share.history(period="1d", interval="1d")
