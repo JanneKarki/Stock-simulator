@@ -25,6 +25,9 @@ ____________________________________________
 __________________________
 
 ## Asennus
+
+Sovellus käyttää riippuvuuksien hallintaan poetrya, joten se tulee olla asennettuna koneelle.
+
 1. Asenna sovelluksen tarvitsemat riippuvuudet komennolla:
 ```bash
 poetry install

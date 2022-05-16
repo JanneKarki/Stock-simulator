@@ -11,6 +11,8 @@ DATABASE_FILENAME=database.sqlite
 
 ## Ohjelman käynnistäminen
 
+Sovellus käyttää riippuvuuksien hallintaan poetrya, joten se tulee olla asennettuna koneelle.
+
 Ennen sovelluksen käynnistämistä, suorita komentoriviltä ot-harjoitustyo-hakemistossa seuraavat komennot:
 
 1. Asenna sovelluksen tarvitsemat riippuvuudet komennolla:

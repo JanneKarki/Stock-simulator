@@ -40,7 +40,7 @@ Sovellus koostuu neljästä eri näkymästä:
 - Hakea yrityksen esittelytiedot osakkeen symbolin avulla.
     - Mikäli symbolia ei löydy sovellus ilmoittaa siitä.
 - Tarkastella osakesalkkua ja sen kehittymistä. Nähtävissä on:
-    - Omistuksessa olevat osakkeet, niiden määrä ja keskimääräinen hankinta hinta
+    - Omistuksessa olevat osakkeet, niiden määrä ja keskimääräinen hankintahinta
     - Osakkeet järjestettynä tuoton mukaiseen suurusjärjestykseen
     - Osakesalkun kokonaistuotto/-tappio
     - Avoinpääoma
