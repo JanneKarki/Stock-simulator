@@ -21,7 +21,7 @@ ____________________________________________
 ## Releases
 [Release 1 - Viikon 5 deadline](https://github.com/JanneKarki/ot-harjoitustyo/releases/Viikon5)
 
-[Loppupalautus](https://github.com/JanneKarki/ot-harjoitustyo/releases/tag/Loppupalautus)
+[Loppupalautus](https://github.com/JanneKarki/ot-harjoitustyo/releases/tag/Final_release)
 __________________________
 
 ## Asennus
