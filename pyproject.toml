@@ -9,7 +9,6 @@ python = "^3.8"
 yfinance = "^0.1.70"
 invoke = "^1.7.0"
 python-dotenv = "^0.20.0"
-pip = "^22.0.4"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.1"
