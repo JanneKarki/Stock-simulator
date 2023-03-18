@@ -2,6 +2,8 @@
 
 Sovelluksella voi sijoittaa leikisti osakkeisiin reaaliaikaisilla hinnoilla. Sovelluksella on myös mahdollista hakea yrityksen esittelytietoja. Osakkeden osto, myynti ja esittelytietojen hakeminen tapahtuu osakkeen symbolin avulla, joita voi etsiä kätevästi vaikka täältä https://finance.yahoo.com/. 
 
+!Yfinance-palvelu ei toimi toistaiseksi, joten osakkeen tietojen näyttäminen ei onnistu.
+
 **Dokumentaatio**
 
 [Vaatimusmäärittely](https://github.com/JanneKarki/ot-harjoitustyo/blob/main/dokumentaatio/vaatimusmaarittely.md)
