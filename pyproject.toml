@@ -6,7 +6,7 @@ authors = ["Janne Kärki <janne.karki@helsinki.fi>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-yfinance = "^0.1.70"
+yfinance = "^0.2.12"
 invoke = "^1.7.0"
 python-dotenv = "^0.20.0"
 
